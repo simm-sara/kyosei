@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Pendente from "../components/Pendente.astro";
+import { site } from "../lib/site";
+---
+<Base
+  titulo="Privacidade e cookies"
+  descricao="Como o site do CrossFit Kyosei usa cookies de análise (Google Analytics e Microsoft Clarity) e como mudar sua escolha, de acordo com a LGPD."
+>
+  <Topo olho="Privacidade" titulo="Privacidade e cookies" />
+  <section class="secao">
+    <div class="miolo prosa">
+      <p><Pendente nota="revisar com o box antes de publicar" /></p>
+      <h2>O que coletamos</h2>
+      <p>Este site não tem cadastro nem formulário. Só coletamos dados de navegação se você aceitar os cookies de análise no aviso que aparece na primeira visita.</p>
+      <h2>Cookies de análise</h2>
+      <p>Com a sua permissão, usamos:</p>
+      <ul>
+        <li><strong>Google Analytics 4</strong>, para contar visitas e cliques (por exemplo, em "Agendar aula" e no WhatsApp).</li>
+        <li><strong>Microsoft Clarity</strong>, que gera mapas de calor e gravações anônimas da navegação (movimento do mouse, rolagem e cliques). Campos de texto são mascarados.</li>
+      </ul>
+      <p>Usamos esses dados só para melhorar o site. Não vendemos nem compartilhamos com terceiros para publicidade.</p>
+      <h2>Mapa</h2>
+      <p>O mapa do Google só carrega se você clicar em "Carregar mapa". A partir daí, valem as regras de privacidade do Google.</p>
+      <h2>Mudar sua escolha</h2>
+      <p>Você pode aceitar ou recusar a qualquer momento em <button type="button" class="link-botao" data-abrir-cookies>Preferências de cookies</button>, também no rodapé de todas as páginas. Para apagar cookies já gravados, limpe os dados do site no seu navegador.</p>
+      <h2>Contato</h2>
+      <p>Dúvidas sobre seus dados: <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    </div>
+  </section>
+</Base>

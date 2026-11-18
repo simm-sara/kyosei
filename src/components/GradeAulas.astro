@@ -1,0 +1,15 @@
+---
+import horarios from "../data/horarios.json";
+---
+<div class="grade-aulas">
+  {horarios.grade.map((g) => (
+    <div class="grade-aulas__linha">
+      <div class="grade-aulas__dia">{g.dias}{g.observacao && <small>{g.observacao}</small>}</div>
+      {g.aulas.length ? (
+        <ul class="horas" aria-label={`Aulas: ${g.dias}`}>{g.aulas.map((h) => <li>{h}</li>)}</ul>
+      ) : (
+        <span class="horas--vazio">Sem aulas</span>
+      )}
+    </div>
+  ))}
+</div>

@@ -1,0 +1,18 @@
+---
+import { ehLinkExterno } from "../lib/site";
+interface Props {
+  href: string;
+  variante?: "primario" | "secundario" | "fantasma" | "whatsapp";
+  evento?: string;
+  class?: string;
+}
+const { href, variante = "primario", evento, class: classe = "" } = Astro.props;
+const externo = ehLinkExterno(href);
+---
+<a
+  class={`botao botao--${variante} ${classe}`}
+  href={href}
+  data-evento={evento}
+  target={externo ? "_blank" : undefined}
+  rel={externo ? "noopener" : undefined}
+><slot /></a>

@@ -1,0 +1,186 @@
+---
+import Base from "../layouts/Base.astro";
+import Botao from "../components/Botao.astro";
+import Foto from "../components/Foto.astro";
+import Pendente from "../components/Pendente.astro";
+import GradeAulas from "../components/GradeAulas.astro";
+import CartaoEvento from "../components/CartaoEvento.astro";
+import Mapa from "../components/Mapa.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto } from "../lib/site";
+import { eventosSeparados } from "../lib/eventos";
+
+const { proximos } = await eventosSeparados();
+const destaques = proximos.slice(0, 3);
+const r = site.avaliacaoGoogle;
+---
+<Base
+  titulo="CrossFit Kyosei | CrossFit no Cambuí, Campinas"
+  semSufixo
+  descricao="Box afiliado CrossFit no Cambuí, em Campinas. Aulas para todos os níveis, head coach CrossFit Level 3 e aula experimental. Aceita Wellhub e Totalpass."
+>
+  <section class="heroi">
+    <div class="miolo heroi__grade">
+      <div>
+        <p class="olho">Box afiliado CrossFit · Cambuí, Campinas</p>
+        <h1>Força, técnica e <em>gente junta.</em></h1>
+        <p class="chamada">
+          Aulas de CrossFit para todos os níveis, com coach acompanhando cada movimento de perto.
+          Aqui quem dá a aula também é dono do box.
+        </p>
+        <div class="acoes">
+          <Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao>
+          <Botao href="/horarios-e-planos" variante="fantasma" evento="precos">Horários e planos</Botao>
+        </div>
+        <div class="heroi__selos">
+          <a href={site.links.googleAvaliacoes} target="_blank" rel="noopener" data-evento="avaliacoes">
+            <span class="estrelas" aria-hidden="true">★★★★★</span> <strong>{r.nota}</strong> no Google · {r.total} avaliações
+          </a>
+          <span>Aceita <strong>Wellhub</strong> e <strong>Totalpass</strong></span>
+        </div>
+      </div>
+      <div class="heroi__foto">
+        <Foto alt="Aula em andamento no CrossFit Kyosei" legenda="aula em andamento no box" proporcao="4 / 5" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Os quatro atalhos da meta inicial: agendar, preços, eventos, WhatsApp -->
+  <div class="miolo atalhos">
+    <div class="grade grade--4">
+      <a class="atalho" href={agendarUrl} target="_blank" rel="noopener" data-evento="agendar">
+        <span class="atalho__num">01</span><strong>Agendar aula</strong><span>Reserve seu horário no app do box.</span>
+      </a>
+      <a class="atalho" href="/horarios-e-planos" data-evento="precos">
+        <span class="atalho__num">02</span><strong>Horários e planos</strong><span>Grade da semana, valores, Wellhub e Totalpass.</span>
+      </a>
+      <a class="atalho" href="/eventos" data-evento="eventos">
+        <span class="atalho__num">03</span><strong>Eventos e clínicas</strong><span>Open, workshops, aulões e confraternizações.</span>
+      </a>
+      <a class="atalho" href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp">
+        <span class="atalho__num">04</span><strong>WhatsApp</strong><span>Tire dúvidas ou fale com a gente: {site.telefone}.</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="secao">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Por que o Kyosei</p>
+          <h2>Comunidade não é slogan. Dá para ver.</h2>
+        </div>
+        <a class="link-seta" href="/sobre">Conheça o box</a>
+      </div>
+      <div class="grade grade--4 provas">
+        <div class="prova revelar">
+          <h3>Head coach Level 3, e sócio</h3>
+          <p>Lucas Chiba tem a certificação CrossFit Level 3 e é um dos donos. Quem planeja o treino está na aula, corrigindo o seu movimento.</p>
+        </div>
+        <div class="prova revelar">
+          <h3>Box de família</h3>
+          <p>O Kyosei é da família Chiba. Lucas, Iris e Gabriel cuidam do box de perto, do treino ao balcão.</p>
+        </div>
+        <div class="prova revelar">
+          <h3>Comunidade ativa</h3>
+          <p>Nossa comunidade no WhatsApp tem grupos de anúncios, fotos e conversa geral. É lá que os eventos saem primeiro.</p>
+        </div>
+        <div class="prova revelar">
+          <h3>Primeira aula sem mistério</h3>
+          <p>Explicamos o passo a passo antes de você chegar: o que levar, como é a aula e como adaptamos tudo ao seu nível.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--escura">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Agenda do box</p>
+          <h2>Próximos eventos</h2>
+        </div>
+        <a class="link-seta" href="/eventos" data-evento="eventos">Ver todos os eventos</a>
+      </div>
+      {destaques.length ? (
+        <div class="grade grade--3">{destaques.map((e) => <CartaoEvento evento={e} />)}</div>
+      ) : (
+        <div class="vazio">
+          <p>Nenhum evento marcado agora. Os anúncios saem primeiro na comunidade do WhatsApp.</p>
+          <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="miolo duas-colunas">
+      <div>
+        <p class="olho">Grade de aulas</p>
+        <h2>Treine antes do trabalho, no almoço ou no fim do dia.</h2>
+        <p class="chamada" style="margin-top:20px">Aulas de uma hora, de segunda a sexta, e aulões no sábado. Em feriado tem aulão às 9h30.</p>
+        <div class="acoes">
+          <Botao href="/horarios-e-planos" variante="secundario" evento="precos">Ver planos e valores</Botao>
+        </div>
+      </div>
+      <GradeAulas />
+    </div>
+  </section>
+
+  <section class="secao secao--areia">
+    <div class="miolo duas-colunas">
+      <div>
+        <p class="olho">Coaches</p>
+        <h2>Coaches certificados CrossFit em todas as aulas.</h2>
+        <p class="chamada" style="margin-top:20px">Técnica e segurança vêm antes de carga e velocidade. Cada aula tem coach acompanhando de perto, e tudo é adaptado ao seu nível.</p>
+        <a class="link-seta" href="/coaches">Conheça os coaches</a>
+      </div>
+      <div class="grade" style="gap:28px">
+        <a class="mini-coach" href="/coaches#lucas-chiba">
+          <Foto alt="Lucas Chiba, head coach" legenda="Lucas" proporcao="1 / 1" />
+          <div><strong>Lucas Chiba</strong><span>Sócio e head coach · CrossFit Level 3</span></div>
+        </a>
+        <a class="mini-coach" href="/coaches#stella-mazotti">
+          <Foto alt="Stella Mazotti Magalhães, coach" legenda="Stella" proporcao="1 / 1" />
+          <div><strong>Stella Mazotti</strong><span>Coach · CrossFit Level 1</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--escura">
+    <div class="miolo nome-kyosei">
+      <p class="kanji" lang="ja" aria-hidden="true">共生</p>
+      <div>
+        <p class="olho">O nome <Pendente nota="significado com os sócios" /></p>
+        <blockquote>Kyosei: viver e trabalhar juntos pelo bem comum.</blockquote>
+        <p class="chamada" style="margin-top:20px">
+          É a ideia por trás do box: cada um no seu ritmo, todo mundo no mesmo treino. Quem chegou ontem treina ao lado de quem treina há anos.
+        </p>
+        <a class="link-seta" href="/sobre">Nossa história</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="miolo duas-colunas">
+      <div>
+        <p class="olho">Onde estamos</p>
+        <h2>Na General Osório, no Cambuí.</h2>
+        <dl class="dados" style="margin-top:32px">
+          <div><dt>Endereço</dt><dd>{enderecoCompleto}</dd></div>
+          <div><dt>WhatsApp</dt><dd><a href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp">{site.telefone}</a></dd></div>
+          <div>
+            <dt>Funcionamento <Pendente /></dt>
+            <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}<br /></>)}</dd>
+          </div>
+        </dl>
+        <div class="acoes"><a class="link-seta" href="/contato">Como chegar</a></div>
+      </div>
+      <Mapa />
+    </div>
+  </section>
+
+  <FaixaCta />
+</Base>

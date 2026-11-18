@@ -1,0 +1,45 @@
+---
+import Logo from "./Logo.astro";
+import { agendarUrl } from "../lib/site";
+
+const caminho = Astro.url.pathname.replace(/\/$/, "") || "/";
+const itens = [
+  { href: "/horarios-e-planos", rotulo: "Horários e planos" },
+  { href: "/eventos", rotulo: "Eventos" },
+  { href: "/primeira-aula", rotulo: "Primeira aula" },
+  { href: "/coaches", rotulo: "Coaches" },
+  { href: "/sobre", rotulo: "Sobre" },
+  { href: "/contato", rotulo: "Contato" },
+];
+---
+<header class="cabecalho">
+  <div class="cabecalho__miolo">
+    <a class="cabecalho__marca" href="/" aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
+
+    <nav class="nav" id="menu" aria-label="Principal">
+      <ul>
+        {itens.map((i) => (
+          <li><a href={i.href} aria-current={caminho === i.href ? "page" : undefined}>{i.rotulo}</a></li>
+        ))}
+      </ul>
+      <a class="botao botao--primario nav__cta" href={agendarUrl} target="_blank" rel="noopener" data-evento="agendar">Agendar aula</a>
+    </nav>
+
+    <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-botao__barras" aria-hidden="true"></span>
+      <span class="sr">Menu</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const botao = document.querySelector<HTMLButtonElement>(".menu-botao");
+  botao?.addEventListener("click", () => {
+    const aberto = botao.getAttribute("aria-expanded") === "true";
+    botao.setAttribute("aria-expanded", String(!aberto));
+    document.documentElement.classList.toggle("menu-aberto", !aberto);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.documentElement.classList.contains("menu-aberto")) botao?.click();
+  });
+</script>

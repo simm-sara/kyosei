@@ -1,0 +1,7 @@
+---
+// Etiqueta "A confirmar". Só aparece com site.rascunho = true.
+import { site } from "../lib/site";
+interface Props { nota?: string }
+const { nota } = Astro.props;
+---
+{site.rascunho && <mark class="pendente" title={nota}>A confirmar{nota && <span class="pendente__nota">: {nota}</span>}</mark>}

@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import Botao from "./Botao.astro";
+import { partesData, dataPorExtenso, whatsappUrl } from "../lib/site";
+
+interface Props { evento: CollectionEntry<"eventos">; passado?: boolean; comTexto?: boolean }
+const { evento, passado = false, comTexto = false } = Astro.props;
+const e = evento.data;
+const d = partesData(e.data);
+const { Content } = await render(evento);
+const linkInscricao = e.inscricao ?? whatsappUrl(`Olá! Quero saber mais sobre: ${e.titulo}.`);
+---
+<article class={`evento ${passado ? "evento--passado" : ""}`}>
+  <time class="evento__data" datetime={e.data.toISOString().slice(0, 10)}>
+    <span class="evento__dia">{d.dia}</span>
+    <span class="evento__mes">{d.mes}</span>
+  </time>
+  <div>
+    <span class="evento__tipo">{e.tipo}{e.exemplo && " · exemplo"}</span>
+    <h3>{e.titulo}</h3>
+    <p class="evento__meta">
+      {dataPorExtenso(e.data, e.dataFim)}{e.horario && ` · ${e.horario}`}{e.local && ` · ${e.local}`}
+      {e.vagas && ` · ${e.vagas}`}{e.valor && ` · ${e.valor}`}
+    </p>
+    <p class="evento__resumo">{e.resumo}</p>
+    {comTexto && !e.exemplo && <div class="evento__texto"><Content /></div>}
+    {!passado && (
+      <Botao href={linkInscricao} variante="secundario" evento="evento_inscricao" class="evento__botao">
+        {e.inscricao ? "Inscrever-se" : "Quero participar"}
+      </Botao>
+    )}
+  </div>
+</article>

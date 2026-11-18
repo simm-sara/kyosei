@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import Pendente from "../components/Pendente.astro";
+import Foto from "../components/Foto.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import { agendarUrl, whatsappUrl, site } from "../lib/site";
+---
+<Base
+  titulo="Sua primeira aula de CrossFit"
+  descricao="Como é a primeira aula de CrossFit no Kyosei, em Campinas: como agendar, o que levar, o que esperar e como adaptamos o treino para iniciantes."
+>
+  <Topo
+    olho="Para quem está começando"
+    titulo="Sua primeira aula, passo a passo"
+    chamada="Nunca fez CrossFit? Ótimo, a maioria das pessoas começa assim. Veja como funciona antes de chegar."
+  >
+    <div class="acoes"><Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao></div>
+  </Topo>
+
+  <section class="secao">
+    <div class="miolo duas-colunas">
+      <div>
+        <p class="olho">Como funciona <Pendente nota="validar o processo com o box" /></p>
+        <ol class="passos">
+          <li class="passo"><div><h3>Agende o horário</h3><p>Escolha uma aula na grade e reserve pelo app de agendamento ou pelo WhatsApp. Se treina pelo Wellhub ou Totalpass, avise na reserva.</p></div></li>
+          <li class="passo"><div><h3>Chegue 10 minutos antes</h3><p>Dá tempo de conhecer o espaço, guardar suas coisas e conversar com o coach.</p></div></li>
+          <li class="passo"><div><h3>Conte seu histórico</h3><p>O coach pergunta sobre lesões, dores e o que você já praticou. É assim que o treino é ajustado para você.</p></div></li>
+          <li class="passo"><div><h3>Aquecimento e técnica</h3><p>Toda aula começa aquecendo o corpo e treinando os movimentos do dia, com correção de perto.</p></div></li>
+          <li class="passo"><div><h3>O treino do dia, no seu nível</h3><p>Todo mundo faz o mesmo treino, com carga, repetições e movimentos adaptados. Na primeira aula, o objetivo é aprender, não bater recorde.</p></div></li>
+          <li class="passo"><div><h3>Desaquecimento e conversa</h3><p>No fim, a gente alonga, tira dúvidas e mostra os planos, se você quiser continuar.</p></div></li>
+        </ol>
+      </div>
+      <div style="position:sticky;top:calc(var(--cabecalho-h) + 24px)">
+        <Foto alt="Coach orientando aluno iniciante" legenda="coach orientando iniciante" proporcao="4 / 5" />
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--areia">
+    <div class="miolo grade grade--2">
+      <div class="cartao">
+        <h3>O que levar</h3>
+        <ul class="lista-check">
+          <li>Roupa confortável, que deixe você se mexer à vontade</li>
+          <li>Tênis com solado firme (os de corrida muito macios atrapalham no levantamento)</li>
+          <li>Garrafa de água</li>
+          <li>Toalha pequena</li>
+        </ul>
+      </div>
+      <div class="cartao">
+        <h3>O que esperar</h3>
+        <ul class="lista-check">
+          <li>Uma aula de cerca de uma hora, em turma, com coach o tempo todo</li>
+          <li>Movimentos adaptados: ninguém precisa saber fazer nada antes</li>
+          <li>Cansaço bom e, talvez, alguma dor muscular nos dias seguintes</li>
+          <li>Gente que chegou do mesmo jeito que você</li>
+        </ul>
+      </div>
+    </div>
+    <div class="miolo acoes">
+      <Botao href={whatsappUrl("Olá! Nunca fiz CrossFit e tenho uma dúvida antes da primeira aula.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Ficou alguma dúvida?</Botao>
+      <a class="link-seta" href="/faq" style="align-self:center">Perguntas frequentes</a>
+    </div>
+  </section>
+
+  <FaixaCta titulo="Pronto para a primeira?" texto={`Aulas de segunda a sábado na ${site.endereco.rua}, no Cambuí.`} />
+</Base>

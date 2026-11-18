@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import Botao from "../components/Botao.astro";
+---
+<Base titulo="Página não encontrada" descricao="Esta página não existe no site do CrossFit Kyosei.">
+  <section class="topo" style="min-height:60vh;display:flex;align-items:center">
+    <div class="miolo">
+      <p class="olho">Erro 404</p>
+      <h1>No rep. Essa página não existe.</h1>
+      <div class="acoes">
+        <Botao href="/">Voltar ao início</Botao>
+        <Botao href="/horarios-e-planos" variante="fantasma">Horários e planos</Botao>
+      </div>
+    </div>
+  </section>
+</Base>

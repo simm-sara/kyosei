@@ -1,0 +1,59 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import Foto from "../components/Foto.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import armario from "../data/armario.json";
+import { site, whatsappUrl } from "../lib/site";
+
+type Peca = { nome: string; foto?: string; descricao?: string; preco?: string };
+const pecas = armario.pecas as Peca[];
+const exemplos = site.rascunho && pecas.length === 0 ? ["Camiseta", "Regata", "Moletom", "Boné"] : [];
+---
+<Base
+  titulo="Armário: roupas e acessórios"
+  descricao="O Armário do CrossFit Kyosei: camisetas e peças do box. Sempre tem peças disponíveis no box em Campinas. Consulte valores e retire lá."
+>
+  <Topo
+    olho="Armário"
+    titulo="Vista o Kyosei"
+    chamada="Sempre tem peças disponíveis no box. Consulte os valores e retire lá."
+  >
+    <div class="acoes">
+      <Botao href={whatsappUrl("Olá! Quero saber das peças do Armário do Kyosei.")} variante="whatsapp" evento="armario"><IconeWhatsapp /> Consultar peças</Botao>
+    </div>
+  </Topo>
+
+  <section class="secao">
+    <div class="miolo">
+      {pecas.length > 0 && (
+        <div class="grade grade--4">
+          {pecas.map((p) => (
+            <article class="peca">
+              <Foto src={p.foto} alt={p.nome} proporcao="1 / 1" />
+              <h3>{p.nome}</h3>
+              {p.descricao && <p>{p.descricao}</p>}
+              {p.preco && <p><strong>{p.preco}</strong></p>}
+            </article>
+          ))}
+        </div>
+      )}
+      {exemplos.length > 0 && (
+        <div class="grade grade--4">
+          {exemplos.map((n) => (
+            <article class="peca">
+              <Foto alt={`${n} do Kyosei`} legenda={`${n.toLowerCase()} (exemplo)`} proporcao="1 / 1" />
+              <h3>{n}</h3>
+              <p>Peça de exemplo: aguardando fotos reais.</p>
+            </article>
+          ))}
+        </div>
+      )}
+      {pecas.length === 0 && !site.rascunho && (
+        <div class="vazio"><p>As fotos das peças chegam em breve. Enquanto isso, passe no box ou chame no WhatsApp.</p></div>
+      )}
+      <p style="margin-top:32px;color:var(--cinza)">O Armário é só um mostruário: não vendemos online. A disponibilidade de tamanhos muda; confirme antes de passar.</p>
+    </div>
+  </section>
+</Base>

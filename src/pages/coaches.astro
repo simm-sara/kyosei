@@ -1,0 +1,46 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Foto from "../components/Foto.astro";
+import Pendente from "../components/Pendente.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+---
+<Base
+  titulo="Coaches"
+  descricao="Conheça os coaches do CrossFit Kyosei: Lucas Chiba, sócio e head coach CrossFit Level 3, e Stella Mazotti Magalhães, coach CrossFit Level 1."
+>
+  <Topo
+    olho="Time"
+    titulo="Os coaches"
+    chamada="Todos os coaches do Kyosei são certificados CrossFit. E o head coach é também um dos donos do box."
+  />
+
+  <section class="secao">
+    <div class="miolo">
+      <article class="coach" id="lucas-chiba">
+        <Foto alt="Lucas Chiba, head coach do CrossFit Kyosei" legenda="Lucas Chiba" proporcao="4 / 5" />
+        <div>
+          <span class="selo-nivel">CrossFit Level 3</span>
+          <h2>Lucas Chiba</h2>
+          <p class="coach__papel">Sócio e head coach</p>
+          <p>Lucas é o head coach e um dos sócios do Kyosei. Ele planeja a programação do box e está na aula, corrigindo movimento e ajustando o treino de cada aluno.</p>
+          <p>O CrossFit Level 3 é uma certificação avançada, que exige experiência comprovada como coach e prova específica.</p>
+          <p><Pendente nota="bio completa a partir do CV" /></p>
+        </div>
+      </article>
+
+      <article class="coach" id="stella-mazotti">
+        <Foto alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" legenda="Stella Mazotti" proporcao="4 / 5" />
+        <div>
+          <span class="selo-nivel">CrossFit Level 1</span>
+          <h2>Stella Mazotti Magalhães</h2>
+          <p class="coach__papel">Coach</p>
+          <p>Stella é coach do Kyosei, com certificação CrossFit Level 1.</p>
+          <p><Pendente nota="bio completa a partir do CV" /></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <FaixaCta titulo="Treine com a gente." />
+</Base>
