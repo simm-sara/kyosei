@@ -1,0 +1,47 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Pendente from "../components/Pendente.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+---
+<Base
+  titulo="Metodologia: o que é CrossFit"
+  descricao="O que é CrossFit, como é a estrutura de uma aula no Kyosei e como o treino é adaptado (escalonado) para cada nível, do iniciante ao avançado."
+>
+  <Topo
+    olho="Metodologia"
+    titulo="Como a gente treina"
+    chamada="O que é CrossFit, como é uma aula e como o mesmo treino serve para quem está começando e para quem compete."
+  />
+
+  <section class="secao">
+    <div class="miolo duas-colunas">
+      <div class="prosa">
+        <p class="olho">O que é CrossFit <Pendente nota="validar com os coaches" /></p>
+        <h2>Movimentos funcionais, variados, em intensidade</h2>
+        <p>CrossFit é um programa de condicionamento baseado em movimentos funcionais (agachar, levantar, empurrar, puxar, correr, saltar) constantemente variados e feitos em alta intensidade, sempre relativa ao seu momento.</p>
+        <p>Mistura levantamento de peso, ginástica e condicionamento. O objetivo é ficar mais forte, mais disposto e mais capaz no dia a dia.</p>
+      </div>
+      <div class="prosa">
+        <p class="olho">Escalonamento</p>
+        <h2>Um treino, vários níveis</h2>
+        <p>Todo mundo faz o treino do dia, e o coach ajusta para cada pessoa: menos carga, menos repetições ou uma variação do movimento.</p>
+        <p>Uma barra fixa pode virar remada no anel; um salto na caixa pode virar subida no step. A intensidade é sua, a segurança vem primeiro.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--areia">
+    <div class="miolo">
+      <div class="cabeca-secao"><div><p class="olho">Estrutura da aula</p><h2>Uma hora, quatro partes</h2></div></div>
+      <div class="grade grade--4 provas">
+        <div class="prova"><h3>Aquecimento</h3><p>Preparar articulações e músculos para o que vem.</p></div>
+        <div class="prova"><h3>Técnica ou força</h3><p>Prática guiada do movimento do dia, com correção do coach.</p></div>
+        <div class="prova"><h3>WOD</h3><p>O treino do dia ("workout of the day"), adaptado ao seu nível.</p></div>
+        <div class="prova"><h3>Desaquecimento</h3><p>Mobilidade, alongamento e conversa sobre o treino.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <FaixaCta />
+</Base>

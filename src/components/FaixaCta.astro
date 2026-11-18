@@ -1,0 +1,22 @@
+---
+import Botao from "./Botao.astro";
+import IconeWhatsapp from "./IconeWhatsapp.astro";
+import { agendarUrl, whatsappUrl } from "../lib/site";
+interface Props { titulo?: string; texto?: string }
+const {
+  titulo = "Sua primeira aula é por nossa conta.",
+  texto = "Agende uma aula experimental e venha conhecer o box, o time e a turma.",
+} = Astro.props;
+---
+<section class="secao secao--vermelha">
+  <div class="miolo faixa-cta">
+    <div>
+      <h2>{titulo}</h2>
+      <p class="chamada" style="margin-top:16px">{texto}</p>
+    </div>
+    <div class="acoes">
+      <Botao href={agendarUrl} evento="agendar">Agendar aula</Botao>
+      <Botao href={whatsappUrl()} variante="fantasma" evento="whatsapp"><IconeWhatsapp /> WhatsApp</Botao>
+    </div>
+  </div>
+</section>

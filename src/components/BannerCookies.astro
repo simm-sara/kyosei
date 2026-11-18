@@ -1,0 +1,70 @@
+---
+// Consentimento (LGPD). Clarity e GA4 só carregam depois de "Aceitar".
+// A escolha fica no localStorage do navegador da pessoa ("kyosei-consentimento").
+import { site } from "../lib/site";
+const { clarityId, ga4Id } = site.analytics;
+---
+<div class="cookies" role="dialog" aria-live="polite" aria-label="Cookies" hidden data-cookies>
+  <p>
+    Usamos cookies de análise (Google Analytics e Microsoft Clarity, que registra mapas de calor e gravações anônimas de navegação)
+    para entender o que funciona no site. Nada disso carrega sem a sua permissão.
+    <a href="/privacidade">Saiba mais</a>.
+  </p>
+  <div class="cookies__acoes">
+    <button type="button" class="botao botao--fantasma" data-consentir="nao">Recusar</button>
+    <button type="button" class="botao botao--primario" data-consentir="sim">Aceitar</button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ clarityId, ga4Id }}>
+  (function () {
+    var CHAVE = "kyosei-consentimento";
+    var banner = document.querySelector("[data-cookies]");
+    function ler() { try { return localStorage.getItem(CHAVE); } catch (e) { return null; } }
+    function gravar(v) { try { localStorage.setItem(CHAVE, v); } catch (e) {} }
+
+    function carregar() {
+      if (window.__kyoseiAnalytics) return;
+      window.__kyoseiAnalytics = true;
+      if (ga4Id) {
+        var s = document.createElement("script");
+        s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + ga4Id;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag("js", new Date()); gtag("config", ga4Id);
+      }
+      if (clarityId) {
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+          t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", clarityId);
+      }
+    }
+
+    // Conversões: qualquer link com data-evento (agendar, whatsapp, precos, eventos...)
+    document.addEventListener("click", function (e) {
+      var alvo = e.target.closest && e.target.closest("[data-evento]");
+      if (!alvo) return;
+      var nome = "clique_" + alvo.getAttribute("data-evento");
+      if (window.gtag) gtag("event", nome, { link_url: alvo.href, pagina: location.pathname });
+      if (window.clarity) clarity("event", nome);
+    });
+
+    var escolha = ler();
+    if (escolha === "sim") carregar();
+    else if (!escolha && banner) banner.hidden = false;
+
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-consentir]");
+      if (b) {
+        var v = b.getAttribute("data-consentir");
+        gravar(v); banner.hidden = true;
+        if (v === "sim") carregar();
+        else if (window.__kyoseiAnalytics) location.reload(); // revogou: recarrega sem os scripts
+      }
+      if (e.target.closest && e.target.closest("[data-abrir-cookies]")) banner.hidden = false;
+    });
+  })();
+</script>

@@ -1,0 +1,19 @@
+---
+// Foto com reserva: sem `src`, mostra um bloco marcado no lugar da foto real.
+// Fotos reais vão em public/fotos/ (ex.: src="/fotos/aula-1.jpg").
+interface Props {
+  src?: string;
+  alt: string;
+  legenda?: string;
+  proporcao?: string;
+  class?: string;
+}
+const { src, alt, legenda, proporcao = "4 / 3", class: classe = "" } = Astro.props;
+---
+{src ? (
+  <img class={`foto ${classe}`} src={src} alt={alt} loading="lazy" decoding="async" style={`aspect-ratio:${proporcao}`} />
+) : (
+  <div class={`foto foto--vazia ${classe}`} style={`aspect-ratio:${proporcao}`} role="img" aria-label={alt}>
+    <span class="foto__rotulo">Foto · {legenda ?? alt}</span>
+  </div>
+)}

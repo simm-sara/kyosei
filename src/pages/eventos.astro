@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import CartaoEvento from "../components/CartaoEvento.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+import { eventosSeparados } from "../lib/eventos";
+import { comunidadeUrl, site, enderecoCompleto } from "../lib/site";
+
+const { proximos, anteriores } = await eventosSeparados();
+
+// Dados estruturados para o Google entender os eventos (só os reais).
+const schema = proximos
+  .filter((e) => !e.data.exemplo)
+  .map((e) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: e.data.titulo,
+    description: e.data.resumo,
+    startDate: e.data.data.toISOString().slice(0, 10),
+    endDate: (e.data.dataFim ?? e.data.data).toISOString().slice(0, 10),
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: { "@type": "Place", name: site.nome, address: enderecoCompleto },
+    organizer: { "@type": "Organization", name: site.nome, url: Astro.site?.href },
+  }));
+---
+<Base
+  titulo="Eventos e clínicas"
+  descricao="Calendário de eventos do CrossFit Kyosei em Campinas: clínicas, workshops, CrossFit Open, aulões e confraternizações da comunidade do box."
+  schema={schema}
+>
+  <Topo
+    olho="Agenda"
+    titulo="Eventos e clínicas"
+    chamada="Clínicas, workshops, Open, aulões e confraternizações. Os anúncios saem primeiro na comunidade do WhatsApp."
+  >
+    <div class="acoes">
+      <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
+    </div>
+  </Topo>
+
+  <section class="secao">
+    <div class="miolo">
+      <div class="cabeca-secao"><h2>Próximos</h2></div>
+      {proximos.length ? (
+        <div class="grade grade--2">{proximos.map((e) => <CartaoEvento evento={e} comTexto />)}</div>
+      ) : (
+        <div class="vazio">
+          <p>Nenhum evento marcado agora. Entre na comunidade do WhatsApp para saber primeiro quando abrir o próximo.</p>
+          <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {anteriores.length > 0 && (
+    <section class="secao secao--areia">
+      <div class="miolo">
+        <div class="cabeca-secao"><h2>Anteriores</h2></div>
+        <div class="grade grade--2">{anteriores.slice(0, 12).map((e) => <CartaoEvento evento={e} passado />)}</div>
+      </div>
+    </section>
+  )}
+
+  <FaixaCta titulo="Ainda não treina com a gente?" texto="Evento é melhor com a turma toda. Agende uma aula experimental e venha conhecer." />
+</Base>

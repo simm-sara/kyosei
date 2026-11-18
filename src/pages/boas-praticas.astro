@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Pendente from "../components/Pendente.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+---
+<Base
+  titulo="Boas práticas no box"
+  descricao="Combinados do CrossFit Kyosei: pontualidade, cuidado com o material, segurança e higiene, para o treino ser bom para todo mundo."
+>
+  <Topo olho="Combinados" titulo="Boas práticas no box" chamada="Pequenos combinados que fazem a aula funcionar para todo mundo." />
+
+  <section class="secao">
+    <div class="miolo">
+      <p class="olho">Regras da casa <Pendente nota="conferir com as regras internas" /></p>
+      <div class="grade grade--2" style="margin-top:12px">
+        <div class="cartao">
+          <h3>Pontualidade</h3>
+          <ul class="lista-check">
+            <li>Chegue alguns minutos antes: o aquecimento faz parte do treino.</li>
+            <li>Não vai conseguir ir? Cancele a reserva no app para liberar a vaga.</li>
+          </ul>
+        </div>
+        <div class="cartao">
+          <h3>Material</h3>
+          <ul class="lista-check">
+            <li>Devolva o material ao lugar certo depois de usar.</li>
+            <li>Não solte a barra vazia no chão; anilhas de borracha são para isso.</li>
+            <li>Limpe o equipamento depois do treino.</li>
+          </ul>
+        </div>
+        <div class="cartao">
+          <h3>Segurança</h3>
+          <ul class="lista-check">
+            <li>Conte ao coach sobre dores, lesões ou mudanças de saúde.</li>
+            <li>Técnica antes de carga. Na dúvida, pergunte.</li>
+            <li>Respeite o espaço de quem está treinando ao lado.</li>
+          </ul>
+        </div>
+        <div class="cartao">
+          <h3>Higiene e convivência</h3>
+          <ul class="lista-check">
+            <li>Traga sua toalha e sua garrafa de água.</li>
+            <li>Incentive quem ainda está terminando o treino.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FaixaCta />
+</Base>

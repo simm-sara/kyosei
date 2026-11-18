@@ -1,0 +1,87 @@
+---
+import "@fontsource-variable/archivo/wdth.css";
+import "../styles/global.css";
+import Cabecalho from "../components/Cabecalho.astro";
+import Rodape from "../components/Rodape.astro";
+import BannerCookies from "../components/BannerCookies.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import { site, whatsappUrl, instagramUrl } from "../lib/site";
+
+interface Props {
+  titulo: string;          // <title> da página (sem o nome do box, que é acrescentado)
+  descricao: string;       // meta description: 140–160 caracteres
+  semSufixo?: boolean;     // true na home, que já usa o título completo
+  schema?: Record<string, unknown>[]; // JSON-LD extra da página
+}
+const { titulo, descricao, semSufixo = false, schema = [] } = Astro.props;
+const tituloCompleto = semSufixo ? titulo : `${titulo} | CrossFit Kyosei`;
+const canonica = new URL(Astro.url.pathname, Astro.site);
+const imagemSocial = new URL("/og-kyosei.png", Astro.site);
+
+const negocio = {
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "@id": new URL("/#box", Astro.site).href,
+  name: site.nome,
+  description: site.descricao,
+  url: new URL("/", Astro.site).href,
+  logo: new URL("/logo-kyosei.svg", Astro.site).href,
+  image: imagemSocial.href,
+  telephone: "+55 19 97810-2332",
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.endereco.rua,
+    addressLocality: site.endereco.cidade,
+    addressRegion: site.endereco.uf,
+    postalCode: site.endereco.cep,
+    addressCountry: "BR",
+  },
+  areaServed: "Campinas, SP",
+  openingHours: site.funcionamento.map((f) => f.schema).filter(Boolean),
+  sameAs: [instagramUrl],
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descricao} />
+    <link rel="canonical" href={canonica} />
+    {site.rascunho && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#1B1819" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="CrossFit Kyosei" />
+    <meta property="og:title" content={tituloCompleto} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagemSocial} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(negocio)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    {site.rascunho && (
+      <div class="aviso-rascunho">Versão de rascunho · itens marcados com <mark class="pendente">A confirmar</mark> ainda dependem do box</div>
+    )}
+    <Cabecalho />
+    <main id="conteudo" class="conteudo">
+      <slot />
+    </main>
+    <Rodape />
+
+    <a class="whats-flutuante" href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp" aria-label="Falar com o box no WhatsApp">
+      <IconeWhatsapp />
+    </a>
+    <BannerCookies />
+  </body>
+</html>

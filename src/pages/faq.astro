@@ -1,0 +1,50 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import Pendente from "../components/Pendente.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import { whatsappUrl } from "../lib/site";
+
+// [A CONFIRMAR] Respostas a validar com o box (principalmente idade mínima e lesões).
+const perguntas = [
+  { p: "Preciso estar em forma para começar?", r: "Não. O treino é adaptado ao seu nível desde a primeira aula. Você entra em forma treinando, não antes." },
+  { p: "Nunca fiz CrossFit. Posso entrar em qualquer turma?", r: "Pode. Todas as turmas recebem iniciantes, e o coach adapta os movimentos para você. Veja como é a primeira aula na página Primeira aula." },
+  { p: "Tenho uma lesão. Posso treinar?", r: "Depende da lesão. Conte ao coach antes da aula: ele adapta ou substitui os movimentos. Em caso de lesão recente ou dor, procure antes a liberação de um médico ou fisioterapeuta." },
+  { p: "Qual a idade mínima?", r: "Fale com a gente pelo WhatsApp para saber sobre a idade mínima e as condições para menores de idade.", pendente: true },
+  { p: "Aceitam Wellhub e Totalpass?", r: "Sim. O Wellhub é aceito a partir do plano Gold. Para o Totalpass, consulte qual plano dá acesso. Detalhes em Horários e planos." },
+  { p: "Quanto custa?", r: "Os planos e valores estão em Horários e planos. A aula experimental é o melhor jeito de conhecer antes de decidir." },
+  { p: "Preciso reservar a aula?", r: "Sim, a reserva é pelo app de agendamento do box. Assim a turma não lota e o coach consegue dar atenção para todo mundo." },
+  { p: "Quantas vezes por semana devo treinar?", r: "No começo, de duas a três vezes por semana já traz resultado e dá tempo de o corpo se recuperar. O coach ajuda a ajustar a frequência." },
+];
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: perguntas.filter((q) => !q.pendente).map((q) => ({
+    "@type": "Question", name: q.p, acceptedAnswer: { "@type": "Answer", text: q.r },
+  })),
+}];
+---
+<Base
+  titulo="Perguntas frequentes"
+  descricao="Dúvidas sobre CrossFit no Kyosei: preciso estar em forma? Posso treinar com lesão? Aceitam Wellhub e Totalpass? Respostas para quem vai começar."
+  schema={schema}
+>
+  <Topo olho="Dúvidas" titulo="Perguntas frequentes" />
+  <section class="secao">
+    <div class="miolo">
+      <p class="olho">Respostas <Pendente nota="validar respostas com o box" /></p>
+      <div class="faq">
+        {perguntas.map((q) => (
+          <details>
+            <summary>{q.p}</summary>
+            <div><p>{q.r} {q.pendente && <Pendente />}</p></div>
+          </details>
+        ))}
+      </div>
+      <div class="acoes">
+        <Botao href={whatsappUrl("Olá! Tenho uma dúvida sobre o CrossFit Kyosei.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Não achou sua dúvida?</Botao>
+      </div>
+    </div>
+  </section>
+</Base>

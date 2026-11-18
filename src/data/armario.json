@@ -1,0 +1,4 @@
+{
+  "_ajuda": "Peças do Armário (mostruário, sem venda online). Coloque a foto em public/fotos/armario/ e informe o caminho em 'foto' (ex.: /fotos/armario/camiseta-preta.jpg). 'preco' é opcional.",
+  "pecas": []
+}

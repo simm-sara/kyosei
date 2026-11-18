@@ -1,0 +1,46 @@
+{
+  "rascunho": true,
+  "_rascunho": "Com true, o site mostra as etiquetas amarelas 'A CONFIRMAR' e os eventos de exemplo, e pede ao Google para não indexar. Troque para false antes de publicar para o público.",
+
+  "nome": "CrossFit Kyosei",
+  "descricao": "Box afiliado CrossFit no Cambuí, em Campinas. Aulas para todos os níveis, com técnica, segurança e acompanhamento de perto dos coaches.",
+  "inauguracao": "janeiro de 2026",
+
+  "endereco": {
+    "rua": "R. General Osório, 1839",
+    "bairro": "Cambuí",
+    "cidade": "Campinas",
+    "uf": "SP",
+    "cep": "13025-155"
+  },
+  "telefone": "(19) 97810-2332",
+  "whatsapp": "5519978102332",
+  "email": "crossfitkyosei@gmail.com",
+  "instagram": "crossfitkyosei",
+
+  "links": {
+    "agendamento": "",
+    "_agendamento": "[A CONFIRMAR] Cole aqui o link do app de agendamento (o mesmo do Linktree). Enquanto estiver vazio, o botão 'Agendar aula' abre o WhatsApp.",
+    "comunidadeWhatsapp": "",
+    "_comunidadeWhatsapp": "[A CONFIRMAR] Link de convite da comunidade do WhatsApp. Enquanto estiver vazio, o botão pede o convite pelo WhatsApp do box.",
+    "googleMaps": "https://www.google.com/maps/search/?api=1&query=CrossFit+Kyosei+R.+General+Os%C3%B3rio+1839+Campinas",
+    "googleAvaliacoes": "https://www.google.com/maps/search/?api=1&query=CrossFit+Kyosei+Campinas",
+    "_googleAvaliacoes": "[A CONFIRMAR] Trocar pelo link direto do perfil do Google (Google Business Profile > Compartilhar)."
+  },
+
+  "avaliacaoGoogle": { "nota": "5,0", "total": 32, "atualizadoEm": "nov/2026" },
+
+  "funcionamento": [
+    { "dias": "Segunda a quinta", "horas": "6h às 21h", "schema": "Mo-Th 06:00-21:00" },
+    { "dias": "Sexta", "horas": "6h às 20h", "schema": "Fr 06:00-20:00" },
+    { "dias": "Sábado", "horas": "8h às 11h", "schema": "Sa 08:00-11:00" },
+    { "dias": "Domingo", "horas": "Fechado", "schema": "" }
+  ],
+  "_funcionamento": "[A CONFIRMAR] Horário copiado do Wellhub. Confirmar com o box.",
+
+  "analytics": {
+    "clarityId": "",
+    "ga4Id": "",
+    "_analytics": "Preencha os IDs do Microsoft Clarity e do Google Analytics 4. Os scripts só carregam depois que a pessoa aceita os cookies."
+  }
+}

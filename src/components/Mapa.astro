@@ -1,0 +1,28 @@
+---
+// Mapa com "capa": o iframe do Google só carrega quando a pessoa clica (mais rápido e sem cookies de terceiros antes da hora).
+import { site, enderecoCompleto } from "../lib/site";
+const q = encodeURIComponent(`CrossFit Kyosei, ${enderecoCompleto}`);
+const embed = `https://www.google.com/maps?q=${q}&output=embed`;
+---
+<div class="mapa" data-mapa={embed}>
+  <div class="mapa__capa">
+    <span class="mapa__pino" aria-hidden="true"></span>
+    <strong>{site.endereco.rua} · {site.endereco.bairro}</strong>
+    <button type="button" class="botao botao--secundario" data-carregar-mapa>Carregar mapa</button>
+    <a class="link-seta" href={site.links.googleMaps} target="_blank" rel="noopener" data-evento="mapa">Abrir no Google Maps</a>
+    <small>O mapa é do Google e só carrega se você clicar.</small>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-mapa]").forEach((m) => {
+    m.querySelector("[data-carregar-mapa]")?.addEventListener("click", () => {
+      const f = document.createElement("iframe");
+      f.src = m.dataset.mapa!;
+      f.title = "Mapa: CrossFit Kyosei";
+      f.loading = "lazy";
+      f.referrerPolicy = "no-referrer-when-downgrade";
+      m.querySelector(".mapa__capa")?.remove();
+      m.appendChild(f);
+    });
+  });
+</script>

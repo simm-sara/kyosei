@@ -1,0 +1,14 @@
+{
+  "_ajuda": "Planos e valores. 'preco' em texto livre (ex.: 'R$ 389'). Deixe null para mostrar 'Consulte'. Quando o preço mudar, mude aqui e publique de novo.",
+  "_pendente": "[A CONFIRMAR] Nomes, frequências e valores abaixo são provisórios: aguardando a tabela do box.",
+  "atualizadoEm": "",
+  "planos": [
+    { "nome": "Mensal", "detalhe": "Aulas livres na grade", "preco": null, "periodo": "/mês", "destaque": false },
+    { "nome": "Trimestral", "detalhe": "Aulas livres na grade", "preco": null, "periodo": "/mês", "destaque": true },
+    { "nome": "Semestral", "detalhe": "Aulas livres na grade", "preco": null, "periodo": "/mês", "destaque": false }
+  ],
+  "parcerias": [
+    { "nome": "Wellhub", "detalhe": "Aceito a partir do plano Gold.", "pendente": false },
+    { "nome": "Totalpass", "detalhe": "Aceito. Consulte qual plano do Totalpass dá acesso.", "pendente": true }
+  ]
+}

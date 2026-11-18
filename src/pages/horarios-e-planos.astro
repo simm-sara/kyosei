@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import Pendente from "../components/Pendente.astro";
+import GradeAulas from "../components/GradeAulas.astro";
+import FaixaCta from "../components/FaixaCta.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import planos from "../data/planos.json";
+import { agendarUrl, whatsappUrl } from "../lib/site";
+---
+<Base
+  titulo="Horários e planos"
+  descricao="Grade de aulas do CrossFit Kyosei (seg. a sex. das 6h às 19h15, aulões no sábado), planos, valores e parcerias Wellhub e Totalpass no Cambuí, Campinas."
+>
+  <Topo
+    olho="Horários e planos"
+    titulo="Grade de aulas e planos"
+    chamada="Aulas de segunda a sexta em sete horários, aulões no sábado e nos feriados. Escolha um plano ou venha pelo Wellhub ou pelo Totalpass."
+  >
+    <div class="acoes">
+      <Botao href={agendarUrl} evento="agendar">Agendar aula</Botao>
+      <Botao href="#planos" variante="fantasma" evento="precos">Ver planos</Botao>
+    </div>
+  </Topo>
+
+  <section class="secao" id="grade">
+    <div class="miolo duas-colunas">
+      <div>
+        <p class="olho">Grade da semana</p>
+        <h2>Horários das aulas</h2>
+        <p class="chamada" style="margin-top:20px">Cada aula dura cerca de uma hora e tem aquecimento, técnica, treino do dia e desaquecimento.</p>
+        <p>Reserve seu horário pelo app de agendamento. Na dúvida sobre feriados, os avisos saem na comunidade do WhatsApp.</p>
+      </div>
+      <GradeAulas />
+    </div>
+  </section>
+
+  <section class="secao secao--areia" id="planos">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Planos <Pendente nota="aguardando tabela de preços" /></p>
+          <h2>Planos e valores</h2>
+        </div>
+        {planos.atualizadoEm && <p style="margin:0;color:var(--cinza)">Valores atualizados em {planos.atualizadoEm}.</p>}
+      </div>
+      <div class="grade grade--3">
+        {planos.planos.map((p) => (
+          <article class={`cartao plano ${p.destaque ? "plano--destaque" : ""}`}>
+            {p.destaque && <span class="plano__selo">Mais escolhido</span>}
+            <div class="plano__corpo">
+              <h3>{p.nome}</h3>
+              <p>{p.detalhe}</p>
+              {p.preco ? (
+                <p class="plano__preco">{p.preco}<small>{p.periodo}</small></p>
+              ) : (
+                <p class="plano__preco plano__preco--consulte">Consulte</p>
+              )}
+              <Botao href={whatsappUrl(`Olá! Quero saber sobre o plano ${p.nome} do CrossFit Kyosei.`)} variante={p.destaque ? "primario" : "secundario"} evento="plano">
+                Quero este plano
+              </Botao>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" id="parcerias">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Parcerias</p>
+          <h2>Wellhub e Totalpass</h2>
+        </div>
+      </div>
+      <div class="grade grade--2">
+        {planos.parcerias.map((p) => (
+          <article class="cartao">
+            <h3>{p.nome} {p.pendente && <Pendente />}</h3>
+            <p>{p.detalhe}</p>
+            <p>Faça o check-in pelo app do {p.nome} e reserve sua aula no app do box.</p>
+          </article>
+        ))}
+      </div>
+      <div class="acoes">
+        <Botao href={whatsappUrl("Olá! Treino pelo Wellhub/Totalpass e quero começar no Kyosei.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Dúvidas sobre parcerias</Botao>
+      </div>
+    </div>
+  </section>
+
+  <FaixaCta />
+</Base>

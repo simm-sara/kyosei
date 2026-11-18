@@ -1,0 +1,51 @@
+---
+import Base from "../layouts/Base.astro";
+import Topo from "../components/Topo.astro";
+import Botao from "../components/Botao.astro";
+import Mapa from "../components/Mapa.astro";
+import Pendente from "../components/Pendente.astro";
+import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import { site, enderecoCompleto, whatsappUrl, comunidadeUrl, instagramUrl, agendarUrl } from "../lib/site";
+---
+<Base
+  titulo="Contato e como chegar"
+  descricao="CrossFit Kyosei: R. General Osório, 1839, Cambuí, Campinas. WhatsApp (19) 97810-2332. Horário de funcionamento, mapa e comunidade do box."
+>
+  <Topo olho="Contato" titulo="Fale com a gente" chamada="O jeito mais rápido é o WhatsApp. Ou passe no box.">
+    <div class="acoes">
+      <Botao href={whatsappUrl()} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> {site.telefone}</Botao>
+      <Botao href={agendarUrl} evento="agendar">Agendar aula</Botao>
+    </div>
+  </Topo>
+
+  <section class="secao">
+    <div class="miolo duas-colunas">
+      <dl class="dados">
+        <div><dt>Endereço</dt><dd>{enderecoCompleto}</dd></div>
+        <div><dt>WhatsApp e telefone</dt><dd><a href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp">{site.telefone}</a></dd></div>
+        <div><dt>E-mail</dt><dd><a href={`mailto:${site.email}`} data-evento="email">{site.email}</a></dd></div>
+        <div><dt>Instagram</dt><dd><a href={instagramUrl} target="_blank" rel="noopener" data-evento="instagram">@{site.instagram}</a></dd></div>
+        <div>
+          <dt>Funcionamento <Pendente /></dt>
+          <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}<br /></>)}</dd>
+        </div>
+        <div>
+          <dt>Como chegar <Pendente nota="estacionamento e referências" /></dt>
+          <dd>Na R. General Osório, no Cambuí. <a href={site.links.googleMaps} target="_blank" rel="noopener" data-evento="mapa">Abrir rota no Google Maps</a>.</dd>
+        </div>
+      </dl>
+      <Mapa />
+    </div>
+  </section>
+
+  <section class="secao secao--escura">
+    <div class="miolo faixa-cta">
+      <div>
+        <p class="olho">Comunidade</p>
+        <h2>Entre na comunidade do WhatsApp</h2>
+        <p class="chamada" style="margin-top:16px">Grupos de anúncios, fotos e conversa geral. É onde os eventos saem primeiro.</p>
+      </div>
+      <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Quero entrar</Botao>
+    </div>
+  </section>
+</Base>

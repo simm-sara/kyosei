@@ -1,0 +1,12 @@
+---
+interface Props { olho: string; titulo: string; chamada?: string }
+const { olho, titulo, chamada } = Astro.props;
+---
+<section class="topo">
+  <div class="miolo">
+    <p class="olho">{olho}</p>
+    <h1>{titulo}</h1>
+    {chamada && <p class="chamada">{chamada}</p>}
+    <slot />
+  </div>
+</section>
