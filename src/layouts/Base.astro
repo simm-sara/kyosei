@@ -5,6 +5,8 @@ import Cabecalho from "../components/Cabecalho.astro";
 import Rodape from "../components/Rodape.astro";
 import BannerCookies from "../components/BannerCookies.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import Simbolos from "../components/Simbolos.astro";
+import Navegacao from "../components/Navegacao.astro";
 import { site, whatsappUrl, instagramUrl } from "../lib/site";
 
 interface Props {
@@ -53,7 +55,7 @@ const negocio = {
     {site.rascunho && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#1B1819" />
+    <meta name="theme-color" content="#F3EBDF" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content="website" />
@@ -65,10 +67,12 @@ const negocio = {
     <meta property="og:image" content={imagemSocial} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <Navegacao />
     <script type="application/ld+json" set:html={JSON.stringify(negocio)} />
     {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
+    <Simbolos />
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
     {site.rascunho && (
       <div class="aviso-rascunho">Versão de rascunho · itens marcados com <mark class="pendente">A confirmar</mark> ainda dependem do box</div>

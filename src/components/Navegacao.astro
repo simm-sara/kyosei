@@ -1,0 +1,51 @@
+---
+// Direção da troca de páginas ("ir" ou "voltar") e botão "Voltar".
+// Precisa ficar no <head>: o evento pagereveal acontece antes do primeiro desenho da página.
+import { paginas } from "../lib/mapa";
+const ranks = Object.fromEntries(Object.entries(paginas).map(([s, p]) => [s, [p.nivel, p.ordem]]));
+---
+<script is:inline define:vars={{ ranks }}>
+  (function () {
+    function slug(url) {
+      try {
+        var ultimo = new URL(url, location.href).pathname.replace(/\/+$/, "").split("/").pop() || "";
+        ultimo = ultimo.replace(/\.html$/, "");
+        return ultimo === "index" ? "" : ultimo;
+      } catch (e) { return ""; }
+    }
+    function rank(url) { return ranks[slug(url)] || [1, 99]; }
+    function direcao(de, para) {
+      var a = rank(de), b = rank(para);
+      if (a[0] !== b[0]) return b[0] > a[0] ? "ir" : "voltar";
+      return b[1] >= a[1] ? "ir" : "voltar";
+    }
+
+    window.addEventListener("pagereveal", function (e) {
+      if (!e.viewTransition) return;
+      var tipo = "ir";
+      var nav = window.navigation && window.navigation.activation;
+      if (nav && nav.from) {
+        if (nav.navigationType === "traverse" && nav.entry && typeof nav.from.index === "number") {
+          tipo = nav.entry.index < nav.from.index ? "voltar" : "ir"; // botão voltar/avançar do navegador
+        } else {
+          tipo = direcao(nav.from.url, nav.entry.url);
+        }
+      } else if (document.referrer) {
+        tipo = direcao(document.referrer, location.href);
+      }
+      try { e.viewTransition.types.add(tipo); } catch (err) {}
+    });
+
+    // "Voltar": se a pessoa veio de outra página do site, volta no histórico; senão segue o link (página-mãe).
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("[data-voltar]");
+      if (!a) return;
+      try {
+        if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      } catch (err) {}
+    });
+  })();
+</script>

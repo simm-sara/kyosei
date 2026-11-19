@@ -8,6 +8,7 @@ import CartaoEvento from "../components/CartaoEvento.astro";
 import Mapa from "../components/Mapa.astro";
 import FaixaCta from "../components/FaixaCta.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
+import Selo from "../components/Selo.astro";
 import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto } from "../lib/site";
 import { eventosSeparados } from "../lib/eventos";
 
@@ -21,48 +22,42 @@ const r = site.avaliacaoGoogle;
   descricao="Box afiliado CrossFit no Cambuí, em Campinas. Aulas para todos os níveis, head coach CrossFit Level 3 e aula experimental. Aceita Wellhub e Totalpass."
 >
   <section class="heroi">
+    <div class="heroi__ondas" aria-hidden="true"></div>
+    <svg class="heroi__nuvem heroi__nuvem--fundo" aria-hidden="true"><use href="#k-nuvem" /></svg>
+
     <div class="miolo heroi__grade">
-      <div>
+      <div class="heroi__texto">
         <p class="olho">Box afiliado CrossFit · Cambuí, Campinas</p>
         <h1>Força, técnica e <em>gente junta.</em></h1>
-        <p class="chamada">
-          Aulas de CrossFit para todos os níveis, com coach acompanhando cada movimento de perto.
-          Aqui quem dá a aula também é dono do box.
-        </p>
+        <p class="chamada">CrossFit para todos os níveis, com o coach do seu lado em cada movimento. Aqui quem dá a aula também é dono do box.</p>
         <div class="acoes">
           <Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao>
           <Botao href="/horarios-e-planos" variante="fantasma" evento="precos">Horários e planos</Botao>
         </div>
-        <div class="heroi__selos">
-          <a href={site.links.googleAvaliacoes} target="_blank" rel="noopener" data-evento="avaliacoes">
-            <span class="estrelas" aria-hidden="true">★★★★★</span> <strong>{r.nota}</strong> no Google · {r.total} avaliações
-          </a>
-          <span>Aceita <strong>Wellhub</strong> e <strong>Totalpass</strong></span>
-        </div>
       </div>
-      <div class="heroi__foto">
-        <Foto alt="Aula em andamento no CrossFit Kyosei" legenda="aula em andamento no box" proporcao="4 / 5" />
+
+      <div class="heroi__arte">
+        <div class="heroi__sol">
+          <Foto class="heroi__foto" alt="Aula em andamento no CrossFit Kyosei" legenda="aula no box" proporcao="1 / 1" />
+        </div>
+        <svg class="heroi__galho" aria-hidden="true"><use href="#k-galho" /></svg>
+        <svg class="heroi__nuvem heroi__nuvem--a" aria-hidden="true"><use href="#k-nuvem" /></svg>
+        <svg class="heroi__nuvem heroi__nuvem--b" aria-hidden="true"><use href="#k-nuvem" /></svg>
+
+        <!-- Os destaques do Instagram viram atalhos: agendar, horários/preços, eventos, parcerias, comunidade -->
+        <Selo class="heroi__selo heroi__selo--1" href={agendarUrl} rotulo="Aula" sub="experimental" icone="agenda" evento="agendar" giro={-8} />
+        <Selo class="heroi__selo heroi__selo--2" href="/horarios-e-planos" rotulo="Horários" sub="e planos" icone="relogio" evento="precos" giro={6} />
+        <Selo class="heroi__selo heroi__selo--3" href="/eventos" rotulo="Eventos" sub="e clínicas" icone="lanterna" evento="eventos" giro={9} />
+        <Selo class="heroi__selo heroi__selo--4" href="/horarios-e-planos#parcerias" rotulo="Parceiros" sub="Wellhub · Totalpass" icone="aperto" evento="parceiros" giro={-5} />
+        <Selo class="heroi__selo heroi__selo--5" href={comunidadeUrl} rotulo="Comunidade" sub="no WhatsApp" icone="conversa" evento="comunidade" giro={4} />
+
+        <a class="heroi__nota" href={site.links.googleAvaliacoes} target="_blank" rel="noopener" data-evento="avaliacoes">
+          <span class="estrelas" aria-hidden="true">★★★★★</span>
+          <strong>{r.nota}</strong> no Google · {r.total} avaliações
+        </a>
       </div>
     </div>
   </section>
-
-  <!-- Os quatro atalhos da meta inicial: agendar, preços, eventos, WhatsApp -->
-  <div class="miolo atalhos">
-    <div class="grade grade--4">
-      <a class="atalho" href={agendarUrl} target="_blank" rel="noopener" data-evento="agendar">
-        <span class="atalho__num">01</span><strong>Agendar aula</strong><span>Reserve seu horário no app do box.</span>
-      </a>
-      <a class="atalho" href="/horarios-e-planos" data-evento="precos">
-        <span class="atalho__num">02</span><strong>Horários e planos</strong><span>Grade da semana, valores, Wellhub e Totalpass.</span>
-      </a>
-      <a class="atalho" href="/eventos" data-evento="eventos">
-        <span class="atalho__num">03</span><strong>Eventos e clínicas</strong><span>Open, workshops, aulões e confraternizações.</span>
-      </a>
-      <a class="atalho" href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp">
-        <span class="atalho__num">04</span><strong>WhatsApp</strong><span>Tire dúvidas ou fale com a gente: {site.telefone}.</span>
-      </a>
-    </div>
-  </div>
 
   <section class="secao">
     <div class="miolo">

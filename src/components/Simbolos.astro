@@ -1,0 +1,109 @@
+---
+// Biblioteca de desenhos usados no site (incluída uma vez, no Base).
+// Linguagem dos destaques do Instagram do box: torii, nuvens, sakura, ondas, ícones em traço vermelho.
+// Use com: <svg><use href="#k-torii" /></svg>
+---
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Torii: travessa curva (kasagi), travessa reta (nuki), placa e dois pilares -->
+    <symbol id="k-torii" viewBox="0 0 120 100">
+      <path d="M4 14 Q60 2 116 14 L113 22 Q60 12 7 22 Z" />
+      <rect x="14" y="22" width="92" height="7" />
+      <rect x="10" y="38" width="100" height="7" />
+      <rect x="55" y="27" width="10" height="13" />
+      <path d="M24 29 h10 l2 71 h-14 z" />
+      <path d="M86 29 h10 l2 71 h-14 z" />
+    </symbol>
+
+    <!-- Nuvem japonesa (kumo), com espirais -->
+    <symbol id="k-nuvem" viewBox="0 0 200 90">
+      <path d="M8 78 H190 A20 20 0 0 0 170 52 A26 26 0 0 0 124 34 A32 32 0 0 0 64 30 A22 22 0 0 0 26 48 A16 16 0 0 0 8 78 Z" />
+      <g fill="none" stroke="var(--nuvem-traco, rgba(255,255,255,.55))" stroke-width="3.5" stroke-linecap="round">
+        <path d="M64 30 a18 18 0 0 1 30 10 a10 10 0 0 1 -16 6 a5 5 0 0 1 4 -8" />
+        <path d="M124 34 a16 16 0 0 1 22 14 a8 8 0 0 1 -13 3 a4 4 0 0 1 4 -6" />
+        <path d="M26 48 a12 12 0 0 1 18 6 a6 6 0 0 1 -10 2" />
+        <path d="M20 66 H178" />
+      </g>
+    </symbol>
+
+    <!-- Flor de sakura: cinco pétalas com recorte -->
+    <symbol id="k-flor" viewBox="-20 -20 40 40">
+      <g>
+        <path id="k-petala" d="M0 -2 C-7 -6 -7 -15 -2 -18 L0 -15 L2 -18 C7 -15 7 -6 0 -2 Z" />
+        <use href="#k-petala" transform="rotate(72)" />
+        <use href="#k-petala" transform="rotate(144)" />
+        <use href="#k-petala" transform="rotate(216)" />
+        <use href="#k-petala" transform="rotate(288)" />
+      </g>
+      <circle r="3" fill="var(--flor-miolo, #f3ebdf)" />
+    </symbol>
+
+    <!-- Galho de sakura -->
+    <symbol id="k-galho" viewBox="0 0 260 220">
+      <g fill="none" stroke="var(--galho, #3a2a26)" stroke-linecap="round">
+        <path d="M260 6 C200 30 170 60 140 70 C110 80 80 76 40 96" stroke-width="6" />
+        <path d="M170 56 C160 90 168 120 150 150" stroke-width="4" />
+        <path d="M120 74 C112 100 96 110 92 140" stroke-width="3" />
+        <path d="M210 30 C214 60 236 80 232 110" stroke-width="3" />
+      </g>
+      <g fill="var(--flor, #c9353b)">
+        <use href="#k-flor" x="22" y="78" width="40" height="40" />
+        <use href="#k-flor" x="68" y="60" width="30" height="30" />
+        <use href="#k-flor" x="132" y="138" width="36" height="36" />
+        <use href="#k-flor" x="78" y="130" width="28" height="28" />
+        <use href="#k-flor" x="214" y="98" width="34" height="34" />
+        <use href="#k-flor" x="150" y="40" width="26" height="26" />
+        <use href="#k-flor" x="190" y="66" width="22" height="22" />
+      </g>
+      <g fill="var(--flor-claro, #e8a3a0)">
+        <use href="#k-flor" x="104" y="88" width="20" height="20" />
+        <use href="#k-flor" x="236" y="40" width="18" height="18" />
+        <use href="#k-flor" x="44" y="128" width="16" height="16" />
+      </g>
+    </symbol>
+
+    <!-- Ícones dos selos (traço) -->
+    <symbol id="k-ic-agenda" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="12" width="44" height="40" rx="5" />
+        <path d="M10 24 H54 M22 6 V16 M42 6 V16" />
+        <path d="M22 37 l7 7 l13 -14" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-haltere" viewBox="0 0 64 64">
+      <g fill="currentColor">
+        <rect x="6" y="20" width="7" height="24" rx="2" /><rect x="14" y="14" width="8" height="36" rx="2" />
+        <rect x="42" y="14" width="8" height="36" rx="2" /><rect x="51" y="20" width="7" height="24" rx="2" />
+        <rect x="22" y="29" width="20" height="6" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-relogio" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+        <circle cx="32" cy="32" r="23" /><path d="M32 18 V32 L42 38" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-lanterna" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+        <path d="M24 10 H40 M24 54 H40 M32 4 V10" />
+        <ellipse cx="32" cy="32" rx="18" ry="22" />
+        <path d="M15 24 H49 M14 32 H50 M15 40 H49" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-aperto" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 26 L14 20 L26 22 L34 18 L46 22 L60 28" />
+        <path d="M10 22 L10 40 L22 50 Q26 53 29 50 L31 48 Q34 51 37 48 L39 46 Q42 48 44 45 L46 43 Q49 44 50 41 L54 36 L54 26" />
+        <path d="M26 22 L18 30 Q20 34 25 32 L32 27 L42 36" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-conversa" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round">
+        <path d="M8 12 H42 V36 H22 L12 44 V36 H8 Z" />
+        <path d="M46 22 H56 V46 H52 V53 L44 46 H28 V40" />
+      </g>
+    </symbol>
+    <symbol id="k-ic-estrela" viewBox="0 0 64 64">
+      <path fill="currentColor" d="M32 6 l7.6 16.4 17.9 2.1 -13.2 12.3 3.5 17.7 L32 45.6 16.2 54.5l3.5-17.7L6.5 24.5l17.9-2.1Z" />
+    </symbol>
+  </defs>
+</svg>
