@@ -1,10 +1,11 @@
 ---
 // Topo das páginas internas: breadcrumb + "Voltar", título e chamada.
 import { paginas, slugDe, trilhaDe } from "../lib/mapa";
+import { url, caminhoSemBase } from "../lib/site";
 interface Props { olho: string; titulo: string; chamada?: string }
 const { olho, titulo, chamada } = Astro.props;
 
-const slug = slugDe(Astro.url.pathname);
+const slug = slugDe(caminhoSemBase(Astro.url.pathname));
 const trilha = trilhaDe(slug);
 const pai = trilha.length > 1 ? trilha[trilha.length - 2] : trilha[0];
 const schema = {
@@ -14,7 +15,7 @@ const schema = {
     "@type": "ListItem",
     position: i + 1,
     name: t.rotulo,
-    item: new URL(t.href, Astro.site).href,
+    item: new URL(url(t.href), Astro.site).href,
   })),
 };
 const temPagina = Boolean(paginas[slug]);
@@ -28,13 +29,13 @@ const temPagina = Boolean(paginas[slug]);
   <div class="miolo topo__miolo">
     {temPagina && (
       <nav class="trilha" aria-label="Você está em">
-        <a class="voltar" href={pai.href} data-voltar>
+        <a class="voltar" href={url(pai.href)} data-voltar>
           <span aria-hidden="true">←</span> Voltar
         </a>
         <ol>
           {trilha.map((t, i) => (
             <li>
-              {i < trilha.length - 1 ? <a href={t.href}>{t.rotulo}</a> : <span aria-current="page">{t.rotulo}</span>}
+              {i < trilha.length - 1 ? <a href={url(t.href)}>{t.rotulo}</a> : <span aria-current="page">{t.rotulo}</span>}
             </li>
           ))}
         </ol>

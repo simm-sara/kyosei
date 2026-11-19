@@ -2,13 +2,13 @@
 import Logo from "./Logo.astro";
 import Pendente from "./Pendente.astro";
 import LogoCrossFit from "./LogoCrossFit.astro";
-import { site, enderecoCompleto, instagramUrl, whatsappUrl, comunidadeUrl, agendarUrl } from "../lib/site";
+import { site, enderecoCompleto, instagramUrl, whatsappUrl, comunidadeUrl, agendarUrl, url } from "../lib/site";
 const ano = new Date().getFullYear();
 ---
 <footer class="rodape">
   <div class="miolo rodape__grade">
     <div class="rodape__marca">
-      <a href="/" aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
+      <a href={url("/")} aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
       <p>Box afiliado CrossFit no Cambuí, em Campinas. Desde {site.inauguracao}.</p>
       <p class="rodape__afiliado"><span>Box afiliado oficial</span><LogoCrossFit /></p>
     </div>
@@ -32,10 +32,10 @@ const ano = new Date().getFullYear();
     <div>
       <h2 class="rodape__titulo">Box</h2>
       <ul class="rodape__links">
-        <li><a href="/metodologia">Metodologia</a></li>
-        <li><a href="/boas-praticas">Boas práticas</a></li>
-        <li><a href="/armario">Armário</a></li>
-        <li><a href="/faq">Perguntas frequentes</a></li>
+        <li><a href={url("/metodologia")}>Metodologia</a></li>
+        <li><a href={url("/boas-praticas")}>Boas práticas</a></li>
+        <li><a href={url("/armario")}>Armário</a></li>
+        <li><a href={url("/faq")}>Perguntas frequentes</a></li>
         <li><a href={agendarUrl} target="_blank" rel="noopener" data-evento="agendar">Agendar aula</a></li>
         <li><a href={comunidadeUrl} target="_blank" rel="noopener" data-evento="comunidade">Comunidade no WhatsApp</a></li>
         <li><a href={instagramUrl} target="_blank" rel="noopener" data-evento="instagram">Instagram @{site.instagram}</a></li>
@@ -45,6 +45,6 @@ const ano = new Date().getFullYear();
 
   <div class="miolo rodape__base">
     <p>© {ano} CrossFit Kyosei. CrossFit® é marca registrada da CrossFit, LLC, usada aqui sob licença de afiliado.</p>
-    <p><a href="/privacidade">Privacidade</a> · <button type="button" class="link-botao" data-abrir-cookies>Preferências de cookies</button></p>
+    <p><a href={url("/privacidade")}>Privacidade</a> · <button type="button" class="link-botao" data-abrir-cookies>Preferências de cookies</button></p>
   </div>
 </footer>

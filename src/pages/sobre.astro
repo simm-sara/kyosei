@@ -4,7 +4,7 @@ import Topo from "../components/Topo.astro";
 import Foto from "../components/Foto.astro";
 import Pendente from "../components/Pendente.astro";
 import FaixaCta from "../components/FaixaCta.astro";
-import { site } from "../lib/site";
+import { site, url } from "../lib/site";
 ---
 <Base
   titulo="Sobre o box"
@@ -45,12 +45,12 @@ import { site } from "../lib/site";
         <article class="cartao">
           <h3>Lucas Chiba</h3>
           <p>Sócio e head coach, CrossFit Level 3. Cuida da programação e está nas aulas.</p>
-          <a class="link-seta" href="/coaches#lucas-chiba">Ver perfil</a>
+          <a class="link-seta" href={url("/coaches#lucas-chiba")}>Ver perfil</a>
         </article>
         <article class="cartao">
           <h3>Stella Mazotti</h3>
           <p>Coach, CrossFit Level 1. Parceira do Lucas nas programações, planeja as aulas e conduz metade delas.</p>
-          <a class="link-seta" href="/coaches#stella-mazotti">Ver perfil</a>
+          <a class="link-seta" href={url("/coaches#stella-mazotti")}>Ver perfil</a>
         </article>
         <article class="cartao">
           <h3>Iris Chiba</h3>

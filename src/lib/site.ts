@@ -2,6 +2,19 @@ import site from "../data/site.json";
 
 export { site };
 
+/** Prefixa caminhos internos ("/eventos") com a base do site ("/kyosei/eventos" no GitHub Pages). */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+export function url(caminho: string) {
+  if (!caminho.startsWith("/") || caminho.startsWith("//")) return caminho;
+  if (BASE && (caminho === BASE || caminho.startsWith(BASE + "/"))) return caminho;
+  return BASE + caminho;
+}
+/** Caminho da página atual sem a base ("/kyosei/sobre/" -> "/sobre"). */
+export function caminhoSemBase(caminho: string) {
+  const s = BASE && caminho.startsWith(BASE) ? caminho.slice(BASE.length) : caminho;
+  return s.replace(/\/$/, "") || "/";
+}
+
 export const enderecoCompleto = `${site.endereco.rua} – ${site.endereco.bairro}, ${site.endereco.cidade} – ${site.endereco.uf}, ${site.endereco.cep}`;
 
 export function whatsappUrl(mensagem = "Olá! Vim pelo site do CrossFit Kyosei.") {

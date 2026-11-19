@@ -2,9 +2,12 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
-// [A CONFIRMAR] domínio definitivo. Usado no sitemap, nas URLs canônicas e no Open Graph.
+// Endereço do site. Hoje: GitHub Pages do repositório (https://simm-sara.github.io/kyosei/).
+// Quando houver domínio próprio (ex.: www.crossfitkyosei.com.br): troque `site` pelo domínio,
+// `base` por "/" e atualize public/robots.txt. Nenhum outro arquivo precisa mudar.
 export default defineConfig({
-  site: "https://www.crossfitkyosei.com.br",
+  site: "https://simm-sara.github.io",
+  base: "/kyosei",
   trailingSlash: "ignore",
   integrations: [sitemap()],
   build: { format: "directory" },

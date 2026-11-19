@@ -1,14 +1,14 @@
 ---
 // Consentimento (LGPD). Clarity e GA4 só carregam depois de "Aceitar".
 // A escolha fica no localStorage do navegador da pessoa ("kyosei-consentimento").
-import { site } from "../lib/site";
+import { site, url } from "../lib/site";
 const { clarityId, ga4Id } = site.analytics;
 ---
 <div class="cookies" role="dialog" aria-live="polite" aria-label="Cookies" hidden data-cookies>
   <p>
     Usamos cookies de análise (Google Analytics e Microsoft Clarity, que registra mapas de calor e gravações anônimas de navegação)
     para entender o que funciona no site. Nada disso carrega sem a sua permissão.
-    <a href="/privacidade">Saiba mais</a>.
+    <a href={url("/privacidade")}>Saiba mais</a>.
   </p>
   <div class="cookies__acoes">
     <button type="button" class="botao botao--fantasma" data-consentir="nao">Recusar</button>

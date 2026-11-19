@@ -8,7 +8,8 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [x] Totalpass: a partir do plano TP-4 (Wellhub a partir do Gold).
 - [x] Horário de funcionamento de segunda a sexta (6h às 20h15).
 - [x] Horário de sábado (até 12h).
-- [ ] **Domínio** → `astro.config.mjs` e `public/robots.txt`.
+- [x] Publicação no GitHub Pages (https://simm-sara.github.io/kyosei/).
+- [ ] **Domínio próprio** (opcional) → `astro.config.mjs`, `public/robots.txt` e Settings → Pages.
 - [ ] **IDs do Clarity e do GA4** → `site.json > analytics`.
 - [ ] Trocar `rascunho` para `false`.
 
