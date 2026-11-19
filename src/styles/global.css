@@ -632,6 +632,7 @@ mark.pendente {
 /* Coaches na home: retratos desencontrados */
 .coaches-home { display: grid; grid-template-columns: 1.1fr 0.9fr 0.9fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
 .coaches-home__texto { align-self: center; }
+.coaches-home__nota { margin: 0 0 20px; color: var(--cinza-claro); }
 .retrato { position: relative; display: block; text-decoration: none; color: #fff; }
 .retrato .foto { transition: transform 0.4s ease; }
 .retrato:hover { color: #fff; }
