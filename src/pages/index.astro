@@ -9,6 +9,7 @@ import Mapa from "../components/Mapa.astro";
 import FaixaCta from "../components/FaixaCta.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
 import Selo from "../components/Selo.astro";
+import Beneficios from "../components/Beneficios.astro";
 import planos from "../data/planos.json";
 import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto } from "../lib/site";
 import { eventosSeparados } from "../lib/eventos";
@@ -214,6 +215,15 @@ const partesAula = [
           </a>
         </li>
       </ul>
+
+      <div class="beneficios-home">
+        <div>
+          <p class="olho">Benefícios da matrícula</p>
+          <h3>Quem é aluno também ganha desconto em parceiros.</h3>
+          <a class="link-seta" href="/horarios-e-planos#beneficios">Ver benefícios</a>
+        </div>
+        <Beneficios compacto />
+      </div>
     </div>
   </section>
 

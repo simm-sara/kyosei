@@ -1,0 +1,10 @@
+{
+  "_ajuda": "Parceiros com desconto para alunos matriculados. 'parceiro' é o nome da clínica ou loja (deixe \"\" enquanto não tiver), 'desconto' é texto livre (ex.: '15% de desconto'). 'icone': nutricao, fisio ou loja. 'link' é opcional (Instagram ou site do parceiro).",
+  "_pendente": "[A CONFIRMAR] Nomes dos parceiros, valores dos descontos, lojas e se vale também para quem treina por Wellhub/Totalpass.",
+  "regra": "Para alunos com matrícula ativa no box.",
+  "itens": [
+    { "categoria": "Nutricionista", "parceiro": "", "desconto": "", "texto": "Acompanhamento nutricional com condição especial para quem treina no Kyosei.", "icone": "nutricao", "link": "", "pendente": true },
+    { "categoria": "Fisioterapeuta", "parceiro": "", "desconto": "", "texto": "Avaliação e tratamento com desconto, para prevenir e cuidar de lesões.", "icone": "fisio", "link": "", "pendente": true },
+    { "categoria": "Lojas parceiras", "parceiro": "", "desconto": "", "texto": "Descontos em lojas da região. Lista em breve.", "icone": "loja", "link": "", "pendente": true }
+  ]
+}

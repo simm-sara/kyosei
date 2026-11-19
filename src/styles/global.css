@@ -705,6 +705,33 @@ mark.pendente {
 .cta-final__nuvem { position: absolute; z-index: -1; left: -40px; bottom: -10px; width: 280px; aspect-ratio: 200 / 90; fill: var(--vermelho-escuro); --nuvem-traco: rgb(154 25 31 / 0.6); }
 @media (max-width: 760px) { .cta-final__cartao { grid-template-columns: 1fr; } .cta-final__foto.foto { min-height: 220px; } }
 
+/* ---------- Benefícios da matrícula ---------- */
+.beneficios__lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+.beneficio { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start; }
+.beneficio__icone {
+  display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--papel); color: var(--vermelho); border: 3px solid var(--vermelho);
+  box-shadow: inset 0 0 0 3px var(--papel), inset 0 0 0 4.5px var(--vermelho);
+}
+.beneficio__icone svg { width: 30px; height: 30px; }
+.beneficio h3 { font-size: 1.15rem; margin: 6px 0 6px; }
+.beneficio__parceiro { font-weight: 600; font-stretch: 100%; color: var(--cinza); }
+.beneficio__desconto { font-weight: 800; color: var(--vermelho); margin: 0 0 6px; }
+.beneficio p { margin: 0 0 8px; color: var(--cinza); }
+.beneficios__regra { margin: 24px 0 0; font-size: 0.9rem; color: var(--cinza); }
+.beneficios--compacto .beneficio { grid-template-columns: 52px 1fr; align-items: center; }
+.beneficios--compacto .beneficio__icone { width: 52px; height: 52px; }
+.beneficios--compacto .beneficio__icone svg { width: 24px; height: 24px; }
+.beneficios--compacto .beneficio h3 { margin: 0; font-size: 1.05rem; }
+.beneficios--compacto .beneficios__regra { margin-top: 16px; }
+.beneficios-home {
+  display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(20px, 4vw, 48px); align-items: center;
+  margin-top: clamp(28px, 4vw, 48px); padding: clamp(22px, 3vw, 36px); border-radius: var(--raio-foto); background: var(--papel-2);
+}
+.beneficios-home h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); text-transform: uppercase; margin-bottom: 12px; }
+.beneficios-home .olho { margin-bottom: 10px; }
+@media (max-width: 880px) { .beneficios-home { grid-template-columns: 1fr; } }
+
 /* ---------- Entrada suave dos blocos ao rolar ---------- */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {

@@ -22,6 +22,12 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] Como chegar: estacionamento e referências.
 - [ ] Texto de privacidade.
 
+## Benefícios da matrícula (`src/data/beneficios.json`)
+- [ ] Nome da nutricionista e do fisioterapeuta parceiros, e o desconto de cada um.
+- [ ] Lojas parceiras (Sara vai confirmar com o Chiba).
+- [ ] O desconto vale também para quem treina por Wellhub/Totalpass, ou só para matrícula direta?
+- [ ] Link (Instagram ou site) de cada parceiro, se quiserem divulgar.
+
 ## Links e materiais
 - [ ] Link de convite da comunidade do WhatsApp → `site.json > links.comunidadeWhatsapp`.
 - [ ] Link direto do perfil do Google (avaliações) → `site.json > links.googleAvaliacoes`.
