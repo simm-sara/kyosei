@@ -21,8 +21,8 @@ const r = site.avaliacaoGoogle;
 // Estrutura da aula: a mesma da página Metodologia.
 const partesAula = [
   { nome: "Aquecimento", texto: "Mobilidade e movimentos leves para preparar o corpo.", foto: "/fotos/alongamento-dupla.webp", posicao: "50% 45%" },
-  { nome: "Técnica", texto: "O coach ensina e corrige o movimento do dia, sem pressa.", foto: "/fotos/coach-corrige.webp", posicao: "50% 38%" },
-  { nome: "Treino do dia", texto: "O WOD, adaptado ao seu nível: carga, repetições e tempo sob medida.", foto: "/fotos/kettlebell.webp", posicao: "50% 55%" },
+  { nome: "Técnica", texto: "O coach explica o treino no quadro, demonstra e corrige o movimento, sem pressa.", foto: "/fotos/coach-quadro.webp", posicao: "50% 42%" },
+  { nome: "Treino do dia", texto: "O WOD, adaptado ao seu nível: carga, repetições e tempo sob medida.", foto: "/fotos/kettlebell.webp", posicao: "50% 62%" },
   { nome: "Desaquecimento", texto: "Alongamento, respiração e aquela conversa com a turma.", foto: "/fotos/desaquecimento.webp", posicao: "50% 60%" },
 ];
 ---
@@ -49,7 +49,7 @@ const partesAula = [
 
       <div class="heroi__arte">
         <div class="heroi__sol">
-          <Foto class="heroi__foto" src="/fotos/turma-halteres.webp" alt="Turma treinando com halteres durante a aula" proporcao="1 / 1" posicao="50% 40%" carregar="eager" />
+          <Foto class="heroi__foto" src="/fotos/aula-agachamento.webp" alt="Lucas Chiba demonstrando o agachamento para um aluno, com a turma em volta, no box" proporcao="1 / 1" posicao="50% 78%" carregar="eager" />
         </div>
         <svg class="heroi__galho" aria-hidden="true"><use href="#k-galho" /></svg>
         <svg class="heroi__nuvem heroi__nuvem--a" aria-hidden="true"><use href="#k-nuvem" /></svg>
@@ -105,12 +105,12 @@ const partesAula = [
         </div>
         <p class="cabeca-secao__nota">Cada aula tem coach o tempo todo e uma estrutura que se repete. Assim você sabe o que esperar desde o primeiro dia.</p>
       </div>
-      <ol class="faixas">
+      <ol class="partes">
         {partesAula.map((p, i) => (
-          <li class="faixa revelar">
-            <Foto class="faixa__foto" src={p.foto} alt="" proporcao="auto" posicao={p.posicao} />
-            <div class="faixa__texto">
-              <span class="faixa__num">0{i + 1}</span>
+          <li class="parte revelar">
+            <Foto class="parte__foto" src={p.foto} alt="" proporcao="4 / 3" posicao={p.posicao} />
+            <div class="parte__texto">
+              <span class="parte__num">0{i + 1}</span>
               <h3>{p.nome}</h3>
               <p>{p.texto}</p>
             </div>
@@ -180,7 +180,7 @@ const partesAula = [
       </a>
       <a class="retrato retrato--2" href="/coaches#stella-mazotti">
         <Foto src="/fotos/coach-stella-mazotti.webp" alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 20%" />
-        <span class="retrato__nome"><strong>Stella Mazotti</strong> Coach · CF-L1</span>
+        <span class="retrato__nome"><strong>Stella Mazotti</strong> Coach · CF-L1 · Educação Física</span>
       </a>
     </div>
   </section>
@@ -238,7 +238,7 @@ const partesAula = [
         <p class="cabeca-secao__nota">Na comunidade do WhatsApp tem grupo de anúncios, de fotos e de conversa geral. É lá que os eventos saem primeiro.</p>
       </div>
       <div class="mosaico">
-        <Foto class="mosaico__a" src="/fotos/turma-aula.webp" alt="Turma treinando junta com halteres" proporcao="auto" posicao="50% 50%" />
+        <Foto class="mosaico__a" src="/fotos/turma-parada-de-maos.webp" alt="Aluna ajudando a colega na parada de mãos, com a turma treinando ao lado" proporcao="auto" posicao="50% 45%" />
         <Foto class="mosaico__b" src="/fotos/wall-ball.webp" alt="Aluna fazendo wall ball" proporcao="auto" posicao="50% 35%" />
         <Foto class="mosaico__c" src="/fotos/cordas-dupla.webp" alt="Dupla treinando com cordas navais" proporcao="auto" posicao="50% 50%" />
         <Foto class="mosaico__d" src="/fotos/aluna-halter.webp" alt="Aluna treinando com halter" proporcao="auto" posicao="50% 30%" />
@@ -247,16 +247,24 @@ const partesAula = [
 
       <div class="comunidade-rodape">
         <div class="agenda-curta">
-          <h3>Na agenda</h3>
+          <div class="agenda-curta__topo">
+            <h3>Na agenda</h3>
+            <a class="link-seta" href="/eventos" data-evento="eventos">Todos os eventos</a>
+          </div>
           {destaques.length ? (
-            <div class="grade" style="gap:14px">{destaques.map((e) => <CartaoEvento evento={e} />)}</div>
+            <ul class="agenda-lista">{destaques.map((e) => <li><CartaoEvento evento={e} compacto /></li>)}</ul>
           ) : (
-            <p>Nenhum evento marcado agora. Os anúncios saem primeiro na comunidade.</p>
+            <p class="agenda-vazia">Nenhum evento marcado agora. Os anúncios saem primeiro na comunidade.</p>
           )}
-          <a class="link-seta" href="/eventos" data-evento="eventos">Todos os eventos</a>
         </div>
         <div class="comunidade-cta">
-          <p>Já treina ou quer conhecer a turma antes?</p>
+          <h3>Comunidade no WhatsApp</h3>
+          <p>Três grupos para quem treina ou quer conhecer a turma antes:</p>
+          <ul class="grupos">
+            <li><strong>Anúncios</strong> eventos e avisos</li>
+            <li><strong>Fotos</strong> registros das aulas</li>
+            <li><strong>Geral</strong> a conversa da turma</li>
+          </ul>
           <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
         </div>
       </div>

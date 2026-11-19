@@ -14,7 +14,8 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 ## Conteúdo a validar com o box
 - [ ] Significado do nome "Kyosei" (共生, "viver e trabalhar juntos pelo bem comum"): home e Sobre.
 - [ ] Texto da história (Sobre) e papel da Iris Chiba. (Gabriel Chiba saiu do time e foi retirado do site.)
-- [ ] Bios do Lucas e da Stella (a partir dos CVs).
+- [x] Bio da Stella.
+- [ ] Bio do Lucas (a partir do CV).
 - [ ] Passo a passo da primeira aula (processo real do box).
 - [ ] Boas práticas (regras internas).
 - [ ] Metodologia (validação dos coaches).

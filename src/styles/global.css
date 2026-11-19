@@ -471,6 +471,7 @@ mark.pendente {
 .evento__meta { font-size: 0.9rem; color: var(--cinza); margin: 0 0 8px; }
 .secao--escura .evento__meta { color: var(--cinza-claro); }
 .evento__resumo { margin: 0 0 10px; }
+.evento__botao.botao { min-height: 40px; padding: 8px 16px; font-size: 0.82rem; }
 .evento__texto { font-size: 0.95rem; color: var(--cinza); }
 .evento__texto p:last-child { margin: 0; }
 .evento--passado { opacity: 0.7; }
@@ -598,20 +599,17 @@ mark.pendente {
 .colagem__texto .chamada { margin: 20px 0 24px; color: var(--cinza); opacity: 1; }
 .colagem__texto .acoes { align-items: center; }
 
-/* Faixas da estrutura da aula (fotos largas e arredondadas com o texto por cima) */
-.faixas { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 14px; }
-.faixa {
-  position: relative; display: grid; align-items: end; min-height: clamp(150px, 17vw, 200px);
-  border-radius: var(--raio-foto); overflow: hidden; isolation: isolate; color: #fff;
-}
-.faixa__foto.foto { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 0; z-index: -2; transition: transform 0.6s ease; }
-.faixa::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(27 24 25 / 0.82), rgb(27 24 25 / 0.35) 60%, rgb(27 24 25 / 0.1)); }
-.faixa:hover .faixa__foto { transform: scale(1.04); }
-.faixa__texto { display: grid; grid-template-columns: auto auto 1fr; align-items: baseline; gap: 6px 22px; padding: clamp(20px, 3vw, 32px); }
-.faixa__num { font-weight: 800; font-stretch: 125%; color: #ff8a8e; font-size: 1rem; }
-.faixa h3 { font-size: clamp(1.6rem, 3.4vw, 2.6rem); text-transform: uppercase; font-stretch: 118%; }
-.faixa p { margin: 0; max-width: 44ch; color: rgb(255 255 255 / 0.85); }
-@media (max-width: 720px) { .faixa__texto { grid-template-columns: 1fr; } }
+/* Estrutura da aula: grade 2x2 de cartões com foto (a foto aparece inteira, sem corte forte) */
+.partes { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 24px); }
+@media (max-width: 680px) { .partes { grid-template-columns: 1fr; } }
+.parte { position: relative; border-radius: var(--raio-foto); overflow: hidden; isolation: isolate; color: #fff; background: var(--tinta); }
+.parte__foto.foto { border-radius: 0; transition: transform 0.6s ease; }
+.parte:hover .parte__foto { transform: scale(1.04); }
+.parte::after { content: ""; position: absolute; inset: 40% 0 0; z-index: 0; background: linear-gradient(to top, rgb(27 24 25 / 0.88), rgb(27 24 25 / 0)); pointer-events: none; }
+.parte__texto { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; padding: clamp(18px, 2.6vw, 28px); }
+.parte__num { display: block; font-weight: 800; font-stretch: 125%; color: #ff8a8e; font-size: 0.9rem; margin-bottom: 4px; }
+.parte h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); text-transform: uppercase; font-stretch: 118%; margin-bottom: 6px; }
+.parte p { margin: 0; max-width: 40ch; color: rgb(255 255 255 / 0.86); font-size: 0.98rem; }
 
 /* Trajeto: três passos ligados por uma linha */
 .trajeto { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: passo; position: relative; }
@@ -682,12 +680,56 @@ mark.pendente {
 @media (max-width: 720px) {
   .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 150px 150px; grid-template-areas: "a a" "b c" "d e"; }
 }
-.comunidade-rodape { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px, 4vw, 56px); margin-top: clamp(28px, 4vw, 48px); align-items: start; }
+.comunidade-rodape { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(20px, 3vw, 40px); margin-top: clamp(28px, 4vw, 48px); align-items: stretch; }
 @media (max-width: 880px) { .comunidade-rodape { grid-template-columns: 1fr; } }
-.agenda-curta h3 { margin-bottom: 14px; }
-.agenda-curta .link-seta { display: inline-block; margin-top: 16px; }
-.comunidade-cta { background: var(--tinta); color: var(--papel); border-radius: var(--raio-foto); padding: clamp(22px, 3vw, 32px); }
-.comunidade-cta p { font-size: 1.15rem; font-weight: 600; }
+.agenda-curta { background: rgb(255 255 255 / 0.55); border-radius: var(--raio-foto); padding: clamp(20px, 2.8vw, 32px); }
+.agenda-curta__topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.agenda-curta h3 { margin: 0; }
+.agenda-lista { list-style: none; margin: 0; padding: 0; }
+.agenda-lista li + li { border-top: 1px solid var(--linha); }
+.agenda-vazia { margin: 12px 0 0; color: var(--cinza); }
+.evento-linha { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: center; padding-block: 16px; }
+.evento-linha__data {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1;
+  border-radius: 12px; background: var(--vermelho); color: #fff; line-height: 1;
+}
+.evento-linha__data span { font-size: 1.35rem; font-weight: 800; font-stretch: 112%; }
+.evento-linha__data small { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
+.evento-linha__texto { min-width: 0; }
+.evento-linha h4 { margin: 2px 0 2px; font-size: 1.05rem; font-stretch: 108%; line-height: 1.2; }
+.evento-linha p { margin: 0; font-size: 0.88rem; color: var(--cinza); }
+.evento-linha__link { font-weight: 700; font-size: 0.88rem; text-decoration: none; white-space: nowrap; color: var(--vermelho); }
+.evento-linha__link:hover { color: var(--vermelho-escuro); text-decoration: underline; }
+@media (max-width: 520px) { .evento-linha { grid-template-columns: 48px 1fr; } .evento-linha__link { grid-column: 2; } .evento-linha__link span:first-child { font-size: 0.85rem; } }
+.comunidade-cta {
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+  background: var(--tinta); color: var(--papel); border-radius: var(--raio-foto); padding: clamp(22px, 3vw, 32px);
+}
+.comunidade-cta h3 { margin: 0; }
+.comunidade-cta p { margin: 0; color: var(--cinza-claro); }
+.grupos { list-style: none; margin: 4px 0 auto; padding: 0; display: grid; gap: 8px; width: 100%; }
+.grupos li { display: flex; gap: 10px; align-items: baseline; padding: 10px 14px; border-radius: 12px; background: var(--tinta-2); color: var(--cinza-claro); font-size: 0.92rem; }
+.grupos strong { color: #fff; min-width: 76px; }
+.comunidade-cta .botao { margin-top: 12px; }
+
+/* Primeira aula: o que levar / o que esperar */
+.levar-esperar { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+@media (max-width: 880px) { .levar-esperar { grid-template-columns: 1fr; } }
+.levar-esperar h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 24px; }
+.itens-levar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.itens-levar li { display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: 18px; background: rgb(255 255 255 / 0.6); }
+.itens-levar svg { width: 34px; height: 34px; color: var(--vermelho); margin-bottom: 8px; }
+.itens-levar strong { font-size: 1rem; line-height: 1.25; }
+.itens-levar span { font-size: 0.88rem; color: var(--cinza); line-height: 1.4; }
+@media (max-width: 420px) { .itens-levar { grid-template-columns: 1fr; } }
+.esperar { margin: 0; border-top: 2px solid var(--tinta); }
+.esperar div { display: grid; grid-template-columns: minmax(140px, 0.8fr) 1.2fr; gap: 6px 20px; padding-block: 16px; border-bottom: 1px solid var(--linha); }
+.esperar dt { font-weight: 800; font-stretch: 108%; }
+.esperar dd { margin: 0; color: var(--cinza); }
+@media (max-width: 520px) { .esperar div { grid-template-columns: 1fr; } }
+.duvida { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: clamp(32px, 5vw, 56px); padding-top: 28px; border-top: 1px solid var(--linha); }
+.duvida p { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.duvida .acoes { margin: 0; align-items: center; }
 
 /* Chamada final: cartão arredondado com foto */
 .cta-final__cartao {
