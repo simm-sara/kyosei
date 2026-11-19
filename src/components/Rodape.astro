@@ -1,6 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import Pendente from "./Pendente.astro";
+import LogoCrossFit from "./LogoCrossFit.astro";
 import { site, enderecoCompleto, instagramUrl, whatsappUrl, comunidadeUrl, agendarUrl } from "../lib/site";
 const ano = new Date().getFullYear();
 ---
@@ -9,6 +10,7 @@ const ano = new Date().getFullYear();
     <div class="rodape__marca">
       <a href="/" aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
       <p>Box afiliado CrossFit no Cambuí, em Campinas. Desde {site.inauguracao}.</p>
+      <p class="rodape__afiliado"><span>Box afiliado oficial</span><LogoCrossFit /></p>
     </div>
 
     <div>

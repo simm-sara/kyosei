@@ -7,7 +7,7 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] **Tabela de planos e preços** → `planos.json`. Os nomes Mensal/Trimestral/Semestral são provisórios.
 - [ ] **Totalpass**: qual plano dá acesso.
 - [x] Horário de funcionamento de segunda a sexta (6h às 20h15).
-- [ ] Horário de sábado: o site mostra 9h às 11h30, calculado pelos aulões. Confirmar.
+- [x] Horário de sábado (até 12h).
 - [ ] **Domínio** → `astro.config.mjs` e `public/robots.txt`.
 - [ ] **IDs do Clarity e do GA4** → `site.json > analytics`.
 - [ ] Trocar `rascunho` para `false`.
@@ -43,7 +43,7 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] Confirmar que as pessoas que aparecem nas fotos concordam com o uso no site.
 - [ ] A aula experimental é gratuita? Se for, vale dizer isso nos botões e na chamada final.
 - [ ] Eventos reais → apagar os dois arquivos de exemplo em `src/content/eventos/`.
-- [ ] Guia de marca para afiliados CrossFit: conferir o uso do nome e se o selo de afiliado deve aparecer (hoje não usamos o logo da CrossFit; só o texto "Box afiliado CrossFit" e a nota de marca registrada no rodapé).
+- [ ] Guia de marca para afiliados CrossFit: conferir o uso do nome e se o selo de afiliado deve aparecer (o logo CrossFit® oficial está no hero e no rodapé, em preto ou branco, sem outras alterações).
 
 ## Fora do site, mas com efeito no SEO
 - [ ] Corrigir o cadastro do box no diretório do crossfit.com (nome, endereço e telefone iguais aos do site).

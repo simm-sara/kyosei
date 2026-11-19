@@ -780,6 +780,22 @@ mark.pendente {
 .socios__foto { margin: 0; }
 .socios__foto figcaption { margin-top: 10px; }
 
+/* ---------- Logo CrossFit (máscara: herda a cor do texto) ---------- */
+.logo-cf {
+  display: inline-block; vertical-align: middle; height: 1em; aspect-ratio: 1238 / 325; background: currentColor;
+  -webkit-mask: url("/logo-crossfit.png") center / contain no-repeat; mask: url("/logo-crossfit.png") center / contain no-repeat;
+}
+.heroi__afiliado {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin: 0 0 20px;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.heroi__afiliado .logo-cf { height: 26px; color: var(--tinta); }
+.heroi__afiliado span { padding-left: 14px; border-left: 2px solid var(--vermelho); line-height: 1.2; }
+@media (max-width: 480px) { .heroi__afiliado { flex-direction: column; align-items: flex-start; gap: 8px; } .heroi__afiliado span { padding-left: 0; border-left: 0; } }
+.rodape__afiliado { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 20px; }
+.rodape__afiliado span { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cinza-claro); }
+.rodape__afiliado .logo-cf { height: 30px; color: #fff; }
+
 /* ---------- Entrada suave dos blocos ao rolar ---------- */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
