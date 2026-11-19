@@ -6,7 +6,8 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] **Link do app de agendamento** (o mesmo do Linktree) → `site.json > links.agendamento`. Hoje o botão cai no WhatsApp.
 - [ ] **Tabela de planos e preços** → `planos.json`. Os nomes Mensal/Trimestral/Semestral são provisórios.
 - [ ] **Totalpass**: qual plano dá acesso.
-- [ ] **Horário de funcionamento** (veio do Wellhub) → `site.json > funcionamento`.
+- [x] Horário de funcionamento de segunda a sexta (6h às 20h15).
+- [ ] Horário de sábado: o site mostra 9h às 11h30, calculado pelos aulões. Confirmar.
 - [ ] **Domínio** → `astro.config.mjs` e `public/robots.txt`.
 - [ ] **IDs do Clarity e do GA4** → `site.json > analytics`.
 - [ ] Trocar `rascunho` para `false`.
@@ -28,6 +29,10 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] Lojas parceiras (Sara vai confirmar com o Chiba).
 - [ ] O desconto vale também para quem treina por Wellhub/Totalpass, ou só para matrícula direta?
 - [ ] Link (Instagram ou site) de cada parceiro, se quiserem divulgar.
+
+## Fotos com crianças
+- [ ] `lucas-familia.webp` (Sobre) e `turma-completa.webp` (home e Sobre) mostram crianças. Confirmar a autorização de uso de imagem dos responsáveis antes de publicar.
+- [ ] Quem aparece com o Lucas em `lucas-familia.webp`, para escrever a legenda e o texto alternativo.
 
 ## Links e materiais
 - [ ] Link de convite da comunidade do WhatsApp → `site.json > links.comunidadeWhatsapp`.

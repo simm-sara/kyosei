@@ -26,8 +26,8 @@ import { site, enderecoCompleto, whatsappUrl, comunidadeUrl, instagramUrl, agend
         <div><dt>E-mail</dt><dd><a href={`mailto:${site.email}`} data-evento="email">{site.email}</a></dd></div>
         <div><dt>Instagram</dt><dd><a href={instagramUrl} target="_blank" rel="noopener" data-evento="instagram">@{site.instagram}</a></dd></div>
         <div>
-          <dt>Funcionamento <Pendente /></dt>
-          <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}<br /></>)}</dd>
+          <dt>Funcionamento</dt>
+          <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}{"pendente" in f && f.pendente && <Pendente />}<br /></>)}</dd>
         </div>
         <div>
           <dt>Como chegar <Pendente nota="estacionamento e referências" /></dt>

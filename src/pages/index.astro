@@ -22,7 +22,7 @@ const r = site.avaliacaoGoogle;
 const partesAula = [
   { nome: "Aquecimento", texto: "Mobilidade e movimentos leves para preparar o corpo.", foto: "/fotos/alongamento-dupla.webp", posicao: "50% 45%" },
   { nome: "Técnica", texto: "O coach explica o treino no quadro, demonstra e corrige o movimento, sem pressa.", foto: "/fotos/coach-quadro.webp", posicao: "50% 42%" },
-  { nome: "Treino do dia", texto: "O WOD, adaptado ao seu nível: carga, repetições e tempo sob medida.", foto: "/fotos/kettlebell.webp", posicao: "50% 62%" },
+  { nome: "Treino do dia", texto: "O WOD, adaptado ao seu nível: carga, repetições e tempo sob medida.", foto: "/fotos/aluna-barra.webp", posicao: "50% 30%" },
   { nome: "Desaquecimento", texto: "Alongamento, respiração e aquela conversa com a turma.", foto: "/fotos/desaquecimento.webp", posicao: "50% 60%" },
 ];
 ---
@@ -80,7 +80,7 @@ const partesAula = [
       <div class="colagem__texto">
         <p class="olho">Para quem é</p>
         <h2>Você não precisa estar em forma para começar.</h2>
-        <p class="chamada">A maioria da turma chegou sem nunca ter feito CrossFit. O treino é o mesmo para todo mundo, e o coach ajusta carga, repetições e movimentos para cada pessoa.</p>
+        <p class="chamada">Muita gente começa no Kyosei sem nunca ter feito CrossFit. O treino é o mesmo para todo mundo, e o coach ajusta carga, repetições e movimentos para cada pessoa.</p>
         <ul class="lista-check">
           <li>Nunca treinou, ou está parado há um tempo</li>
           <li>Quer mais disposição e menos dor no dia a dia</li>
@@ -142,7 +142,7 @@ const partesAula = [
     <div class="miolo">
       <div class="cabeca-secao">
         <div>
-          <p class="olho">Sua primeira aula</p>
+          <p class="olho">Sua primeira aula <Pendente nota="validar o processo com o box" /></p>
           <h2>Três passos até o primeiro treino.</h2>
         </div>
         <a class="link-seta" href="/primeira-aula">Passo a passo completo</a>
@@ -238,9 +238,9 @@ const partesAula = [
         <p class="cabeca-secao__nota">Na comunidade do WhatsApp tem grupo de anúncios, de fotos e de conversa geral. É lá que os eventos saem primeiro.</p>
       </div>
       <div class="mosaico">
-        <Foto class="mosaico__a" src="/fotos/turma-parada-de-maos.webp" alt="Aluna ajudando a colega na parada de mãos, com a turma treinando ao lado" proporcao="auto" posicao="50% 45%" />
-        <Foto class="mosaico__b" src="/fotos/wall-ball.webp" alt="Aluna fazendo wall ball" proporcao="auto" posicao="50% 35%" />
-        <Foto class="mosaico__c" src="/fotos/cordas-dupla.webp" alt="Dupla treinando com cordas navais" proporcao="auto" posicao="50% 50%" />
+        <Foto class="mosaico__a" src="/fotos/turma-completa.webp" alt="Turma do Kyosei reunida no box, sorrindo para a foto" proporcao="auto" posicao="50% 60%" />
+        <Foto class="mosaico__b" src="/fotos/turma-wall-ball.webp" alt="Turma fazendo wall ball na parede do box" proporcao="auto" posicao="50% 40%" />
+        <Foto class="mosaico__c" src="/fotos/turma-parada-de-maos.webp" alt="Aluna ajudando a colega na parada de mãos" proporcao="auto" posicao="50% 40%" />
         <Foto class="mosaico__d" src="/fotos/aluna-halter.webp" alt="Aluna treinando com halter" proporcao="auto" posicao="50% 30%" />
         <Foto class="mosaico__e" src="/fotos/alongamento-dupla.webp" alt="Dupla se alongando e conversando" proporcao="auto" posicao="50% 50%" />
       </div>
@@ -281,8 +281,8 @@ const partesAula = [
           <div><dt>Endereço</dt><dd>{enderecoCompleto}</dd></div>
           <div><dt>WhatsApp</dt><dd><a href={whatsappUrl()} target="_blank" rel="noopener" data-evento="whatsapp">{site.telefone}</a></dd></div>
           <div>
-            <dt>Funcionamento <Pendente /></dt>
-            <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}<br /></>)}</dd>
+            <dt>Funcionamento</dt>
+            <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}{"pendente" in f && f.pendente && <Pendente />}<br /></>)}</dd>
           </div>
         </dl>
         <div class="acoes"><a class="link-seta" href="/contato">Como chegar</a></div>

@@ -21,9 +21,9 @@ const ano = new Date().getFullYear();
     </div>
 
     <div>
-      <h2 class="rodape__titulo">Funcionamento <Pendente /></h2>
+      <h2 class="rodape__titulo">Funcionamento</h2>
       <dl class="rodape__horas">
-        {site.funcionamento.map((f) => (<><dt>{f.dias}</dt><dd>{f.horas}</dd></>))}
+        {site.funcionamento.map((f) => (<><dt>{f.dias}</dt><dd>{f.horas}{"pendente" in f && f.pendente && <Pendente />}</dd></>))}
       </dl>
     </div>
 

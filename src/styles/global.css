@@ -716,12 +716,12 @@ mark.pendente {
 .levar-esperar { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
 @media (max-width: 880px) { .levar-esperar { grid-template-columns: 1fr; } }
 .levar-esperar h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 24px; }
-.itens-levar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.itens-levar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .itens-levar li { display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: 18px; background: rgb(255 255 255 / 0.6); }
 .itens-levar svg { width: 34px; height: 34px; color: var(--vermelho); margin-bottom: 8px; }
 .itens-levar strong { font-size: 1rem; line-height: 1.25; }
 .itens-levar span { font-size: 0.88rem; color: var(--cinza); line-height: 1.4; }
-@media (max-width: 420px) { .itens-levar { grid-template-columns: 1fr; } }
+@media (max-width: 1060px) and (min-width: 881px), (max-width: 560px) { .itens-levar { grid-template-columns: 1fr; } }
 .esperar { margin: 0; border-top: 2px solid var(--tinta); }
 .esperar div { display: grid; grid-template-columns: minmax(140px, 0.8fr) 1.2fr; gap: 6px 20px; padding-block: 16px; border-bottom: 1px solid var(--linha); }
 .esperar dt { font-weight: 800; font-stretch: 108%; }
@@ -773,6 +773,12 @@ mark.pendente {
 .beneficios-home h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); text-transform: uppercase; margin-bottom: 12px; }
 .beneficios-home .olho { margin-bottom: 10px; }
 @media (max-width: 880px) { .beneficios-home { grid-template-columns: 1fr; } }
+
+/* Sobre: sócios com foto */
+.socios { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+@media (max-width: 820px) { .socios { grid-template-columns: 1fr; } }
+.socios__foto { margin: 0; }
+.socios__foto figcaption { margin-top: 10px; }
 
 /* ---------- Entrada suave dos blocos ao rolar ---------- */
 @media (prefers-reduced-motion: no-preference) {
