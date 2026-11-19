@@ -9,6 +9,6 @@
   ],
   "parcerias": [
     { "nome": "Wellhub", "detalhe": "Aceito a partir do plano Gold.", "pendente": false },
-    { "nome": "Totalpass", "detalhe": "Aceito. Consulte qual plano do Totalpass dá acesso.", "pendente": true }
+    { "nome": "Totalpass", "detalhe": "Aceito a partir do plano TP-4.", "pendente": false }
   ]
 }

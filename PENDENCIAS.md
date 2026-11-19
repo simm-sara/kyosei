@@ -5,7 +5,7 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 ## Bloqueiam o lançamento
 - [ ] **Link do app de agendamento** (o mesmo do Linktree) → `site.json > links.agendamento`. Hoje o botão cai no WhatsApp.
 - [ ] **Tabela de planos e preços** → `planos.json`. Os nomes Mensal/Trimestral/Semestral são provisórios.
-- [ ] **Totalpass**: qual plano dá acesso.
+- [x] Totalpass: a partir do plano TP-4 (Wellhub a partir do Gold).
 - [x] Horário de funcionamento de segunda a sexta (6h às 20h15).
 - [x] Horário de sábado (até 12h).
 - [ ] **Domínio** → `astro.config.mjs` e `public/robots.txt`.
