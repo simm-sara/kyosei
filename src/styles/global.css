@@ -24,6 +24,7 @@
   --largura: 1200px;
   --gutter: clamp(16px, 4vw, 32px);
   --raio: 6px;
+  --raio-foto: clamp(16px, 2vw, 28px);
   --sombra: 0 1px 0 rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.25);
   --cabecalho-h: 72px;
 
@@ -249,7 +250,7 @@ mark.pendente {
 .cookies .botao { min-height: 42px; padding: 8px 18px; font-size: 0.82rem; }
 
 /* ---------- Fotos ---------- */
-.foto { width: 100%; height: auto; object-fit: cover; border-radius: var(--raio); background: var(--papel-2); }
+.foto { width: 100%; height: auto; max-width: 100%; object-fit: cover; border-radius: var(--raio-foto); background: var(--papel-2); display: block; }
 .foto--vazia {
   position: relative; display: flex; align-items: flex-end; overflow: hidden;
   background:
@@ -402,7 +403,7 @@ mark.pendente {
 
 /* ---------- Cartões ---------- */
 .cartao {
-  background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); padding: clamp(20px, 2.6vw, 28px);
+  background: rgb(255 255 255 / 0.55); border: 0; border-radius: var(--raio-foto); padding: clamp(22px, 2.8vw, 32px);
   display: flex; flex-direction: column; gap: 10px;
 }
 .cartao h3 { margin: 0; }
@@ -455,7 +456,7 @@ mark.pendente {
 /* ---------- Eventos ---------- */
 .evento {
   display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start;
-  background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); padding: 20px;
+  background: rgb(255 255 255 / 0.6); border: 0; border-radius: var(--raio-foto); padding: 20px;
 }
 .secao--escura .evento { background: var(--tinta-2); border-color: var(--linha-escura); }
 .evento__data {
@@ -572,6 +573,137 @@ mark.pendente {
 .faixa-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px 40px; }
 .faixa-cta h2 { max-width: 16ch; }
 .faixa-cta .acoes { margin-top: 0; }
+
+
+/* ---------- Layout fluido (home) ----------
+   Fotos sobrepostas, faixas arredondadas e seções que se encaixam com cantos curvos,
+   em vez de blocos de cor retos. */
+.secao--sem-topo { padding-top: 0; }
+.secao--curva { border-radius: clamp(28px, 5vw, 64px); margin-inline: clamp(0px, 1.5vw, 20px); }
+.cabeca-secao__nota { max-width: 42ch; margin: 0; color: var(--cinza); }
+.secao--escura .cabeca-secao__nota { color: var(--cinza-claro); }
+
+/* Colagem: foto grande + foto pequena sobreposta */
+.colagem { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+@media (max-width: 880px) { .colagem { grid-template-columns: 1fr; } }
+.colagem__fotos { position: relative; padding: 0 18% 14% 0; }
+.colagem__grande { box-shadow: 0 30px 60px -30px rgb(40 15 10 / 0.45); }
+.colagem__pequena {
+  position: absolute; right: 0; bottom: 0; width: 46%;
+  border: 8px solid var(--papel); box-shadow: 0 24px 40px -20px rgb(40 15 10 / 0.5);
+  transform: rotate(3deg);
+}
+.colagem__flor { position: absolute; left: -22px; top: -22px; width: 64px; height: 64px; fill: var(--vermelho); --flor-miolo: var(--papel); transform: rotate(-12deg); }
+.colagem__texto { min-width: 0; }
+.colagem__texto .chamada { margin: 20px 0 24px; color: var(--cinza); opacity: 1; }
+.colagem__texto .acoes { align-items: center; }
+
+/* Faixas da estrutura da aula (fotos largas e arredondadas com o texto por cima) */
+.faixas { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 14px; }
+.faixa {
+  position: relative; display: grid; align-items: end; min-height: clamp(150px, 17vw, 200px);
+  border-radius: var(--raio-foto); overflow: hidden; isolation: isolate; color: #fff;
+}
+.faixa__foto.foto { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 0; z-index: -2; transition: transform 0.6s ease; }
+.faixa::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(27 24 25 / 0.82), rgb(27 24 25 / 0.35) 60%, rgb(27 24 25 / 0.1)); }
+.faixa:hover .faixa__foto { transform: scale(1.04); }
+.faixa__texto { display: grid; grid-template-columns: auto auto 1fr; align-items: baseline; gap: 6px 22px; padding: clamp(20px, 3vw, 32px); }
+.faixa__num { font-weight: 800; font-stretch: 125%; color: #ff8a8e; font-size: 1rem; }
+.faixa h3 { font-size: clamp(1.6rem, 3.4vw, 2.6rem); text-transform: uppercase; font-stretch: 118%; }
+.faixa p { margin: 0; max-width: 44ch; color: rgb(255 255 255 / 0.85); }
+@media (max-width: 720px) { .faixa__texto { grid-template-columns: 1fr; } }
+
+/* Trajeto: três passos ligados por uma linha */
+.trajeto { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: passo; position: relative; }
+.trajeto::before { content: ""; position: absolute; left: 28px; right: 28px; top: 27px; height: 2px; background: repeating-linear-gradient(90deg, var(--vermelho) 0 10px, transparent 10px 18px); z-index: -1; }
+.trajeto li { counter-increment: passo; }
+.trajeto li::before {
+  content: counter(passo); display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 20px;
+  border-radius: 50%; background: var(--vermelho); color: #fff; font-weight: 800; font-size: 1.4rem; font-stretch: 112%;
+  box-shadow: 0 0 0 8px var(--papel);
+}
+.trajeto h3 { margin-bottom: 8px; }
+.trajeto p { margin: 0; color: var(--cinza); }
+@media (max-width: 760px) {
+  .trajeto { grid-template-columns: 1fr; }
+  .trajeto::before { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--vermelho) 0 10px, transparent 10px 18px); }
+  .trajeto li { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; }
+  .trajeto li::before { grid-row: span 2; margin: 0; }
+}
+
+/* Coaches na home: retratos desencontrados */
+.coaches-home { display: grid; grid-template-columns: 1.1fr 0.9fr 0.9fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
+.coaches-home__texto { align-self: center; }
+.retrato { position: relative; display: block; text-decoration: none; color: #fff; }
+.retrato .foto { transition: transform 0.4s ease; }
+.retrato:hover { color: #fff; }
+.retrato:hover .foto { transform: translateY(-6px); }
+.retrato--2 { margin-top: clamp(40px, 8vw, 120px); }
+.retrato__nome {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px 16px; border-radius: 14px;
+  background: rgb(27 24 25 / 0.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font-size: 0.85rem; color: var(--cinza-claro); line-height: 1.35;
+}
+.retrato__nome strong { display: block; color: #fff; font-size: 1.15rem; font-stretch: 112%; text-transform: uppercase; }
+@media (max-width: 600px) { .retrato__nome { left: 8px; right: 8px; bottom: 8px; padding: 8px 10px; font-size: 0.75rem; } .retrato__nome strong { font-size: 0.92rem; } }
+@media (max-width: 900px) {
+  .coaches-home { grid-template-columns: 1fr 1fr; }
+  .coaches-home__texto { grid-column: 1 / -1; }
+  .retrato--2 { margin-top: 48px; }
+}
+
+/* Lista de planos (linhas grandes, como um cardápio) */
+.lista-planos { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--tinta); }
+.lista-planos a {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr) auto; align-items: center; gap: 12px 28px;
+  padding: clamp(16px, 2.4vw, 26px) 4px; border-bottom: 1px solid var(--linha); text-decoration: none; transition: padding 0.25s, color 0.25s;
+}
+.lista-planos a:hover { color: var(--vermelho); padding-left: 16px; }
+.lista-planos__nome { font-size: clamp(1.7rem, 4.4vw, 3.4rem); font-weight: 800; font-stretch: 118%; text-transform: uppercase; line-height: 1; }
+.lista-planos__estrela { color: var(--vermelho); font-size: 1.6rem; }
+.lista-planos__detalhe { color: var(--cinza); }
+.lista-planos__preco { font-weight: 700; white-space: nowrap; }
+.lista-planos__preco::after { content: " →"; color: var(--vermelho); }
+@media (max-width: 720px) {
+  .lista-planos a { grid-template-columns: 1fr auto; }
+  .lista-planos__estrela { display: none; }
+  .lista-planos__detalhe { grid-column: 1; font-size: 0.92rem; }
+  .lista-planos__preco { grid-column: 2; grid-row: 1 / span 2; }
+}
+
+/* Mosaico de fotos da comunidade */
+.mosaico {
+  display: grid; gap: clamp(10px, 1.4vw, 18px);
+  grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: repeat(2, clamp(150px, 18vw, 250px));
+  grid-template-areas: "a b c" "a d e";
+}
+.mosaico .foto { width: 100%; height: 100%; aspect-ratio: auto; }
+.mosaico__a { grid-area: a; } .mosaico__b { grid-area: b; } .mosaico__c { grid-area: c; } .mosaico__d { grid-area: d; } .mosaico__e { grid-area: e; }
+@media (max-width: 720px) {
+  .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 150px 150px; grid-template-areas: "a a" "b c" "d e"; }
+}
+.comunidade-rodape { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px, 4vw, 56px); margin-top: clamp(28px, 4vw, 48px); align-items: start; }
+@media (max-width: 880px) { .comunidade-rodape { grid-template-columns: 1fr; } }
+.agenda-curta h3 { margin-bottom: 14px; }
+.agenda-curta .link-seta { display: inline-block; margin-top: 16px; }
+.comunidade-cta { background: var(--tinta); color: var(--papel); border-radius: var(--raio-foto); padding: clamp(22px, 3vw, 32px); }
+.comunidade-cta p { font-size: 1.15rem; font-weight: 600; }
+
+/* Chamada final: cartão arredondado com foto */
+.cta-final__cartao {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: stretch;
+  background: var(--vermelho); color: #fff; border-radius: clamp(24px, 4vw, 48px);
+}
+.cta-final__texto { padding: clamp(32px, 6vw, 72px); align-self: center; }
+.cta-final__texto h2 { max-width: 14ch; }
+.cta-final__texto .chamada { margin-top: 18px; }
+.cta-final__cartao .botao--primario { --b-fundo: #fff; --b-tinta: var(--vermelho); --b-borda: #fff; }
+.cta-final__cartao .botao--primario:hover { --b-fundo: var(--papel); --b-borda: var(--papel); --b-tinta: var(--vermelho-escuro); }
+.cta-final__cartao a:hover { color: inherit; }
+.cta-final__foto.foto { width: 100%; height: 100%; min-height: 280px; border-radius: 0; aspect-ratio: auto; }
+.cta-final__nuvem { position: absolute; z-index: -1; left: -40px; bottom: -10px; width: 280px; aspect-ratio: 200 / 90; fill: var(--vermelho-escuro); --nuvem-traco: rgb(154 25 31 / 0.6); }
+@media (max-width: 760px) { .cta-final__cartao { grid-template-columns: 1fr; } .cta-final__foto.foto { min-height: 220px; } }
 
 /* ---------- Entrada suave dos blocos ao rolar ---------- */
 @media (prefers-reduced-motion: no-preference) {

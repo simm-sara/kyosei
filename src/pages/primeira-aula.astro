@@ -15,7 +15,7 @@ import { agendarUrl, whatsappUrl, site } from "../lib/site";
   <Topo
     olho="Para quem está começando"
     titulo="Sua primeira aula, passo a passo"
-    chamada="Nunca fez CrossFit? Ótimo, a maioria das pessoas começa assim. Veja como funciona antes de chegar."
+    chamada="Nunca fez CrossFit? A maioria da turma também não tinha feito. Veja como funciona antes de chegar."
   >
     <div class="acoes"><Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao></div>
   </Topo>
@@ -33,8 +33,9 @@ import { agendarUrl, whatsappUrl, site } from "../lib/site";
           <li class="passo"><div><h3>Desaquecimento e conversa</h3><p>No fim, a gente alonga, tira dúvidas e mostra os planos, se você quiser continuar.</p></div></li>
         </ol>
       </div>
-      <div style="position:sticky;top:calc(var(--cabecalho-h) + 24px)">
-        <Foto alt="Coach orientando aluno iniciante" legenda="coach orientando iniciante" proporcao="4 / 5" />
+      <div class="colagem__fotos" style="position:sticky;top:calc(var(--cabecalho-h) + 24px)">
+        <Foto class="colagem__grande" src="/fotos/coach-corrige.webp" alt="Coach orientando uma aluna iniciante" proporcao="4 / 5" posicao="50% 35%" />
+        <Foto class="colagem__pequena" src="/fotos/aluna-halter.webp" alt="Aluna treinando com halter" proporcao="3 / 4" posicao="50% 30%" />
       </div>
     </div>
   </section>

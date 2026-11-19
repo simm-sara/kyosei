@@ -1,17 +1,20 @@
 ---
 // Foto com reserva: sem `src`, mostra um bloco marcado no lugar da foto real.
-// Fotos reais vão em public/fotos/ (ex.: src="/fotos/aula-1.jpg").
+// Fotos ficam em public/fotos/ (ex.: src="/fotos/turma-aula.webp").
+// As fotos atuais do Pexels são provisórias: troque pelas do box com o mesmo nome de arquivo.
 interface Props {
   src?: string;
   alt: string;
   legenda?: string;
   proporcao?: string;
+  posicao?: string;   // object-position, para escolher o enquadramento (ex.: "50% 20%")
   class?: string;
+  carregar?: "lazy" | "eager";
 }
-const { src, alt, legenda, proporcao = "4 / 3", class: classe = "" } = Astro.props;
+const { src, alt, legenda, proporcao = "4 / 3", posicao = "50% 50%", class: classe = "", carregar = "lazy" } = Astro.props;
 ---
 {src ? (
-  <img class={`foto ${classe}`} src={src} alt={alt} loading="lazy" decoding="async" style={`aspect-ratio:${proporcao}`} />
+  <img class={`foto ${classe}`} src={src} alt={alt} loading={carregar} decoding="async" style={`aspect-ratio:${proporcao};object-position:${posicao}`} />
 ) : (
   <div class={`foto foto--vazia ${classe}`} style={`aspect-ratio:${proporcao}`} role="img" aria-label={alt}>
     <span class="foto__rotulo">Foto · {legenda ?? alt}</span>

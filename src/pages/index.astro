@@ -9,27 +9,37 @@ import Mapa from "../components/Mapa.astro";
 import FaixaCta from "../components/FaixaCta.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
 import Selo from "../components/Selo.astro";
+import planos from "../data/planos.json";
 import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto } from "../lib/site";
 import { eventosSeparados } from "../lib/eventos";
 
 const { proximos } = await eventosSeparados();
-const destaques = proximos.slice(0, 3);
+const destaques = proximos.slice(0, 2);
 const r = site.avaliacaoGoogle;
+
+// Estrutura da aula: a mesma da página Metodologia.
+const partesAula = [
+  { nome: "Aquecimento", texto: "Mobilidade e movimentos leves para preparar o corpo.", foto: "/fotos/alongamento-dupla.webp", posicao: "50% 45%" },
+  { nome: "Técnica", texto: "O coach ensina e corrige o movimento do dia, sem pressa.", foto: "/fotos/coach-corrige.webp", posicao: "50% 38%" },
+  { nome: "Treino do dia", texto: "O WOD, adaptado ao seu nível: carga, repetições e tempo sob medida.", foto: "/fotos/kettlebell.webp", posicao: "50% 55%" },
+  { nome: "Desaquecimento", texto: "Alongamento, respiração e aquela conversa com a turma.", foto: "/fotos/desaquecimento.webp", posicao: "50% 60%" },
+];
 ---
 <Base
   titulo="CrossFit Kyosei | CrossFit no Cambuí, Campinas"
   semSufixo
-  descricao="Box afiliado CrossFit no Cambuí, em Campinas. Aulas para todos os níveis, head coach CrossFit Level 3 e aula experimental. Aceita Wellhub e Totalpass."
+  descricao="CrossFit no Cambuí, em Campinas, para quem quer começar ou treinar com constância. Aulas para todos os níveis, coach do seu lado e aula experimental. Wellhub e Totalpass."
 >
+  <!-- 1. Herói -->
   <section class="heroi">
     <div class="heroi__ondas" aria-hidden="true"></div>
     <svg class="heroi__nuvem heroi__nuvem--fundo" aria-hidden="true"><use href="#k-nuvem" /></svg>
 
     <div class="miolo heroi__grade">
       <div class="heroi__texto">
-        <p class="olho">Box afiliado CrossFit · Cambuí, Campinas</p>
+        <p class="olho">CrossFit no Cambuí, Campinas</p>
         <h1>Força, técnica e <em>gente junta.</em></h1>
-        <p class="chamada">CrossFit para todos os níveis, com o coach do seu lado em cada movimento. Aqui quem dá a aula também é dono do box.</p>
+        <p class="chamada">Para quem quer começar, voltar a se mexer ou treinar com constância. Você não precisa ser atleta: o coach adapta tudo ao seu ritmo.</p>
         <div class="acoes">
           <Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao>
           <Botao href="/horarios-e-planos" variante="fantasma" evento="precos">Horários e planos</Botao>
@@ -38,13 +48,12 @@ const r = site.avaliacaoGoogle;
 
       <div class="heroi__arte">
         <div class="heroi__sol">
-          <Foto class="heroi__foto" alt="Aula em andamento no CrossFit Kyosei" legenda="aula no box" proporcao="1 / 1" />
+          <Foto class="heroi__foto" src="/fotos/turma-halteres.webp" alt="Turma treinando com halteres durante a aula" proporcao="1 / 1" posicao="50% 40%" carregar="eager" />
         </div>
         <svg class="heroi__galho" aria-hidden="true"><use href="#k-galho" /></svg>
         <svg class="heroi__nuvem heroi__nuvem--a" aria-hidden="true"><use href="#k-nuvem" /></svg>
         <svg class="heroi__nuvem heroi__nuvem--b" aria-hidden="true"><use href="#k-nuvem" /></svg>
 
-        <!-- Os destaques do Instagram viram atalhos: agendar, horários/preços, eventos, parcerias, comunidade -->
         <Selo class="heroi__selo heroi__selo--1" href={agendarUrl} rotulo="Aula" sub="experimental" icone="agenda" evento="agendar" giro={-8} />
         <Selo class="heroi__selo heroi__selo--2" href="/horarios-e-planos" rotulo="Horários" sub="e planos" icone="relogio" evento="precos" giro={6} />
         <Selo class="heroi__selo heroi__selo--3" href="/eventos" rotulo="Eventos" sub="e clínicas" icone="lanterna" evento="eventos" giro={9} />
@@ -59,105 +68,192 @@ const r = site.avaliacaoGoogle;
     </div>
   </section>
 
+  <!-- 2. Para quem é -->
   <section class="secao">
-    <div class="miolo">
-      <div class="cabeca-secao">
-        <div>
-          <p class="olho">Por que o Kyosei</p>
-          <h2>Comunidade não é slogan. Dá para ver.</h2>
-        </div>
-        <a class="link-seta" href="/sobre">Conheça o box</a>
+    <div class="miolo colagem">
+      <div class="colagem__fotos">
+        <Foto class="colagem__grande" src="/fotos/coach-ajuda-aluna.webp" alt="Coach orientando uma aluna durante o treino" proporcao="4 / 5" posicao="50% 35%" />
+        <Foto class="colagem__pequena" src="/fotos/aluna-medicine-ball.webp" alt="Aluna sorrindo, sentada com uma medicine ball" proporcao="3 / 4" posicao="50% 40%" />
+        <svg class="colagem__flor" aria-hidden="true"><use href="#k-flor" /></svg>
       </div>
-      <div class="grade grade--4 provas">
-        <div class="prova revelar">
-          <h3>Head coach Level 3, e sócio</h3>
-          <p>Lucas Chiba tem a certificação CrossFit Level 3 e é um dos donos. Quem planeja o treino está na aula, corrigindo o seu movimento.</p>
-        </div>
-        <div class="prova revelar">
-          <h3>Box de família</h3>
-          <p>O Kyosei é da família Chiba. Lucas, Iris e Gabriel cuidam do box de perto, do treino ao balcão.</p>
-        </div>
-        <div class="prova revelar">
-          <h3>Comunidade ativa</h3>
-          <p>Nossa comunidade no WhatsApp tem grupos de anúncios, fotos e conversa geral. É lá que os eventos saem primeiro.</p>
-        </div>
-        <div class="prova revelar">
-          <h3>Primeira aula sem mistério</h3>
-          <p>Explicamos o passo a passo antes de você chegar: o que levar, como é a aula e como adaptamos tudo ao seu nível.</p>
+      <div class="colagem__texto">
+        <p class="olho">Para quem é</p>
+        <h2>Você não precisa estar em forma para começar.</h2>
+        <p class="chamada">A maioria da turma chegou sem nunca ter feito CrossFit. O treino é o mesmo para todo mundo, e o coach ajusta carga, repetições e movimentos para cada pessoa.</p>
+        <ul class="lista-check">
+          <li>Nunca treinou, ou está parado há um tempo</li>
+          <li>Quer mais disposição e menos dor no dia a dia</li>
+          <li>Prefere treinar acompanhado a treinar sozinho</li>
+          <li>Busca constância, não competição</li>
+        </ul>
+        <div class="acoes">
+          <Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao>
+          <a class="link-seta" href="/primeira-aula">Como é a primeira aula</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--escura">
+  <!-- 3. Como é a aula -->
+  <section class="secao secao--sem-topo">
     <div class="miolo">
       <div class="cabeca-secao">
         <div>
-          <p class="olho">Agenda do box</p>
-          <h2>Próximos eventos</h2>
+          <p class="olho">Como é a aula</p>
+          <h2>Uma hora, quatro partes.</h2>
         </div>
-        <a class="link-seta" href="/eventos" data-evento="eventos">Ver todos os eventos</a>
+        <p class="cabeca-secao__nota">Cada aula tem coach o tempo todo e uma estrutura que se repete. Assim você sabe o que esperar desde o primeiro dia.</p>
       </div>
-      {destaques.length ? (
-        <div class="grade grade--3">{destaques.map((e) => <CartaoEvento evento={e} />)}</div>
-      ) : (
-        <div class="vazio">
-          <p>Nenhum evento marcado agora. Os anúncios saem primeiro na comunidade do WhatsApp.</p>
-          <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
-        </div>
-      )}
+      <ol class="faixas">
+        {partesAula.map((p, i) => (
+          <li class="faixa revelar">
+            <Foto class="faixa__foto" src={p.foto} alt="" proporcao="auto" posicao={p.posicao} />
+            <div class="faixa__texto">
+              <span class="faixa__num">0{i + 1}</span>
+              <h3>{p.nome}</h3>
+              <p>{p.texto}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <a class="link-seta" href="/metodologia">Entenda a metodologia</a>
     </div>
   </section>
 
-  <section class="secao">
+  <!-- 4. Horários -->
+  <section class="secao secao--areia secao--curva">
     <div class="miolo duas-colunas">
       <div>
-        <p class="olho">Grade de aulas</p>
-        <h2>Treine antes do trabalho, no almoço ou no fim do dia.</h2>
-        <p class="chamada" style="margin-top:20px">Aulas de uma hora, de segunda a sexta, e aulões no sábado. Em feriado tem aulão às 9h30.</p>
+        <p class="olho">Horários</p>
+        <h2>Antes do trabalho, no almoço ou no fim do dia.</h2>
+        <p class="chamada" style="margin-top:20px">Sete horários de segunda a sexta e aulões no sábado. Em feriado tem aulão às 9h30.</p>
         <div class="acoes">
-          <Botao href="/horarios-e-planos" variante="secundario" evento="precos">Ver planos e valores</Botao>
+          <Botao href={agendarUrl} evento="agendar">Reservar um horário</Botao>
+          <Botao href="/horarios-e-planos" variante="fantasma" evento="precos">Ver planos</Botao>
         </div>
       </div>
       <GradeAulas />
     </div>
   </section>
 
-  <section class="secao secao--areia">
-    <div class="miolo duas-colunas">
-      <div>
+  <!-- 5. Primeira aula em três passos -->
+  <section class="secao">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Sua primeira aula</p>
+          <h2>Três passos até o primeiro treino.</h2>
+        </div>
+        <a class="link-seta" href="/primeira-aula">Passo a passo completo</a>
+      </div>
+      <ol class="trajeto">
+        <li>
+          <h3>Agende</h3>
+          <p>Escolha um horário e reserve pelo app do box ou pelo WhatsApp. Treina pelo Wellhub ou Totalpass? Avise na reserva.</p>
+        </li>
+        <li>
+          <h3>Chegue 10 minutos antes</h3>
+          <p>Venha com roupa confortável, tênis e garrafa de água. O coach vai perguntar sobre seu histórico e lesões.</p>
+        </li>
+        <li>
+          <h3>Treine no seu ritmo</h3>
+          <p>Você faz a aula com a turma, com o treino adaptado para você. No fim, a gente tira dúvidas e mostra os planos.</p>
+        </li>
+      </ol>
+      <div class="acoes"><Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao></div>
+    </div>
+  </section>
+
+  <!-- 6. Coaches -->
+  <section class="secao secao--escura secao--curva">
+    <div class="miolo coaches-home">
+      <div class="coaches-home__texto">
         <p class="olho">Coaches</p>
-        <h2>Coaches certificados CrossFit em todas as aulas.</h2>
-        <p class="chamada" style="margin-top:20px">Técnica e segurança vêm antes de carga e velocidade. Cada aula tem coach acompanhando de perto, e tudo é adaptado ao seu nível.</p>
+        <h2>Quem dá a aula é dono do box.</h2>
+        <p class="chamada" style="margin-top:20px">Lucas Chiba, head coach CrossFit Level 3, é sócio do Kyosei e está na aula. Todos os coaches são certificados CrossFit.</p>
         <a class="link-seta" href="/coaches">Conheça os coaches</a>
       </div>
-      <div class="grade" style="gap:28px">
-        <a class="mini-coach" href="/coaches#lucas-chiba">
-          <Foto alt="Lucas Chiba, head coach" legenda="Lucas" proporcao="1 / 1" />
-          <div><strong>Lucas Chiba</strong><span>Sócio e head coach · CrossFit Level 3</span></div>
-        </a>
-        <a class="mini-coach" href="/coaches#stella-mazotti">
-          <Foto alt="Stella Mazotti Magalhães, coach" legenda="Stella" proporcao="1 / 1" />
-          <div><strong>Stella Mazotti</strong><span>Coach · CrossFit Level 1</span></div>
-        </a>
+      <a class="retrato retrato--1" href="/coaches#lucas-chiba">
+        <Foto src="/fotos/coach-lucas-chiba.webp" alt="Lucas Chiba, sócio e head coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 25%" />
+        <span class="retrato__nome"><strong>Lucas Chiba</strong> Sócio e head coach · CF-L3</span>
+      </a>
+      <a class="retrato retrato--2" href="/coaches#stella-mazotti">
+        <Foto src="/fotos/coach-stella-mazotti.webp" alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 20%" />
+        <span class="retrato__nome"><strong>Stella Mazotti</strong> Coach · CF-L1</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 7. Planos -->
+  <section class="secao">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Planos <Pendente nota="aguardando tabela de preços" /></p>
+          <h2>Escolha como treinar.</h2>
+        </div>
+        <a class="link-seta" href="/horarios-e-planos#planos" data-evento="precos">Ver valores</a>
+      </div>
+      <ul class="lista-planos">
+        {planos.planos.map((p) => (
+          <li>
+            <a href="/horarios-e-planos#planos" data-evento="precos">
+              <span class="lista-planos__nome">{p.nome}</span>
+              <span class="lista-planos__estrela" aria-hidden="true">✶</span>
+              <span class="lista-planos__detalhe">{p.detalhe}</span>
+              <span class="lista-planos__preco">{p.preco ? `${p.preco}${p.periodo}` : "Consulte"}</span>
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/horarios-e-planos#parcerias" data-evento="parceiros">
+            <span class="lista-planos__nome">Wellhub · Totalpass</span>
+            <span class="lista-planos__estrela" aria-hidden="true">✶</span>
+            <span class="lista-planos__detalhe">Wellhub a partir do Gold</span>
+            <span class="lista-planos__preco">Pelo app</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. Comunidade e eventos -->
+  <section class="secao secao--areia secao--curva">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Comunidade</p>
+          <h2>A turma é o que faz você voltar.</h2>
+        </div>
+        <p class="cabeca-secao__nota">Na comunidade do WhatsApp tem grupo de anúncios, de fotos e de conversa geral. É lá que os eventos saem primeiro.</p>
+      </div>
+      <div class="mosaico">
+        <Foto class="mosaico__a" src="/fotos/turma-aula.webp" alt="Turma treinando junta com halteres" proporcao="auto" posicao="50% 50%" />
+        <Foto class="mosaico__b" src="/fotos/wall-ball.webp" alt="Aluna fazendo wall ball" proporcao="auto" posicao="50% 35%" />
+        <Foto class="mosaico__c" src="/fotos/cordas-dupla.webp" alt="Dupla treinando com cordas navais" proporcao="auto" posicao="50% 50%" />
+        <Foto class="mosaico__d" src="/fotos/aluna-halter.webp" alt="Aluna treinando com halter" proporcao="auto" posicao="50% 30%" />
+        <Foto class="mosaico__e" src="/fotos/alongamento-dupla.webp" alt="Dupla se alongando e conversando" proporcao="auto" posicao="50% 50%" />
+      </div>
+
+      <div class="comunidade-rodape">
+        <div class="agenda-curta">
+          <h3>Na agenda</h3>
+          {destaques.length ? (
+            <div class="grade" style="gap:14px">{destaques.map((e) => <CartaoEvento evento={e} />)}</div>
+          ) : (
+            <p>Nenhum evento marcado agora. Os anúncios saem primeiro na comunidade.</p>
+          )}
+          <a class="link-seta" href="/eventos" data-evento="eventos">Todos os eventos</a>
+        </div>
+        <div class="comunidade-cta">
+          <p>Já treina ou quer conhecer a turma antes?</p>
+          <Botao href={comunidadeUrl} variante="whatsapp" evento="comunidade"><IconeWhatsapp /> Entrar na comunidade</Botao>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--escura">
-    <div class="miolo nome-kyosei">
-      <p class="kanji" lang="ja" aria-hidden="true">共生</p>
-      <div>
-        <p class="olho">O nome <Pendente nota="significado com os sócios" /></p>
-        <blockquote>Kyosei: viver e trabalhar juntos pelo bem comum.</blockquote>
-        <p class="chamada" style="margin-top:20px">
-          É a ideia por trás do box: cada um no seu ritmo, todo mundo no mesmo treino. Quem chegou ontem treina ao lado de quem treina há anos.
-        </p>
-        <a class="link-seta" href="/sobre">Nossa história</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- 9. Onde estamos -->
   <section class="secao">
     <div class="miolo duas-colunas">
       <div>

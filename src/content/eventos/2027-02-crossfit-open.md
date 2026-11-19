@@ -4,7 +4,7 @@ tipo: Open
 data: 2027-02-26
 dataFim: 2027-03-15
 horario: Sextas, no horário dos aulões
-resumo: Três semanas de Open com todo mundo junto, do iniciante ao RX. A gente organiza as baterias e os juízes.
+resumo: Três semanas de Open com todo mundo junto, do iniciante ao avançado. A gente organiza as baterias e os juízes.
 exemplo: true
 ---
 

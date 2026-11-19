@@ -8,54 +8,64 @@ import { site } from "../lib/site";
 ---
 <Base
   titulo="Sobre o box"
-  descricao="O CrossFit Kyosei é um box de família no Cambuí, em Campinas, aberto em janeiro de 2026 pela família Chiba. Conheça a história e o significado do nome."
+  descricao="O CrossFit Kyosei é um box de bairro no Cambuí, em Campinas, aberto em janeiro de 2026. Treino com cuidado, constância e comunidade, para todos os níveis."
 >
   <Topo
     olho="Sobre"
-    titulo="Um box de família no Cambuí"
-    chamada={`O CrossFit Kyosei abriu em ${site.inauguracao}, na General Osório. É um box afiliado CrossFit, tocado pela família Chiba.`}
+    titulo="Um box de bairro no Cambuí"
+    chamada={`O CrossFit Kyosei abriu em ${site.inauguracao}, na General Osório. É um box afiliado CrossFit pensado para quem quer treinar com constância, cuidado e companhia.`}
   />
 
   <section class="secao">
-    <div class="miolo duas-colunas">
-      <div class="prosa">
+    <div class="miolo colagem">
+      <div class="colagem__fotos">
+        <Foto class="colagem__grande" src="/fotos/turma-aula.webp" alt="Turma treinando junta no box" proporcao="4 / 5" posicao="40% 50%" carregar="eager" />
+        <Foto class="colagem__pequena" src="/fotos/alongamento-dupla.webp" alt="Dupla se alongando e conversando" proporcao="3 / 4" posicao="50% 50%" />
+        <svg class="colagem__flor" aria-hidden="true"><use href="#k-flor" /></svg>
+      </div>
+      <div class="colagem__texto prosa">
         <p class="olho">Nossa história <Pendente nota="validar texto com os sócios" /></p>
         <h2>Quem dá a aula é dono do box</h2>
-        <p>O Kyosei nasceu da vontade de ter um box com treino de qualidade e cuidado de perto. Por isso a gestão ficou em família: o head coach, Lucas Chiba, é sócio, e a programação que ele planeja é a mesma que ele acompanha na aula.</p>
-        <p>As aulas são para todos os níveis, com foco em segurança, técnica e evolução. Todos os coaches são certificados CrossFit.</p>
+        <p class="chamada">O Kyosei nasceu da vontade de ter um box com treino de qualidade e atenção de perto. O head coach, Lucas Chiba, é sócio: a programação que ele planeja é a mesma que ele acompanha na aula.</p>
+        <p>A turma é formada, na maior parte, por gente que quer saúde e disposição, não medalha. Por isso o foco é técnica, segurança e constância, com cada treino adaptado ao momento de cada pessoa.</p>
       </div>
-      <Foto alt="Família Chiba no box" legenda="sócios no box" proporcao="4 / 3" />
     </div>
   </section>
 
-  <section class="secao secao--areia">
+  <section class="secao secao--areia secao--curva">
     <div class="miolo">
-      <div class="cabeca-secao"><div><p class="olho">Sócios</p><h2>A família Chiba</h2></div></div>
-      <div class="grade grade--3">
-        <article class="cartao"><h3>Lucas Chiba</h3><p>Sócio e head coach, CrossFit Level 3. Cuida da programação e das aulas.</p><a class="link-seta" href="/coaches#lucas-chiba">Ver perfil</a></article>
-        <article class="cartao"><h3>Iris Chiba</h3><p>Sócia. <Pendente nota="papel no box" /></p></article>
-        <article class="cartao"><h3>Gabriel Chiba</h3><p>Sócio, cuida da administração do box: planos, Armário e eventos.</p></article>
+      <div class="cabeca-secao"><div><p class="olho">Sócios</p><h2>Quem está por trás</h2></div></div>
+      <div class="grade grade--2">
+        <article class="cartao">
+          <h3>Lucas Chiba</h3>
+          <p>Sócio e head coach, CrossFit Level 3. Cuida da programação e está nas aulas.</p>
+          <a class="link-seta" href="/coaches#lucas-chiba">Ver perfil</a>
+        </article>
+        <article class="cartao">
+          <h3>Iris Chiba</h3>
+          <p>Sócia do Kyosei. <Pendente nota="papel no box e texto de apresentação" /></p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="secao secao--escura">
+  <section class="secao secao--escura secao--curva" style="margin-top:clamp(16px,2vw,24px)">
     <div class="miolo nome-kyosei">
       <p class="kanji" lang="ja" aria-hidden="true">共生</p>
       <div>
         <p class="olho">O nome <Pendente nota="significado com os sócios" /></p>
         <blockquote>Kyosei (共生): viver e trabalhar juntos pelo bem comum.</blockquote>
         <p class="chamada" style="margin-top:20px">
-          É um conceito japonês e é o jeito como a gente pensa o box. O treino é individual no esforço e coletivo em todo o resto:
-          a turma espera o último terminar, comemora o primeiro muscle-up de alguém e se encontra fora do box também.
+          É um conceito japonês e é o jeito como a gente pensa o box. O esforço é de cada um, o resto é coletivo:
+          a turma espera o último terminar, comemora a primeira vez de alguém e se encontra fora do box também.
         </p>
       </div>
     </div>
   </section>
 
   <section class="secao">
-    <div class="miolo duas-colunas">
-      <div class="prosa">
+    <div class="miolo colagem">
+      <div class="colagem__texto prosa">
         <p class="olho">Comunidade</p>
         <h2>A conversa continua fora da aula</h2>
         <p>A comunidade do Kyosei no WhatsApp tem três grupos:</p>
@@ -65,7 +75,10 @@ import { site } from "../lib/site";
           <li><span><strong>Geral:</strong> a conversa da turma.</span></li>
         </ul>
       </div>
-      <Foto alt="Turma do Kyosei reunida depois do treino" legenda="turma reunida" proporcao="4 / 3" />
+      <div class="colagem__fotos">
+        <Foto class="colagem__grande" src="/fotos/cordas-dupla.webp" alt="Dupla treinando com cordas navais" proporcao="4 / 3" posicao="50% 50%" />
+        <Foto class="colagem__pequena" src="/fotos/wall-ball.webp" alt="Aluna fazendo wall ball" proporcao="3 / 4" posicao="50% 35%" />
+      </div>
     </div>
   </section>
 
