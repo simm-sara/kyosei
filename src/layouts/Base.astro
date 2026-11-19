@@ -7,7 +7,7 @@ import BannerCookies from "../components/BannerCookies.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
 import Simbolos from "../components/Simbolos.astro";
 import Navegacao from "../components/Navegacao.astro";
-import { site, whatsappUrl, instagramUrl } from "../lib/site";
+import { site, whatsappUrl, instagramUrl, url } from "../lib/site";
 
 interface Props {
   titulo: string;          // <title> da página (sem o nome do box, que é acrescentado)
@@ -18,16 +18,16 @@ interface Props {
 const { titulo, descricao, semSufixo = false, schema = [] } = Astro.props;
 const tituloCompleto = semSufixo ? titulo : `${titulo} | CrossFit Kyosei`;
 const canonica = new URL(Astro.url.pathname, Astro.site);
-const imagemSocial = new URL("/og-kyosei.png", Astro.site);
+const imagemSocial = new URL(url("/og-kyosei.png"), Astro.site);
 
 const negocio = {
   "@context": "https://schema.org",
   "@type": "ExerciseGym",
-  "@id": new URL("/#box", Astro.site).href,
+  "@id": new URL(url("/") + "#box", Astro.site).href,
   name: site.nome,
   description: site.descricao,
-  url: new URL("/", Astro.site).href,
-  logo: new URL("/logo-kyosei.svg", Astro.site).href,
+  url: new URL(url("/"), Astro.site).href,
+  logo: new URL(url("/logo-kyosei.svg"), Astro.site).href,
   image: imagemSocial.href,
   telephone: "+55 19 97810-2332",
   email: site.email,
@@ -53,10 +53,10 @@ const negocio = {
     <meta name="description" content={descricao} />
     <link rel="canonical" href={canonica} />
     {site.rascunho && <meta name="robots" content="noindex" />}
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href={url("/favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={url("/apple-touch-icon.png")} />
     <meta name="theme-color" content="#F3EBDF" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={url("/sitemap-index.xml")} />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />

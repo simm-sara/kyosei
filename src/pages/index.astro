@@ -12,7 +12,7 @@ import Selo from "../components/Selo.astro";
 import LogoCrossFit from "../components/LogoCrossFit.astro";
 import Beneficios from "../components/Beneficios.astro";
 import planos from "../data/planos.json";
-import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto } from "../lib/site";
+import { site, agendarUrl, whatsappUrl, comunidadeUrl, enderecoCompleto, url } from "../lib/site";
 import { eventosSeparados } from "../lib/eventos";
 
 const { proximos } = await eventosSeparados();
@@ -90,7 +90,7 @@ const partesAula = [
         </ul>
         <div class="acoes">
           <Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao>
-          <a class="link-seta" href="/primeira-aula">Como é a primeira aula</a>
+          <a class="link-seta" href={url("/primeira-aula")}>Como é a primeira aula</a>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@ const partesAula = [
           </li>
         ))}
       </ol>
-      <a class="link-seta" href="/metodologia">Entenda a metodologia</a>
+      <a class="link-seta" href={url("/metodologia")}>Entenda a metodologia</a>
     </div>
   </section>
 
@@ -146,7 +146,7 @@ const partesAula = [
           <p class="olho">Sua primeira aula <Pendente nota="validar o processo com o box" /></p>
           <h2>Três passos até o primeiro treino.</h2>
         </div>
-        <a class="link-seta" href="/primeira-aula">Passo a passo completo</a>
+        <a class="link-seta" href={url("/primeira-aula")}>Passo a passo completo</a>
       </div>
       <ol class="trajeto">
         <li>
@@ -174,13 +174,13 @@ const partesAula = [
         <h2>Uma dupla na programação e na aula.</h2>
         <p class="chamada" style="margin-top:20px">Lucas Chiba, head coach e sócio, monta a programação do box. Stella Mazotti é parceira dele nas programações: planeja cada aula em cima do que o Lucas monta e conduz metade das aulas da semana.</p>
         <p class="coaches-home__nota">Os dois são certificados CrossFit e acompanham a turma de perto, com técnica e cuidado.</p>
-        <a class="link-seta" href="/coaches">Conheça os coaches</a>
+        <a class="link-seta" href={url("/coaches")}>Conheça os coaches</a>
       </div>
-      <a class="retrato retrato--1" href="/coaches#lucas-chiba">
+      <a class="retrato retrato--1" href={url("/coaches#lucas-chiba")}>
         <Foto src="/fotos/coach-lucas-chiba.webp" alt="Lucas Chiba, sócio e head coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 25%" />
         <span class="retrato__nome"><strong>Lucas Chiba</strong> Head coach e sócio · CF-L3 · Monta a programação</span>
       </a>
-      <a class="retrato retrato--2" href="/coaches#stella-mazotti">
+      <a class="retrato retrato--2" href={url("/coaches#stella-mazotti")}>
         <Foto src="/fotos/coach-stella-mazotti.webp" alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 20%" />
         <span class="retrato__nome"><strong>Stella Mazotti</strong> Coach · CF-L1 · Planeja as aulas</span>
       </a>
@@ -195,12 +195,12 @@ const partesAula = [
           <p class="olho">Planos <Pendente nota="aguardando tabela de preços" /></p>
           <h2>Escolha como treinar.</h2>
         </div>
-        <a class="link-seta" href="/horarios-e-planos#planos" data-evento="precos">Ver valores</a>
+        <a class="link-seta" href={url("/horarios-e-planos#planos")} data-evento="precos">Ver valores</a>
       </div>
       <ul class="lista-planos">
         {planos.planos.map((p) => (
           <li>
-            <a href="/horarios-e-planos#planos" data-evento="precos">
+            <a href={url("/horarios-e-planos#planos")} data-evento="precos">
               <span class="lista-planos__nome">{p.nome}</span>
               <span class="lista-planos__estrela" aria-hidden="true">✶</span>
               <span class="lista-planos__detalhe">{p.detalhe}</span>
@@ -209,7 +209,7 @@ const partesAula = [
           </li>
         ))}
         <li>
-          <a href="/horarios-e-planos#parcerias" data-evento="parceiros">
+          <a href={url("/horarios-e-planos#parcerias")} data-evento="parceiros">
             <span class="lista-planos__nome">Wellhub · Totalpass</span>
             <span class="lista-planos__estrela" aria-hidden="true">✶</span>
             <span class="lista-planos__detalhe">Wellhub a partir do Gold · Totalpass a partir do TP-4</span>
@@ -222,7 +222,7 @@ const partesAula = [
         <div>
           <p class="olho">Benefícios da matrícula</p>
           <h3>Quem é aluno também ganha desconto em parceiros.</h3>
-          <a class="link-seta" href="/horarios-e-planos#beneficios">Ver benefícios</a>
+          <a class="link-seta" href={url("/horarios-e-planos#beneficios")}>Ver benefícios</a>
         </div>
         <Beneficios compacto />
       </div>
@@ -249,7 +249,7 @@ const partesAula = [
         <div class="agenda-curta">
           <div class="agenda-curta__topo">
             <h3>Na agenda</h3>
-            <a class="link-seta" href="/eventos" data-evento="eventos">Todos os eventos</a>
+            <a class="link-seta" href={url("/eventos")} data-evento="eventos">Todos os eventos</a>
           </div>
           {destaques.length ? (
             <ul class="agenda-lista">{destaques.map((e) => <li><CartaoEvento evento={e} compacto /></li>)}</ul>
@@ -285,7 +285,7 @@ const partesAula = [
             <dd>{site.funcionamento.map((f) => <>{f.dias}: {f.horas}{"pendente" in f && f.pendente && <Pendente />}<br /></>)}</dd>
           </div>
         </dl>
-        <div class="acoes"><a class="link-seta" href="/contato">Como chegar</a></div>
+        <div class="acoes"><a class="link-seta" href={url("/contato")}>Como chegar</a></div>
       </div>
       <Mapa />
     </div>

@@ -6,7 +6,7 @@ import Pendente from "../components/Pendente.astro";
 import Foto from "../components/Foto.astro";
 import FaixaCta from "../components/FaixaCta.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
-import { agendarUrl, whatsappUrl, site } from "../lib/site";
+import { agendarUrl, whatsappUrl, site, url } from "../lib/site";
 ---
 <Base
   titulo="Sua primeira aula de CrossFit"
@@ -66,7 +66,7 @@ import { agendarUrl, whatsappUrl, site } from "../lib/site";
       <p>Ficou alguma dúvida antes de vir?</p>
       <div class="acoes">
         <Botao href={whatsappUrl("Olá! Nunca fiz CrossFit e tenho uma dúvida antes da primeira aula.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Perguntar no WhatsApp</Botao>
-        <a class="link-seta" href="/faq">Perguntas frequentes</a>
+        <a class="link-seta" href={url("/faq")}>Perguntas frequentes</a>
       </div>
     </div>
   </section>

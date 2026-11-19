@@ -2,13 +2,17 @@
 // Direção da troca de páginas ("ir" ou "voltar") e botão "Voltar".
 // Precisa ficar no <head>: o evento pagereveal acontece antes do primeiro desenho da página.
 import { paginas } from "../lib/mapa";
+import { url } from "../lib/site";
+const base = url("/").replace(/\/$/, "");
 const ranks = Object.fromEntries(Object.entries(paginas).map(([s, p]) => [s, [p.nivel, p.ordem]]));
 ---
-<script is:inline define:vars={{ ranks }}>
+<script is:inline define:vars={{ ranks, base }}>
   (function () {
     function slug(url) {
       try {
-        var ultimo = new URL(url, location.href).pathname.replace(/\/+$/, "").split("/").pop() || "";
+        var caminho = new URL(url, location.href).pathname;
+        if (base && caminho.indexOf(base) === 0) caminho = caminho.slice(base.length);
+        var ultimo = caminho.replace(/\/+$/, "").split("/").pop() || "";
         ultimo = ultimo.replace(/\.html$/, "");
         return ultimo === "index" ? "" : ultimo;
       } catch (e) { return ""; }

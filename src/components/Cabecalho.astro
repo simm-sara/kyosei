@@ -1,8 +1,8 @@
 ---
 import Logo from "./Logo.astro";
-import { agendarUrl } from "../lib/site";
+import { agendarUrl, url, caminhoSemBase } from "../lib/site";
 
-const caminho = Astro.url.pathname.replace(/\/$/, "") || "/";
+const caminho = caminhoSemBase(Astro.url.pathname);
 const itens = [
   { href: "/horarios-e-planos", rotulo: "Horários e planos" },
   { href: "/eventos", rotulo: "Eventos" },
@@ -14,12 +14,12 @@ const itens = [
 ---
 <header class="cabecalho">
   <div class="cabecalho__miolo">
-    <a class="cabecalho__marca" href="/" aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
+    <a class="cabecalho__marca" href={url("/")} aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
 
     <nav class="nav" id="menu" aria-label="Principal">
       <ul>
         {itens.map((i) => (
-          <li><a href={i.href} aria-current={caminho === i.href ? "page" : undefined}>{i.rotulo}</a></li>
+          <li><a href={url(i.href)} aria-current={caminho === i.href ? "page" : undefined}>{i.rotulo}</a></li>
         ))}
       </ul>
       <a class="botao botao--primario nav__cta" href={agendarUrl} target="_blank" rel="noopener" data-evento="agendar">Agendar aula</a>

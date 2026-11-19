@@ -1,5 +1,5 @@
 ---
-import { ehLinkExterno } from "../lib/site";
+import { ehLinkExterno, url } from "../lib/site";
 interface Props {
   href: string;
   variante?: "primario" | "secundario" | "fantasma" | "whatsapp";
@@ -11,7 +11,7 @@ const externo = ehLinkExterno(href);
 ---
 <a
   class={`botao botao--${variante} ${classe}`}
-  href={href}
+  href={url(href)}
   data-evento={evento}
   target={externo ? "_blank" : undefined}
   rel={externo ? "noopener" : undefined}

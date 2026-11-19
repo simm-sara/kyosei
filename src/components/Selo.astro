@@ -1,7 +1,7 @@
 ---
 // Selo redondo no estilo dos destaques do Instagram do box: aro vermelho, miolo creme,
 // nuvenzinhas, ícone em traço e um mini torii embaixo do rótulo. É um link.
-import { ehLinkExterno } from "../lib/site";
+import { ehLinkExterno, url } from "../lib/site";
 interface Props {
   href: string;
   rotulo: string;
@@ -19,7 +19,7 @@ const escala = rotulo.length > 9 ? 0.09 : 0.108;
 ---
 <a
   class={`selo ${classe}`}
-  href={href}
+  href={url(href)}
   data-evento={evento}
   target={externo ? "_blank" : undefined}
   rel={externo ? "noopener" : undefined}
