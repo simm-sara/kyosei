@@ -1,0 +1,7 @@
+---
+// Logo CrossFit® (arquivo oficial enviado pelo box, public/logo-crossfit.png).
+// Usado como máscara: a cor vem de currentColor (preto no fundo claro, branco no escuro).
+interface Props { class?: string }
+const { class: classe = "" } = Astro.props;
+---
+<span class={`logo-cf ${classe}`} role="img" aria-label="CrossFit"></span>

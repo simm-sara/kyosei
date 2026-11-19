@@ -1,22 +1,29 @@
 ---
 import Botao from "./Botao.astro";
 import IconeWhatsapp from "./IconeWhatsapp.astro";
+import Foto from "./Foto.astro";
 import { agendarUrl, whatsappUrl } from "../lib/site";
-interface Props { titulo?: string; texto?: string }
+interface Props { titulo?: string; texto?: string; foto?: string; alt?: string }
 const {
-  titulo = "Sua primeira aula é por nossa conta.",
-  texto = "Agende uma aula experimental e venha conhecer o box, o time e a turma.",
+  titulo = "Sua primeira aula começa aqui.",
+  texto = "Agende uma aula experimental e conheça o box, os coaches e a turma.",
+  foto = "/fotos/coach-quadro.webp",
+  alt = "Lucas Chiba explicando o treino do dia para a turma",
 } = Astro.props;
 ---
-<section class="secao secao--vermelha">
-  <div class="miolo faixa-cta">
-    <div>
-      <h2>{titulo}</h2>
-      <p class="chamada" style="margin-top:16px">{texto}</p>
-    </div>
-    <div class="acoes">
-      <Botao href={agendarUrl} evento="agendar">Agendar aula</Botao>
-      <Botao href={whatsappUrl()} variante="fantasma" evento="whatsapp"><IconeWhatsapp /> WhatsApp</Botao>
+<section class="secao cta-final">
+  <div class="miolo">
+    <div class="cta-final__cartao">
+      <svg class="cta-final__nuvem" aria-hidden="true"><use href="#k-nuvem" /></svg>
+      <div class="cta-final__texto">
+        <h2>{titulo}</h2>
+        <p class="chamada">{texto}</p>
+        <div class="acoes">
+          <Botao href={agendarUrl} evento="agendar">Agendar aula</Botao>
+          <Botao href={whatsappUrl()} variante="fantasma" evento="whatsapp"><IconeWhatsapp /> WhatsApp</Botao>
+        </div>
+      </div>
+      <Foto class="cta-final__foto" src={foto} alt={alt} proporcao="auto" posicao="50% 38%" />
     </div>
   </div>
 </section>

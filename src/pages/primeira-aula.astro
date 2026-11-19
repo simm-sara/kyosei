@@ -15,7 +15,7 @@ import { agendarUrl, whatsappUrl, site } from "../lib/site";
   <Topo
     olho="Para quem está começando"
     titulo="Sua primeira aula, passo a passo"
-    chamada="Nunca fez CrossFit? Ótimo, a maioria das pessoas começa assim. Veja como funciona antes de chegar."
+    chamada="Nunca fez CrossFit? Muita gente começa assim. Veja como funciona antes de chegar."
   >
     <div class="acoes"><Botao href={agendarUrl} evento="agendar">Agendar aula experimental</Botao></div>
   </Topo>
@@ -33,36 +33,41 @@ import { agendarUrl, whatsappUrl, site } from "../lib/site";
           <li class="passo"><div><h3>Desaquecimento e conversa</h3><p>No fim, a gente alonga, tira dúvidas e mostra os planos, se você quiser continuar.</p></div></li>
         </ol>
       </div>
-      <div style="position:sticky;top:calc(var(--cabecalho-h) + 24px)">
-        <Foto alt="Coach orientando aluno iniciante" legenda="coach orientando iniciante" proporcao="4 / 5" />
+      <div class="colagem__fotos" style="position:sticky;top:calc(var(--cabecalho-h) + 24px)">
+        <Foto class="colagem__grande" src="/fotos/aula-agachamento.webp" alt="Lucas Chiba demonstrando o agachamento para um aluno no box" proporcao="4 / 5" posicao="50% 70%" />
+        <Foto class="colagem__pequena" src="/fotos/turma-aquecimento.webp" alt="Turma fazendo o aquecimento no chão do box" proporcao="3 / 4" posicao="50% 55%" />
       </div>
     </div>
   </section>
 
-  <section class="secao secao--areia">
-    <div class="miolo grade grade--2">
-      <div class="cartao">
-        <h3>O que levar</h3>
-        <ul class="lista-check">
-          <li>Roupa confortável, que deixe você se mexer à vontade</li>
-          <li>Tênis com solado firme (os de corrida muito macios atrapalham no levantamento)</li>
-          <li>Garrafa de água</li>
-          <li>Toalha pequena</li>
+  <section class="secao secao--areia secao--curva">
+    <div class="miolo levar-esperar">
+      <div>
+        <p class="olho">O que levar</p>
+        <h2>Pouca coisa.</h2>
+        <ul class="itens-levar">
+          <li><svg aria-hidden="true"><use href="#k-ic-camiseta" /></svg><strong>Roupa confortável</strong><span>Que deixe você se mexer à vontade</span></li>
+          <li><svg aria-hidden="true"><use href="#k-ic-tenis" /></svg><strong>Tênis</strong><span>O que você já usa para treinar ou correr</span></li>
+          <li><svg aria-hidden="true"><use href="#k-ic-garrafa" /></svg><strong>Garrafa de água</strong><span>Para se hidratar durante a aula</span></li>
         </ul>
       </div>
-      <div class="cartao">
-        <h3>O que esperar</h3>
-        <ul class="lista-check">
-          <li>Uma aula de cerca de uma hora, em turma, com coach o tempo todo</li>
-          <li>Movimentos adaptados: ninguém precisa saber fazer nada antes</li>
-          <li>Cansaço bom e, talvez, alguma dor muscular nos dias seguintes</li>
-          <li>Gente que chegou do mesmo jeito que você</li>
-        </ul>
+      <div>
+        <p class="olho">O que esperar</p>
+        <h2>Uma aula como as outras.</h2>
+        <dl class="esperar">
+          <div><dt>Cerca de uma hora</dt><dd>Em turma, com coach do começo ao fim.</dd></div>
+          <div><dt>Movimentos adaptados</dt><dd>Ninguém precisa saber fazer nada antes.</dd></div>
+          <div><dt>Cansaço bom</dt><dd>E, talvez, alguma dor muscular nos dias seguintes. É normal.</dd></div>
+          <div><dt>Gente como você</dt><dd>Muita gente da turma também começou do zero.</dd></div>
+        </dl>
       </div>
     </div>
-    <div class="miolo acoes">
-      <Botao href={whatsappUrl("Olá! Nunca fiz CrossFit e tenho uma dúvida antes da primeira aula.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Ficou alguma dúvida?</Botao>
-      <a class="link-seta" href="/faq" style="align-self:center">Perguntas frequentes</a>
+    <div class="miolo duvida">
+      <p>Ficou alguma dúvida antes de vir?</p>
+      <div class="acoes">
+        <Botao href={whatsappUrl("Olá! Nunca fiz CrossFit e tenho uma dúvida antes da primeira aula.")} variante="whatsapp" evento="whatsapp"><IconeWhatsapp /> Perguntar no WhatsApp</Botao>
+        <a class="link-seta" href="/faq">Perguntas frequentes</a>
+      </div>
     </div>
   </section>
 

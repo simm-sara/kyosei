@@ -7,38 +7,64 @@ import FaixaCta from "../components/FaixaCta.astro";
 ---
 <Base
   titulo="Coaches"
-  descricao="Conheça os coaches do CrossFit Kyosei: Lucas Chiba, sócio e head coach CrossFit Level 3, e Stella Mazotti Magalhães, coach CrossFit Level 1."
+  descricao="Conheça os coaches do CrossFit Kyosei: Lucas Chiba, head coach CrossFit Level 3 que monta a programação, e Stella Mazotti, coach CrossFit Level 1 que planeja e conduz as aulas."
 >
   <Topo
     olho="Time"
     titulo="Os coaches"
-    chamada="Todos os coaches do Kyosei são certificados CrossFit. E o head coach é também um dos donos do box."
+    chamada="Lucas e Stella dividem a programação e as turmas. Os dois acompanham você de perto, corrigem o movimento e adaptam o treino ao seu momento."
   />
 
   <section class="secao">
     <div class="miolo">
       <article class="coach" id="lucas-chiba">
-        <Foto alt="Lucas Chiba, head coach do CrossFit Kyosei" legenda="Lucas Chiba" proporcao="4 / 5" />
+        <Foto src="/fotos/coach-lucas-chiba.webp" alt="Lucas Chiba, head coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 25%" carregar="eager" />
         <div>
           <span class="selo-nivel">CrossFit Level 3</span>
           <h2>Lucas Chiba</h2>
           <p class="coach__papel">Sócio e head coach</p>
-          <p>Lucas é o head coach e um dos sócios do Kyosei. Ele planeja a programação do box e está na aula, corrigindo movimento e ajustando o treino de cada aluno.</p>
+          <p>Lucas é o head coach e um dos sócios do Kyosei. Ele monta a programação do box e divide as turmas com a Stella, corrigindo movimento e ajustando o treino de cada aluno, de quem nunca treinou a quem já treina há anos.</p>
           <p>O CrossFit Level 3 é uma certificação avançada, que exige experiência comprovada como coach e prova específica.</p>
           <p><Pendente nota="bio completa a partir do CV" /></p>
         </div>
       </article>
 
       <article class="coach" id="stella-mazotti">
-        <Foto alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" legenda="Stella Mazotti" proporcao="4 / 5" />
+        <Foto src="/fotos/coach-stella-mazotti.webp" alt="Stella Mazotti Magalhães, coach do CrossFit Kyosei" proporcao="4 / 5" posicao="50% 20%" />
         <div>
           <span class="selo-nivel">CrossFit Level 1</span>
           <h2>Stella Mazotti Magalhães</h2>
-          <p class="coach__papel">Coach</p>
-          <p>Stella é coach do Kyosei, com certificação CrossFit Level 1.</p>
-          <p><Pendente nota="bio completa a partir do CV" /></p>
+          <p class="coach__papel">Coach · parceira na programação</p>
+          <p>Stella é parceira do Lucas nas programações: planeja as aulas em cima da programação que ele monta e conduz metade das aulas do box, com muita técnica, qualidade e cuidado.</p>
+          <p>Bacharel em Educação Física e coach desde 2022, com certificação CrossFit Level 1. Trabalha o treino como um sistema completo: força, ginástica, endurance e nutrição puxando na mesma direção, em vez de competirem entre si.</p>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section class="secao secao--areia secao--curva">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Como a gente trabalha</p>
+          <h2>Do planejamento à aula</h2>
+        </div>
+        <p class="cabeca-secao__nota">Cada aula passa pelos dois coaches antes de chegar até você.</p>
+      </div>
+      <ol class="trajeto">
+        <li>
+          <h3>Lucas monta a programação</h3>
+          <p>Define o caminho das semanas: o que treinar, em que ordem e com qual objetivo.</p>
+        </li>
+        <li>
+          <h3>Stella planeja as aulas</h3>
+          <p>Transforma a programação em aulas: aquecimento, técnica, treino do dia e as adaptações para cada nível.</p>
+        </li>
+        <li>
+          <h3>Os dois conduzem as turmas</h3>
+          <p>Stella e Lucas dividem as aulas da semana e acompanham cada aluno de perto.</p>
+        </li>
+      </ol>
     </div>
   </section>
 

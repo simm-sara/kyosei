@@ -1,6 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import Pendente from "./Pendente.astro";
+import LogoCrossFit from "./LogoCrossFit.astro";
 import { site, enderecoCompleto, instagramUrl, whatsappUrl, comunidadeUrl, agendarUrl } from "../lib/site";
 const ano = new Date().getFullYear();
 ---
@@ -9,6 +10,7 @@ const ano = new Date().getFullYear();
     <div class="rodape__marca">
       <a href="/" aria-label="CrossFit Kyosei, página inicial"><Logo /></a>
       <p>Box afiliado CrossFit no Cambuí, em Campinas. Desde {site.inauguracao}.</p>
+      <p class="rodape__afiliado"><span>Box afiliado oficial</span><LogoCrossFit /></p>
     </div>
 
     <div>
@@ -21,9 +23,9 @@ const ano = new Date().getFullYear();
     </div>
 
     <div>
-      <h2 class="rodape__titulo">Funcionamento <Pendente /></h2>
+      <h2 class="rodape__titulo">Funcionamento</h2>
       <dl class="rodape__horas">
-        {site.funcionamento.map((f) => (<><dt>{f.dias}</dt><dd>{f.horas}</dd></>))}
+        {site.funcionamento.map((f) => (<><dt>{f.dias}</dt><dd>{f.horas}{"pendente" in f && f.pendente && <Pendente />}</dd></>))}
       </dl>
     </div>
 

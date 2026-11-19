@@ -24,6 +24,7 @@
   --largura: 1200px;
   --gutter: clamp(16px, 4vw, 32px);
   --raio: 6px;
+  --raio-foto: clamp(16px, 2vw, 28px);
   --sombra: 0 1px 0 rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.25);
   --cabecalho-h: 72px;
 
@@ -249,7 +250,7 @@ mark.pendente {
 .cookies .botao { min-height: 42px; padding: 8px 18px; font-size: 0.82rem; }
 
 /* ---------- Fotos ---------- */
-.foto { width: 100%; height: auto; object-fit: cover; border-radius: var(--raio); background: var(--papel-2); }
+.foto { width: 100%; height: auto; max-width: 100%; object-fit: cover; border-radius: var(--raio-foto); background: var(--papel-2); display: block; }
 .foto--vazia {
   position: relative; display: flex; align-items: flex-end; overflow: hidden;
   background:
@@ -402,7 +403,7 @@ mark.pendente {
 
 /* ---------- Cartões ---------- */
 .cartao {
-  background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); padding: clamp(20px, 2.6vw, 28px);
+  background: rgb(255 255 255 / 0.55); border: 0; border-radius: var(--raio-foto); padding: clamp(22px, 2.8vw, 32px);
   display: flex; flex-direction: column; gap: 10px;
 }
 .cartao h3 { margin: 0; }
@@ -455,7 +456,7 @@ mark.pendente {
 /* ---------- Eventos ---------- */
 .evento {
   display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start;
-  background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); padding: 20px;
+  background: rgb(255 255 255 / 0.6); border: 0; border-radius: var(--raio-foto); padding: 20px;
 }
 .secao--escura .evento { background: var(--tinta-2); border-color: var(--linha-escura); }
 .evento__data {
@@ -470,6 +471,7 @@ mark.pendente {
 .evento__meta { font-size: 0.9rem; color: var(--cinza); margin: 0 0 8px; }
 .secao--escura .evento__meta { color: var(--cinza-claro); }
 .evento__resumo { margin: 0 0 10px; }
+.evento__botao.botao { min-height: 40px; padding: 8px 16px; font-size: 0.82rem; }
 .evento__texto { font-size: 0.95rem; color: var(--cinza); }
 .evento__texto p:last-child { margin: 0; }
 .evento--passado { opacity: 0.7; }
@@ -572,6 +574,228 @@ mark.pendente {
 .faixa-cta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px 40px; }
 .faixa-cta h2 { max-width: 16ch; }
 .faixa-cta .acoes { margin-top: 0; }
+
+
+/* ---------- Layout fluido (home) ----------
+   Fotos sobrepostas, faixas arredondadas e seções que se encaixam com cantos curvos,
+   em vez de blocos de cor retos. */
+.secao--sem-topo { padding-top: 0; }
+.secao--curva { border-radius: clamp(28px, 5vw, 64px); margin-inline: clamp(0px, 1.5vw, 20px); }
+.cabeca-secao__nota { max-width: 42ch; margin: 0; color: var(--cinza); }
+.secao--escura .cabeca-secao__nota { color: var(--cinza-claro); }
+
+/* Colagem: foto grande + foto pequena sobreposta */
+.colagem { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+@media (max-width: 880px) { .colagem { grid-template-columns: 1fr; } }
+.colagem__fotos { position: relative; padding: 0 18% 14% 0; }
+.colagem__grande { box-shadow: 0 30px 60px -30px rgb(40 15 10 / 0.45); }
+.colagem__pequena {
+  position: absolute; right: 0; bottom: 0; width: 46%;
+  border: 8px solid var(--papel); box-shadow: 0 24px 40px -20px rgb(40 15 10 / 0.5);
+  transform: rotate(3deg);
+}
+.colagem__flor { position: absolute; left: -22px; top: -22px; width: 64px; height: 64px; fill: var(--vermelho); --flor-miolo: var(--papel); transform: rotate(-12deg); }
+.colagem__texto { min-width: 0; }
+.colagem__texto .chamada { margin: 20px 0 24px; color: var(--cinza); opacity: 1; }
+.colagem__texto .acoes { align-items: center; }
+
+/* Estrutura da aula: grade 2x2 de cartões com foto (a foto aparece inteira, sem corte forte) */
+.partes { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 24px); }
+@media (max-width: 680px) { .partes { grid-template-columns: 1fr; } }
+.parte { position: relative; border-radius: var(--raio-foto); overflow: hidden; isolation: isolate; color: #fff; background: var(--tinta); }
+.parte__foto.foto { border-radius: 0; transition: transform 0.6s ease; }
+.parte:hover .parte__foto { transform: scale(1.04); }
+.parte::after { content: ""; position: absolute; inset: 40% 0 0; z-index: 0; background: linear-gradient(to top, rgb(27 24 25 / 0.88), rgb(27 24 25 / 0)); pointer-events: none; }
+.parte__texto { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; padding: clamp(18px, 2.6vw, 28px); }
+.parte__num { display: block; font-weight: 800; font-stretch: 125%; color: #ff8a8e; font-size: 0.9rem; margin-bottom: 4px; }
+.parte h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); text-transform: uppercase; font-stretch: 118%; margin-bottom: 6px; }
+.parte p { margin: 0; max-width: 40ch; color: rgb(255 255 255 / 0.86); font-size: 0.98rem; }
+
+/* Trajeto: três passos ligados por uma linha */
+.trajeto { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: passo; position: relative; }
+.trajeto::before { content: ""; position: absolute; left: 28px; right: 28px; top: 27px; height: 2px; background: repeating-linear-gradient(90deg, var(--vermelho) 0 10px, transparent 10px 18px); z-index: -1; }
+.trajeto li { counter-increment: passo; }
+.trajeto li::before {
+  content: counter(passo); display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 20px;
+  border-radius: 50%; background: var(--vermelho); color: #fff; font-weight: 800; font-size: 1.4rem; font-stretch: 112%;
+  box-shadow: 0 0 0 8px var(--papel);
+}
+.trajeto h3 { margin-bottom: 8px; }
+.trajeto p { margin: 0; color: var(--cinza); }
+@media (max-width: 760px) {
+  .trajeto { grid-template-columns: 1fr; }
+  .trajeto::before { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--vermelho) 0 10px, transparent 10px 18px); }
+  .trajeto li { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; }
+  .trajeto li::before { grid-row: span 2; margin: 0; }
+}
+
+/* Coaches na home: retratos desencontrados */
+.coaches-home { display: grid; grid-template-columns: 1.1fr 0.9fr 0.9fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
+.coaches-home__texto { align-self: center; }
+.coaches-home__nota { margin: 0 0 20px; color: var(--cinza-claro); }
+.retrato { position: relative; display: block; text-decoration: none; color: #fff; }
+.retrato .foto { transition: transform 0.4s ease; }
+.retrato:hover { color: #fff; }
+.retrato:hover .foto { transform: translateY(-6px); }
+.retrato--2 { margin-top: clamp(40px, 8vw, 120px); }
+.retrato__nome {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px 16px; border-radius: 14px;
+  background: rgb(27 24 25 / 0.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font-size: 0.85rem; color: var(--cinza-claro); line-height: 1.35;
+}
+.retrato__nome strong { display: block; color: #fff; font-size: 1.15rem; font-stretch: 112%; text-transform: uppercase; }
+@media (max-width: 600px) { .retrato__nome { left: 8px; right: 8px; bottom: 8px; padding: 8px 10px; font-size: 0.75rem; } .retrato__nome strong { font-size: 0.92rem; } }
+@media (max-width: 900px) {
+  .coaches-home { grid-template-columns: 1fr 1fr; }
+  .coaches-home__texto { grid-column: 1 / -1; }
+  .retrato--2 { margin-top: 48px; }
+}
+
+/* Lista de planos (linhas grandes, como um cardápio) */
+.lista-planos { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--tinta); }
+.lista-planos a {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 1fr) auto; align-items: center; gap: 12px 28px;
+  padding: clamp(16px, 2.4vw, 26px) 4px; border-bottom: 1px solid var(--linha); text-decoration: none; transition: padding 0.25s, color 0.25s;
+}
+.lista-planos a:hover { color: var(--vermelho); padding-left: 16px; }
+.lista-planos__nome { font-size: clamp(1.7rem, 4.4vw, 3.4rem); font-weight: 800; font-stretch: 118%; text-transform: uppercase; line-height: 1; }
+.lista-planos__estrela { color: var(--vermelho); font-size: 1.6rem; }
+.lista-planos__detalhe { color: var(--cinza); }
+.lista-planos__preco { font-weight: 700; white-space: nowrap; }
+.lista-planos__preco::after { content: " →"; color: var(--vermelho); }
+@media (max-width: 720px) {
+  .lista-planos a { grid-template-columns: 1fr auto; }
+  .lista-planos__estrela { display: none; }
+  .lista-planos__detalhe { grid-column: 1; font-size: 0.92rem; }
+  .lista-planos__preco { grid-column: 2; grid-row: 1 / span 2; }
+}
+
+/* Mosaico de fotos da comunidade */
+.mosaico {
+  display: grid; gap: clamp(10px, 1.4vw, 18px);
+  grid-template-columns: 1.25fr 1fr; grid-template-rows: repeat(2, clamp(180px, 21vw, 290px));
+  grid-template-areas: "a b" "a c";
+}
+.mosaico .foto { width: 100%; height: 100%; aspect-ratio: auto; }
+.mosaico__a { grid-area: a; } .mosaico__b { grid-area: b; } .mosaico__c { grid-area: c; }
+@media (max-width: 720px) {
+  .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 200px; grid-template-areas: "a a" "b c"; }
+}
+.comunidade-rodape { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(20px, 3vw, 40px); margin-top: clamp(28px, 4vw, 48px); align-items: stretch; }
+@media (max-width: 880px) { .comunidade-rodape { grid-template-columns: 1fr; } }
+.agenda-curta { background: rgb(255 255 255 / 0.55); border-radius: var(--raio-foto); padding: clamp(20px, 2.8vw, 32px); }
+.agenda-curta__topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.agenda-curta h3 { margin: 0; }
+.agenda-lista { list-style: none; margin: 0; padding: 0; }
+.agenda-lista li + li { border-top: 1px solid var(--linha); }
+.agenda-vazia { margin: 12px 0 0; color: var(--cinza); }
+.evento-linha { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: center; padding-block: 16px; }
+.evento-linha__data {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1;
+  border-radius: 12px; background: var(--vermelho); color: #fff; line-height: 1;
+}
+.evento-linha__data span { font-size: 1.35rem; font-weight: 800; font-stretch: 112%; }
+.evento-linha__data small { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 3px; }
+.evento-linha__texto { min-width: 0; }
+.evento-linha h4 { margin: 2px 0 2px; font-size: 1.05rem; font-stretch: 108%; line-height: 1.2; }
+.evento-linha p { margin: 0; font-size: 0.88rem; color: var(--cinza); }
+.evento-linha__link { font-weight: 700; font-size: 0.88rem; text-decoration: none; white-space: nowrap; color: var(--vermelho); }
+.evento-linha__link:hover { color: var(--vermelho-escuro); text-decoration: underline; }
+@media (max-width: 520px) { .evento-linha { grid-template-columns: 48px 1fr; } .evento-linha__link { grid-column: 2; } .evento-linha__link span:first-child { font-size: 0.85rem; } }
+.comunidade-cta {
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+  background: var(--tinta); color: var(--papel); border-radius: var(--raio-foto); padding: clamp(22px, 3vw, 32px);
+}
+.comunidade-cta h3 { margin: 0; }
+.comunidade-cta p { margin: 0; color: var(--cinza-claro); }
+.grupos { list-style: none; margin: 4px 0 auto; padding: 0; display: grid; gap: 8px; width: 100%; }
+.grupos li { display: flex; gap: 10px; align-items: baseline; padding: 10px 14px; border-radius: 12px; background: var(--tinta-2); color: var(--cinza-claro); font-size: 0.92rem; }
+.grupos strong { color: #fff; min-width: 76px; }
+.comunidade-cta .botao { margin-top: 12px; }
+
+/* Primeira aula: o que levar / o que esperar */
+.levar-esperar { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+@media (max-width: 880px) { .levar-esperar { grid-template-columns: 1fr; } }
+.levar-esperar h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 24px; }
+.itens-levar { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.itens-levar li { display: flex; flex-direction: column; gap: 4px; padding: 18px; border-radius: 18px; background: rgb(255 255 255 / 0.6); }
+.itens-levar svg { width: 34px; height: 34px; color: var(--vermelho); margin-bottom: 8px; }
+.itens-levar strong { font-size: 1rem; line-height: 1.25; }
+.itens-levar span { font-size: 0.88rem; color: var(--cinza); line-height: 1.4; }
+@media (max-width: 1060px) and (min-width: 881px), (max-width: 560px) { .itens-levar { grid-template-columns: 1fr; } }
+.esperar { margin: 0; border-top: 2px solid var(--tinta); }
+.esperar div { display: grid; grid-template-columns: minmax(140px, 0.8fr) 1.2fr; gap: 6px 20px; padding-block: 16px; border-bottom: 1px solid var(--linha); }
+.esperar dt { font-weight: 800; font-stretch: 108%; }
+.esperar dd { margin: 0; color: var(--cinza); }
+@media (max-width: 520px) { .esperar div { grid-template-columns: 1fr; } }
+.duvida { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: clamp(32px, 5vw, 56px); padding-top: 28px; border-top: 1px solid var(--linha); }
+.duvida p { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.duvida .acoes { margin: 0; align-items: center; }
+
+/* Chamada final: cartão arredondado com foto */
+.cta-final__cartao {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: stretch;
+  background: var(--vermelho); color: #fff; border-radius: clamp(24px, 4vw, 48px);
+}
+.cta-final__texto { padding: clamp(32px, 6vw, 72px); align-self: center; }
+.cta-final__texto h2 { max-width: 14ch; }
+.cta-final__texto .chamada { margin-top: 18px; }
+.cta-final__cartao .botao--primario { --b-fundo: #fff; --b-tinta: var(--vermelho); --b-borda: #fff; }
+.cta-final__cartao .botao--primario:hover { --b-fundo: var(--papel); --b-borda: var(--papel); --b-tinta: var(--vermelho-escuro); }
+.cta-final__cartao a:hover { color: inherit; }
+.cta-final__foto.foto { width: 100%; height: 100%; min-height: 280px; border-radius: 0; aspect-ratio: auto; }
+.cta-final__nuvem { position: absolute; z-index: -1; left: -40px; bottom: -10px; width: 280px; aspect-ratio: 200 / 90; fill: var(--vermelho-escuro); --nuvem-traco: rgb(154 25 31 / 0.6); }
+@media (max-width: 760px) { .cta-final__cartao { grid-template-columns: 1fr; } .cta-final__foto.foto { min-height: 220px; } }
+
+/* ---------- Benefícios da matrícula ---------- */
+.beneficios__lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+.beneficio { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start; }
+.beneficio__icone {
+  display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--papel); color: var(--vermelho); border: 3px solid var(--vermelho);
+  box-shadow: inset 0 0 0 3px var(--papel), inset 0 0 0 4.5px var(--vermelho);
+}
+.beneficio__icone svg { width: 30px; height: 30px; }
+.beneficio h3 { font-size: 1.15rem; margin: 6px 0 6px; }
+.beneficio__parceiro { font-weight: 600; font-stretch: 100%; color: var(--cinza); }
+.beneficio__desconto { font-weight: 800; color: var(--vermelho); margin: 0 0 6px; }
+.beneficio p { margin: 0 0 8px; color: var(--cinza); }
+.beneficios__regra { margin: 24px 0 0; font-size: 0.9rem; color: var(--cinza); }
+.beneficios--compacto .beneficio { grid-template-columns: 52px 1fr; align-items: center; }
+.beneficios--compacto .beneficio__icone { width: 52px; height: 52px; }
+.beneficios--compacto .beneficio__icone svg { width: 24px; height: 24px; }
+.beneficios--compacto .beneficio h3 { margin: 0; font-size: 1.05rem; }
+.beneficios--compacto .beneficios__regra { margin-top: 16px; }
+.beneficios-home {
+  display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(20px, 4vw, 48px); align-items: center;
+  margin-top: clamp(28px, 4vw, 48px); padding: clamp(22px, 3vw, 36px); border-radius: var(--raio-foto); background: var(--papel-2);
+}
+.beneficios-home h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); text-transform: uppercase; margin-bottom: 12px; }
+.beneficios-home .olho { margin-bottom: 10px; }
+@media (max-width: 880px) { .beneficios-home { grid-template-columns: 1fr; } }
+
+/* Sobre: sócios com foto */
+.socios { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+@media (max-width: 820px) { .socios { grid-template-columns: 1fr; } }
+.socios__foto { margin: 0; }
+.socios__foto figcaption { margin-top: 10px; }
+
+/* ---------- Logo CrossFit (máscara: herda a cor do texto) ---------- */
+.logo-cf {
+  display: inline-block; vertical-align: middle; height: 1em; aspect-ratio: 1238 / 325; background: currentColor;
+  -webkit-mask: url("/logo-crossfit.png") center / contain no-repeat; mask: url("/logo-crossfit.png") center / contain no-repeat;
+}
+.heroi__afiliado {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin: 0 0 20px;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.heroi__afiliado .logo-cf { height: 26px; color: var(--tinta); }
+.heroi__afiliado span { padding-left: 14px; border-left: 2px solid var(--vermelho); line-height: 1.2; }
+@media (max-width: 480px) { .heroi__afiliado { flex-direction: column; align-items: flex-start; gap: 8px; } .heroi__afiliado span { padding-left: 0; border-left: 0; } }
+.rodape__afiliado { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 20px; }
+.rodape__afiliado span { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cinza-claro); }
+.rodape__afiliado .logo-cf { height: 30px; color: #fff; }
 
 /* ---------- Entrada suave dos blocos ao rolar ---------- */
 @media (prefers-reduced-motion: no-preference) {

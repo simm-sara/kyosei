@@ -2,33 +2,55 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import Botao from "./Botao.astro";
-import { partesData, dataPorExtenso, whatsappUrl } from "../lib/site";
+import { partesData, dataPorExtenso, whatsappUrl, ehLinkExterno } from "../lib/site";
 
-interface Props { evento: CollectionEntry<"eventos">; passado?: boolean; comTexto?: boolean }
-const { evento, passado = false, comTexto = false } = Astro.props;
+interface Props {
+  evento: CollectionEntry<"eventos">;
+  passado?: boolean;
+  comTexto?: boolean;
+  compacto?: boolean;   // linha enxuta (home): data, título, data por extenso e um link
+}
+const { evento, passado = false, comTexto = false, compacto = false } = Astro.props;
 const e = evento.data;
 const d = partesData(e.data);
 const { Content } = await render(evento);
 const linkInscricao = e.inscricao ?? whatsappUrl(`Olá! Quero saber mais sobre: ${e.titulo}.`);
+const externo = ehLinkExterno(linkInscricao);
 ---
-<article class={`evento ${passado ? "evento--passado" : ""}`}>
-  <time class="evento__data" datetime={e.data.toISOString().slice(0, 10)}>
-    <span class="evento__dia">{d.dia}</span>
-    <span class="evento__mes">{d.mes}</span>
-  </time>
-  <div>
-    <span class="evento__tipo">{e.tipo}{e.exemplo && " · exemplo"}</span>
-    <h3>{e.titulo}</h3>
-    <p class="evento__meta">
-      {dataPorExtenso(e.data, e.dataFim)}{e.horario && ` · ${e.horario}`}{e.local && ` · ${e.local}`}
-      {e.vagas && ` · ${e.vagas}`}{e.valor && ` · ${e.valor}`}
-    </p>
-    <p class="evento__resumo">{e.resumo}</p>
-    {comTexto && !e.exemplo && <div class="evento__texto"><Content /></div>}
-    {!passado && (
-      <Botao href={linkInscricao} variante="secundario" evento="evento_inscricao" class="evento__botao">
-        {e.inscricao ? "Inscrever-se" : "Quero participar"}
-      </Botao>
-    )}
-  </div>
-</article>
+{compacto ? (
+  <article class="evento-linha">
+    <time class="evento-linha__data" datetime={e.data.toISOString().slice(0, 10)}>
+      <span>{d.dia}</span><small>{d.mes}</small>
+    </time>
+    <div class="evento-linha__texto">
+      <span class="evento__tipo">{e.tipo}{e.exemplo && " · exemplo"}</span>
+      <h4>{e.titulo}</h4>
+      <p>{dataPorExtenso(e.data, e.dataFim)}{e.horario && ` · ${e.horario}`}</p>
+    </div>
+    <a class="evento-linha__link" href={linkInscricao} target={externo ? "_blank" : undefined} rel={externo ? "noopener" : undefined} data-evento="evento_inscricao" aria-label={`Quero participar: ${e.titulo}`}>
+      <span>Quero participar</span> <span aria-hidden="true">→</span>
+    </a>
+  </article>
+) : (
+  <article class={`evento ${passado ? "evento--passado" : ""}`}>
+    <time class="evento__data" datetime={e.data.toISOString().slice(0, 10)}>
+      <span class="evento__dia">{d.dia}</span>
+      <span class="evento__mes">{d.mes}</span>
+    </time>
+    <div>
+      <span class="evento__tipo">{e.tipo}{e.exemplo && " · exemplo"}</span>
+      <h3>{e.titulo}</h3>
+      <p class="evento__meta">
+        {dataPorExtenso(e.data, e.dataFim)}{e.horario && ` · ${e.horario}`}{e.local && ` · ${e.local}`}
+        {e.vagas && ` · ${e.vagas}`}{e.valor && ` · ${e.valor}`}
+      </p>
+      <p class="evento__resumo">{e.resumo}</p>
+      {comTexto && !e.exemplo && <div class="evento__texto"><Content /></div>}
+      {!passado && (
+        <Botao href={linkInscricao} variante="secundario" evento="evento_inscricao" class="evento__botao">
+          {e.inscricao ? "Inscrever-se" : "Quero participar"}
+        </Botao>
+      )}
+    </div>
+  </article>
+)}

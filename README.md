@@ -35,7 +35,7 @@ Troque para `false` só quando as pendências estiverem resolvidas (veja `PENDEN
 
 ## Fotos
 
-Por enquanto as fotos são blocos marcados ("Foto · aula em andamento no box"). Para trocar, coloque o arquivo em `public/fotos/` e passe `src="/fotos/nome.jpg"` no componente `<Foto>` da página. Use JPG/WebP com no máximo uns 1600 px de largura.
+Ficam em `public/fotos/` (WebP, até 1400 px de largura). Todas são do box. Para trocar uma foto, salve a nova com **o mesmo nome de arquivo**: nenhuma página precisa mudar. A lista com o que cada arquivo mostra e onde aparece está em `public/fotos/LEIA-ME.md`.
 
 ## Analytics (LGPD)
 

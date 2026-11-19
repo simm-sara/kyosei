@@ -7,6 +7,7 @@ import GradeAulas from "../components/GradeAulas.astro";
 import FaixaCta from "../components/FaixaCta.astro";
 import IconeWhatsapp from "../components/IconeWhatsapp.astro";
 import planos from "../data/planos.json";
+import Beneficios from "../components/Beneficios.astro";
 import { agendarUrl, whatsappUrl } from "../lib/site";
 ---
 <Base
@@ -67,7 +68,20 @@ import { agendarUrl, whatsappUrl } from "../lib/site";
     </div>
   </section>
 
-  <section class="secao" id="parcerias">
+  <section class="secao" id="beneficios">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <div>
+          <p class="olho">Benefícios da matrícula</p>
+          <h2>Mais que o treino</h2>
+        </div>
+        <p class="cabeca-secao__nota">Quem tem matrícula no Kyosei ganha desconto em parceiros que cuidam do resto: alimentação, recuperação e o que você usa para treinar.</p>
+      </div>
+      <Beneficios />
+    </div>
+  </section>
+
+  <section class="secao secao--sem-topo" id="parcerias">
     <div class="miolo">
       <div class="cabeca-secao">
         <div>

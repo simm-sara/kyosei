@@ -1,0 +1,24 @@
+---
+// Benefícios da matrícula: parceiros com desconto. Dados em src/data/beneficios.json.
+import Pendente from "./Pendente.astro";
+import beneficios from "../data/beneficios.json";
+interface Props { compacto?: boolean }
+const { compacto = false } = Astro.props;
+---
+<div class={`beneficios ${compacto ? "beneficios--compacto" : ""}`}>
+  <ul class="beneficios__lista">
+    {beneficios.itens.map((b) => (
+      <li class="beneficio">
+        <span class="beneficio__icone" aria-hidden="true"><svg><use href={`#k-ic-${b.icone}`} /></svg></span>
+        <div>
+          <h3>{b.categoria}{b.parceiro && <span class="beneficio__parceiro"> · {b.parceiro}</span>}</h3>
+          {b.desconto && <p class="beneficio__desconto">{b.desconto}</p>}
+          {!compacto && <p>{b.texto}</p>}
+          {b.link && <a class="link-seta" href={b.link} target="_blank" rel="noopener">Conhecer</a>}
+          {b.pendente && <Pendente nota="parceiro e desconto" />}
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p class="beneficios__regra">{beneficios.regra}</p>
+</div>
