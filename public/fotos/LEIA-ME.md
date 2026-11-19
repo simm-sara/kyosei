@@ -1,30 +1,19 @@
 # Fotos do site
 
-Para trocar, salve a foto nova com o mesmo nome (de preferência WebP ou JPG, até 1400 px de largura).
+Todas as fotos são do box. Para trocar uma, salve a nova com o mesmo nome (WebP ou JPG, até 1400 px de largura): nenhuma página precisa mudar.
 
-| Arquivo | O que mostra | Onde aparece | Origem |
-|---|---|---|---|
-| coach-lucas-chiba.webp | Lucas Chiba | Home (coaches), Coaches | Box |
-| coach-stella-mazotti.webp | Stella Mazotti | Home (coaches), Coaches | Box |
-| aula-agachamento.webp | Lucas demonstrando o agachamento, turma em volta | Home (hero, dentro do sol), Primeira aula | Box |
-| coach-quadro.webp | Lucas explicando o treino no quadro | Home (aula: técnica) | Box |
-| turma-parada-de-maos.webp | Aluna ajudando a colega na parada de mãos | Home (mosaico) | Box |
-| turma-completa.webp | Turma reunida para a foto (tem crianças) | Home (mosaico), Sobre | Box |
-| turma-wall-ball.webp | Turma fazendo wall ball | Home (mosaico), Sobre | Box |
-| aluna-barra.webp | Aluna com a barra acima da cabeça | Home (aula: treino do dia), Sobre | Box |
-| lucas-familia.webp | Lucas com uma mulher e duas crianças | Sobre (sócios) | Box |
-| turma-halteres.webp | Turma com halteres | Reserva | Pexels 6339480 (provisória) |
-| coach-ajuda-aluna.webp | Coach orientando aluna | Home (Para quem é) | Pexels 6455920 (provisória) |
-| aluna-medicine-ball.webp | Aluna com medicine ball | Home (Para quem é) | Pexels 6740050 (provisória) |
-| alongamento-dupla.webp | Dupla se alongando | Home (aula: aquecimento, mosaico) | Pexels 6339491 (provisória) |
-| coach-corrige.webp | Coach corrigindo movimento | Reserva | Pexels 6455918 (provisória) |
-| kettlebell.webp | Kettlebell swing | Reserva | Pexels 4720242 (provisória) |
-| desaquecimento.webp | Aluno alongando no chão | Home (aula: desaquecimento) | Pexels 6339489 (provisória) |
-| turma-aula.webp | Turma treinando junta | Sobre | Pexels 6339494 (provisória) |
-| wall-ball.webp | Aluna fazendo wall ball | Reserva | Pexels 6740054 (provisória) |
-| cordas-dupla.webp | Dupla nas cordas navais | Reserva | Pexels 1552242 (provisória) |
-| aluna-halter.webp | Aluna com halter | Home (mosaico), Primeira aula | Pexels 6455925 (provisória) |
-| primeira-aula.webp | Coach e aluna conversando | Chamada final (todas as páginas) | Pexels 6455923 (provisória) |
-| box-flexao.webp, anilhas-box.webp, colchonetes.webp | Reserva | Ainda não usadas | Pexels (provisórias) |
-
-Fotos do Pexels podem ser usadas gratuitamente, sem necessidade de crédito (licença Pexels).
+| Arquivo | O que mostra | Onde aparece |
+|---|---|---|
+| aula-agachamento.webp | Lucas demonstrando o agachamento, turma em volta | Home (hero), Primeira aula, Sobre |
+| coach-quadro.webp | Lucas explicando o treino no quadro | Home (aula: técnica), cartão final de todas as páginas |
+| turma-aquecimento.webp | Turma aquecendo no chão | Home (aula: aquecimento), Primeira aula |
+| aluna-barra.webp | Aluna com a barra acima da cabeça | Home (aula: treino do dia), Sobre |
+| turma-alongamento.webp | Turma no alongamento lateral | Home (aula: desaquecimento) |
+| turma-wall-ball.webp | Turma fazendo wall ball | Home (Para quem é), Sobre |
+| cumprimento-pos-treino.webp | Alunos se cumprimentando depois do treino | Home (Para quem é) |
+| turma-completa.webp | Turma reunida para a foto (tem crianças) | Home (comunidade), Sobre |
+| turma-parada-de-maos.webp | Aluna ajudando a colega na parada de mãos | Home (comunidade) |
+| aluno-step-up.webp | Aluno subindo na caixa com halter | Home (comunidade) |
+| lucas-familia.webp | Lucas com uma mulher e duas crianças | Sobre (sócios) |
+| coach-lucas-chiba.webp | Retrato do Lucas | Home (coaches), Coaches |
+| coach-stella-mazotti.webp | Retrato da Stella | Home (coaches), Coaches |

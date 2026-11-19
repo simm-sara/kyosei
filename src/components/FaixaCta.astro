@@ -3,11 +3,12 @@ import Botao from "./Botao.astro";
 import IconeWhatsapp from "./IconeWhatsapp.astro";
 import Foto from "./Foto.astro";
 import { agendarUrl, whatsappUrl } from "../lib/site";
-interface Props { titulo?: string; texto?: string; foto?: string }
+interface Props { titulo?: string; texto?: string; foto?: string; alt?: string }
 const {
   titulo = "Sua primeira aula começa aqui.",
   texto = "Agende uma aula experimental e conheça o box, os coaches e a turma.",
-  foto = "/fotos/primeira-aula.webp",
+  foto = "/fotos/coach-quadro.webp",
+  alt = "Lucas Chiba explicando o treino do dia para a turma",
 } = Astro.props;
 ---
 <section class="secao cta-final">
@@ -22,7 +23,7 @@ const {
           <Botao href={whatsappUrl()} variante="fantasma" evento="whatsapp"><IconeWhatsapp /> WhatsApp</Botao>
         </div>
       </div>
-      <Foto class="cta-final__foto" src={foto} alt="Coach e aluna conversando durante a primeira aula" proporcao="auto" posicao="50% 30%" />
+      <Foto class="cta-final__foto" src={foto} alt={alt} proporcao="auto" posicao="50% 38%" />
     </div>
   </div>
 </section>

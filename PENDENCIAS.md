@@ -38,7 +38,9 @@ Tudo que aparece com a etiqueta **A CONFIRMAR** no site em modo rascunho.
 - [ ] Link de convite da comunidade do WhatsApp → `site.json > links.comunidadeWhatsapp`.
 - [ ] Link direto do perfil do Google (avaliações) → `site.json > links.googleAvaliacoes`.
 - [x] Fotos do Lucas e da Stella (já no site).
-- [ ] Fotos reais do box para substituir as provisórias do Pexels (lista em `public/fotos/LEIA-ME.md`): turma, aula, alunos, sócios e peças do Armário.
+- [x] Fotos do box no lugar das do Pexels (lista em `public/fotos/LEIA-ME.md`).
+- [ ] Fotos das peças do Armário.
+- [ ] Confirmar que as pessoas que aparecem nas fotos concordam com o uso no site.
 - [ ] A aula experimental é gratuita? Se for, vale dizer isso nos botões e na chamada final.
 - [ ] Eventos reais → apagar os dois arquivos de exemplo em `src/content/eventos/`.
 - [ ] Guia de marca para afiliados CrossFit: conferir o uso do nome e se o selo de afiliado deve aparecer (hoje não usamos o logo da CrossFit; só o texto "Box afiliado CrossFit" e a nota de marca registrada no rodapé).

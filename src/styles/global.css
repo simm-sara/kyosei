@@ -672,13 +672,13 @@ mark.pendente {
 /* Mosaico de fotos da comunidade */
 .mosaico {
   display: grid; gap: clamp(10px, 1.4vw, 18px);
-  grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: repeat(2, clamp(150px, 18vw, 250px));
-  grid-template-areas: "a b c" "a d e";
+  grid-template-columns: 1.25fr 1fr; grid-template-rows: repeat(2, clamp(180px, 21vw, 290px));
+  grid-template-areas: "a b" "a c";
 }
 .mosaico .foto { width: 100%; height: 100%; aspect-ratio: auto; }
-.mosaico__a { grid-area: a; } .mosaico__b { grid-area: b; } .mosaico__c { grid-area: c; } .mosaico__d { grid-area: d; } .mosaico__e { grid-area: e; }
+.mosaico__a { grid-area: a; } .mosaico__b { grid-area: b; } .mosaico__c { grid-area: c; }
 @media (max-width: 720px) {
-  .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 150px 150px; grid-template-areas: "a a" "b c" "d e"; }
+  .mosaico { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 200px; grid-template-areas: "a a" "b c"; }
 }
 .comunidade-rodape { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(20px, 3vw, 40px); margin-top: clamp(28px, 4vw, 48px); align-items: stretch; }
 @media (max-width: 880px) { .comunidade-rodape { grid-template-columns: 1fr; } }
