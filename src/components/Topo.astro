@@ -1,12 +1,49 @@
 ---
+// Topo das páginas internas: breadcrumb + "Voltar", título e chamada.
+import { paginas, slugDe, trilhaDe } from "../lib/mapa";
 interface Props { olho: string; titulo: string; chamada?: string }
 const { olho, titulo, chamada } = Astro.props;
+
+const slug = slugDe(Astro.url.pathname);
+const trilha = trilhaDe(slug);
+const pai = trilha.length > 1 ? trilha[trilha.length - 2] : trilha[0];
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: trilha.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: t.rotulo,
+    item: new URL(t.href, Astro.site).href,
+  })),
+};
+const temPagina = Boolean(paginas[slug]);
 ---
 <section class="topo">
-  <div class="miolo">
+  <svg class="topo__nuvem topo__nuvem--a" aria-hidden="true"><use href="#k-nuvem" /></svg>
+  <svg class="topo__nuvem topo__nuvem--b" aria-hidden="true"><use href="#k-nuvem" /></svg>
+  <svg class="topo__torii" aria-hidden="true"><use href="#k-torii" /></svg>
+  <div class="topo__ondas" aria-hidden="true"></div>
+
+  <div class="miolo topo__miolo">
+    {temPagina && (
+      <nav class="trilha" aria-label="Você está em">
+        <a class="voltar" href={pai.href} data-voltar>
+          <span aria-hidden="true">←</span> Voltar
+        </a>
+        <ol>
+          {trilha.map((t, i) => (
+            <li>
+              {i < trilha.length - 1 ? <a href={t.href}>{t.rotulo}</a> : <span aria-current="page">{t.rotulo}</span>}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <p class="olho">{olho}</p>
     <h1>{titulo}</h1>
     {chamada && <p class="chamada">{chamada}</p>}
     <slot />
   </div>
+  {temPagina && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 </section>

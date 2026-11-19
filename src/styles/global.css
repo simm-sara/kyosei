@@ -8,13 +8,17 @@
   --vermelho-escuro: #6f1015;
   --tinta: #1b1819;
   --tinta-2: #262223;
-  --papel: #f4f1ec;
-  --papel-2: #e9e4dc;
+  --papel: #f3ebdf;
+  --papel-2: #e8dccb;
   --cinza: #5e5856;
   --cinza-claro: #b7afab;
-  --linha: #d8d0c6;
+  --linha: #d9cbb8;
   --linha-escura: #3a3435;
   --amarelo: #ffd84d;
+
+  /* Ondas seigaiha (padrão japonês de escamas), clara e escura */
+  --ondas-claras: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cg fill='%23f3ebdf' stroke='%239a191f' stroke-width='1.6'%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%2219%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%2214%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%229%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%224%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%2219%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%2214%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%229%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%224%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%2219%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%2214%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%229%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%224%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2219%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2214%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%229%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E");
+  --ondas-escuras: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cg fill='%231b1819' stroke='%236f1015' stroke-width='1.6'%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%2219%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%2214%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%229%22/%3E%3Ccircle cx=%2220%22 cy=%220%22 r=%224%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%2219%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%2214%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%229%22/%3E%3Ccircle cx=%220%22 cy=%2210%22 r=%224%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%2219%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%2214%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%229%22/%3E%3Ccircle cx=%2240%22 cy=%2210%22 r=%224%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2219%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%2214%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%229%22/%3E%3Ccircle cx=%2220%22 cy=%2220%22 r=%224%22/%3E%3C/g%3E%3C/svg%3E");
 
   --f-texto: "Archivo Variable", "Archivo", system-ui, sans-serif;
   --largura: 1200px;
@@ -137,7 +141,7 @@ mark.pendente {
 /* ---------- Cabeçalho ---------- */
 .cabecalho {
   position: sticky; top: 0; z-index: 50;
-  background: rgb(244 241 236 / 0.92);
+  background: rgb(243 235 223 / 0.92);
   backdrop-filter: saturate(1.4) blur(10px);
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid var(--linha);
@@ -262,35 +266,139 @@ mark.pendente {
   font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px;
 }
 
-/* ---------- Herói (home e páginas internas) ---------- */
-.heroi { background: var(--tinta); color: var(--papel); position: relative; overflow: hidden; }
+/* ---------- Herói da home ----------
+   Composição em colagem: sol vermelho com a foto, galho de sakura, nuvens e os "destaques"
+   do Instagram como adesivos clicáveis. Ondas seigaiha no pé. */
+.heroi { background: var(--papel); color: var(--tinta); position: relative; overflow: hidden; isolation: isolate; }
+.heroi__ondas {
+  position: absolute; inset: auto 0 0 0; height: 140px; z-index: -1; opacity: 0.4;
+  background: var(--ondas-claras); background-size: 48px 24px;
+  -webkit-mask-image: linear-gradient(to top, #000 20%, transparent); mask-image: linear-gradient(to top, #000 20%, transparent);
+}
+.heroi__nuvem--fundo { position: absolute; z-index: -1; left: -70px; top: 36px; width: 320px; aspect-ratio: 200 / 90; fill: var(--papel-2); --nuvem-traco: var(--papel); }
 .heroi__grade {
-  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(28px, 5vw, 64px); align-items: center;
-  padding-block: clamp(48px, 8vw, 104px);
+  display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 4vw, 56px); align-items: center;
+  padding-block: clamp(32px, 4.5vw, 64px) clamp(72px, 8vw, 104px);
 }
-@media (max-width: 880px) { .heroi__grade { grid-template-columns: 1fr; } }
-.heroi h1 { margin-bottom: 24px; }
-.heroi h1 em { font-style: normal; color: var(--vermelho-forte); }
-.heroi .botao--fantasma { --b-tinta: var(--papel); --b-borda: rgb(244 241 236 / 0.5); }
-.heroi__foto { position: relative; }
-.heroi__foto::before {
-  content: ""; position: absolute; inset: 18px -18px -18px 18px; background: var(--vermelho); border-radius: var(--raio);
-}
-.heroi__foto .foto { position: relative; }
-.heroi__selos { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 32px; font-size: 0.88rem; color: var(--cinza-claro); }
-.heroi__selos a { text-decoration: none; }
-.heroi__selos strong { color: #fff; }
-.estrelas { color: #f4b400; letter-spacing: 1px; }
+@media (max-width: 900px) { .heroi__grade { grid-template-columns: 1fr; } }
+.heroi__texto { min-width: 0; }
+.heroi h1 { margin-bottom: 22px; font-size: clamp(2.6rem, 5.6vw, 4.6rem); }
+.heroi h1 em { font-style: normal; color: var(--vermelho); }
+.heroi .chamada { opacity: 1; color: var(--cinza); max-width: 44ch; }
 
+.heroi__arte {
+  --s: clamp(96px, 10.5vw, 136px);
+  position: relative; width: 100%; max-width: 600px; aspect-ratio: 1; justify-self: center; margin-block: 12px;
+}
+.heroi__sol {
+  position: absolute; inset: 15%; border-radius: 50%; background: var(--vermelho); padding: 5%;
+  box-shadow: 0 0 0 10px var(--papel), 0 0 0 13px var(--vermelho);
+}
+.heroi__foto.foto { width: 100%; height: 100%; aspect-ratio: auto; border-radius: 50%; border: 6px solid var(--papel); }
+.heroi__foto .foto__rotulo { margin: 0 auto 22%; }
+.heroi__foto.foto--vazia { justify-content: center; }
+.heroi__galho { position: absolute; top: -3%; right: -8%; width: 60%; aspect-ratio: 260 / 220; pointer-events: none; }
+.heroi__nuvem { position: absolute; pointer-events: none; --nuvem-traco: rgb(243 235 223 / 0.6); }
+.heroi__nuvem--a { left: 4%; bottom: 10%; width: 42%; aspect-ratio: 200 / 90; fill: var(--vermelho); }
+.heroi__nuvem--b { right: 0; top: 50%; width: 28%; aspect-ratio: 200 / 90; fill: var(--vermelho-escuro); }
+
+.heroi__selo { position: absolute; }
+.heroi__selo--1 { left: 0; top: 4%; }
+.heroi__selo--2 { left: -2%; top: 58%; }
+.heroi__selo--3 { left: 76%; top: 26%; }
+.heroi__selo--4 { left: 70%; top: 72%; }
+.heroi__selo--5 { left: 36%; top: 80%; }
+.heroi__nota {
+  position: absolute; left: 28%; top: 0; z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  background: var(--tinta); color: var(--papel); border-radius: 999px; padding: 8px 14px;
+  font-size: 0.82rem; text-decoration: none; transform: rotate(-4deg);
+  box-shadow: 0 10px 18px -10px rgb(0 0 0 / 0.5); transition: transform 0.25s;
+}
+.heroi__nota:hover { color: #fff; transform: rotate(0) translateY(-2px); }
+.heroi__nota strong { color: #fff; }
+.estrelas { color: #f4b400; letter-spacing: 1px; }
+@media (max-width: 900px) {
+  .heroi__arte { --s: clamp(84px, 24vw, 120px); max-width: 480px; }
+  .heroi__nota { left: 22%; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroi__selo { animation: flutuar 7s ease-in-out infinite; }
+  .heroi__selo--2 { animation-delay: -1.5s; }
+  .heroi__selo--3 { animation-delay: -3s; }
+  .heroi__selo--4 { animation-delay: -4.5s; }
+  .heroi__selo--5 { animation-delay: -2.2s; }
+  @keyframes flutuar { 50% { translate: 0 -7px; } }
+}
+
+/* ---------- Selo (destaque do Instagram) ---------- */
+.selo {
+  display: block; width: var(--s, 120px); aspect-ratio: 1; border-radius: 50%; text-decoration: none; z-index: 1;
+  transform: rotate(var(--giro, 0deg)); transition: transform 0.25s;
+  filter: drop-shadow(0 12px 14px rgb(70 20 15 / 0.2));
+}
+.selo:hover { color: inherit; transform: rotate(0deg) scale(1.07); z-index: 3; }
+.selo:focus-visible { outline-offset: 4px; border-radius: 50%; }
+.selo__disco {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding: 12%; background: var(--papel); color: var(--vermelho);
+  border: calc(var(--s, 120px) * 0.05) solid var(--vermelho);
+  box-shadow: inset 0 0 0 3px var(--papel), inset 0 0 0 4.5px var(--vermelho);
+}
+.selo__icone { width: 34%; aspect-ratio: 1; flex: none; position: relative; }
+.selo__rotulo {
+  position: relative; margin-top: 5%; color: var(--tinta);
+  font-weight: 800; font-stretch: 104%; text-transform: uppercase; line-height: 1;
+  font-size: calc(var(--s, 120px) * var(--rotulo, 0.108)); max-width: 100%;
+}
+.selo__sub {
+  position: relative; margin-top: 3%; color: var(--vermelho);
+  font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1;
+  font-size: calc(var(--s, 120px) * 0.072);
+}
+.selo__torii { width: 13%; aspect-ratio: 120 / 100; flex: none; fill: var(--vermelho); margin-top: 5%; position: relative; }
+.selo__nuvem { position: absolute; fill: var(--vermelho); --nuvem-traco: rgb(243 235 223 / 0.6); }
+.selo__nuvem--a { width: 42%; aspect-ratio: 200 / 90; left: -14%; top: 12%; }
+.selo__nuvem--b { width: 34%; aspect-ratio: 200 / 90; right: -12%; bottom: 20%; }
+
+/* ---------- Topo das páginas internas ---------- */
 .topo {
-  background: var(--tinta); color: var(--papel); padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px);
-  position: relative; overflow: hidden;
+  background: var(--tinta); color: var(--papel); padding-block: clamp(28px, 4vw, 44px) clamp(48px, 7vw, 88px);
+  position: relative; overflow: hidden; isolation: isolate;
 }
-.topo::after {
-  content: ""; position: absolute; right: 0; bottom: 0; width: min(38vw, 420px); height: 10px; background: var(--vermelho);
-}
+.topo__miolo { position: relative; }
 .topo h1 { font-size: clamp(2.4rem, 6.4vw, 4.8rem); max-width: 16ch; }
 .topo .chamada { margin-top: 20px; }
+.topo__nuvem { position: absolute; z-index: -1; fill: var(--vermelho-escuro); opacity: 0.55; --nuvem-traco: rgb(27 24 25 / 0.55); pointer-events: none; }
+.topo__nuvem--a { right: -60px; top: 28px; width: 360px; aspect-ratio: 200 / 90; }
+.topo__nuvem--b { right: 30%; bottom: 46px; width: 170px; aspect-ratio: 200 / 90; opacity: 0.35; }
+.topo__torii { position: absolute; z-index: -1; right: 7%; bottom: 0; width: clamp(140px, 18vw, 230px); aspect-ratio: 120 / 100; fill: rgb(154 25 31 / 0.4); }
+.topo__ondas {
+  position: absolute; z-index: -2; right: 0; bottom: 0; width: min(60vw, 640px); height: 72px;
+  background: var(--ondas-escuras); background-size: 40px 20px;
+  -webkit-mask-image: linear-gradient(to left, #000 30%, transparent); mask-image: linear-gradient(to left, #000 30%, transparent);
+}
+@media (max-width: 720px) { .topo__nuvem--b, .topo__torii { display: none; } .topo__nuvem--a { width: 220px; right: -80px; top: auto; bottom: 30px; } }
+
+/* Breadcrumb + Voltar */
+.trilha { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-bottom: clamp(28px, 4vw, 44px); font-size: 0.88rem; }
+.voltar {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 16px 6px 12px;
+  border: 1.5px solid rgb(243 235 223 / 0.35); border-radius: 999px;
+  color: var(--papel); text-decoration: none; font-weight: 700; letter-spacing: 0.02em;
+  transition: border-color 0.2s, background 0.2s;
+}
+.voltar span { transition: translate 0.2s; }
+.voltar:hover { color: #fff; border-color: var(--papel); background: rgb(243 235 223 / 0.06); }
+.voltar:hover span { translate: -3px 0; }
+.trilha ol { display: flex; flex-wrap: wrap; gap: 4px 8px; list-style: none; margin: 0; padding: 0; color: var(--cinza-claro); }
+.trilha li { display: inline-flex; gap: 8px; }
+.trilha li + li::before { content: "/"; color: var(--vermelho-forte); }
+.trilha a { text-decoration: none; }
+.trilha a:hover { color: #fff; text-decoration: underline; }
+.trilha [aria-current] { color: var(--papel); font-weight: 600; }
 
 /* ---------- Cartões ---------- */
 .cartao {
@@ -301,18 +409,6 @@ mark.pendente {
 .cartao p { margin: 0; color: var(--cinza); }
 .secao--escura .cartao { background: var(--tinta-2); border-color: var(--linha-escura); }
 .secao--escura .cartao p { color: var(--cinza-claro); }
-
-.atalhos { margin-top: -40px; position: relative; z-index: 2; }
-.atalho {
-  display: flex; flex-direction: column; gap: 6px; min-height: 150px;
-  padding: 22px; background: #fff; border: 1px solid var(--linha); border-radius: var(--raio);
-  text-decoration: none; box-shadow: var(--sombra);
-  transition: transform 0.2s, border-color 0.2s;
-}
-.atalho:hover { color: inherit; transform: translateY(-3px); border-color: var(--vermelho); }
-.atalho__num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; color: var(--vermelho); }
-.atalho strong { font-size: 1.25rem; font-stretch: 115%; font-weight: 800; text-transform: uppercase; line-height: 1.1; }
-.atalho span:last-child { color: var(--cinza); font-size: 0.93rem; margin-top: auto; }
 
 .provas { counter-reset: prova; }
 .prova { border-top: 4px solid var(--vermelho); padding-top: 18px; }
@@ -490,20 +586,21 @@ mark.pendente {
 }
 
 /* ---------- Troca de páginas ----------
-   Navegação entre páginas separadas (melhor para SEO), com a View Transitions API entre documentos
-   (Chrome/Edge 126+, Safari 18.2+). Uma faixa vermelha diagonal varre a tela; o cabeçalho fica parado.
+   Páginas separadas (melhor para SEO) com a View Transitions API entre documentos
+   (Chrome/Edge 126+, Safari 18.2+). Uma faixa vermelha diagonal varre a tela:
+   - "ir" (página mais funda ou mais à direita no menu): a faixa corre da direita para a esquerda;
+   - "voltar" (Voltar, breadcrumb, Início ou o botão voltar do navegador): corre ao contrário.
+   A direção é decidida em components/Navegacao.astro. O cabeçalho fica parado.
    Navegadores sem suporte trocam de página normalmente. */
 @view-transition { navigation: auto; }
 
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition { background: var(--vermelho); }
   ::view-transition-group(root) { animation-duration: 0.7s; }
-  ::view-transition-old(root) {
-    animation: 0.55s cubic-bezier(0.7, 0, 0.3, 1) both pagina-sai;
-  }
-  ::view-transition-new(root) {
-    animation: 0.6s cubic-bezier(0.7, 0, 0.3, 1) 0.14s both pagina-entra;
-  }
+  ::view-transition-old(root) { animation: 0.55s cubic-bezier(0.7, 0, 0.3, 1) both pagina-sai; }
+  ::view-transition-new(root) { animation: 0.6s cubic-bezier(0.7, 0, 0.3, 1) 0.14s both pagina-entra; }
+  html:active-view-transition-type(voltar)::view-transition-old(root) { animation-name: pagina-sai-voltando; }
+  html:active-view-transition-type(voltar)::view-transition-new(root) { animation-name: pagina-entra-voltando; }
 
   @keyframes pagina-sai {
     from { clip-path: polygon(0 0, 115% 0, 100% 100%, 0 100%); }
@@ -512,6 +609,14 @@ mark.pendente {
   @keyframes pagina-entra {
     from { clip-path: polygon(115% 0, 130% 0, 115% 100%, 100% 100%); transform: translateX(4%); }
     to { clip-path: polygon(0 0, 130% 0, 115% 100%, -15% 100%); transform: none; }
+  }
+  @keyframes pagina-sai-voltando {
+    from { clip-path: polygon(100% 0, -15% 0, 0 100%, 100% 100%); }
+    to { clip-path: polygon(100% 0, 100% 0, 115% 100%, 100% 100%); transform: translateX(4%); }
+  }
+  @keyframes pagina-entra-voltando {
+    from { clip-path: polygon(-15% 0, -30% 0, -15% 100%, 0 100%); transform: translateX(-4%); }
+    to { clip-path: polygon(100% 0, -30% 0, -15% 100%, 115% 100%); transform: none; }
   }
 }
 @media (prefers-reduced-motion: reduce) {

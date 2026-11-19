@@ -1,0 +1,36 @@
+---
+// Selo redondo no estilo dos destaques do Instagram do box: aro vermelho, miolo creme,
+// nuvenzinhas, ícone em traço e um mini torii embaixo do rótulo. É um link.
+import { ehLinkExterno } from "../lib/site";
+interface Props {
+  href: string;
+  rotulo: string;
+  sub?: string;
+  icone: "agenda" | "haltere" | "relogio" | "lanterna" | "aperto" | "conversa" | "estrela";
+  evento?: string;
+  giro?: number;       // rotação em graus, para o efeito "adesivo"
+  class?: string;
+  style?: string;
+}
+const { href, rotulo, sub, icone, evento, giro = 0, class: classe = "", style = "" } = Astro.props;
+const externo = ehLinkExterno(href);
+// Rótulos longos (ex.: "Comunidade") ganham fonte menor para caber no disco.
+const escala = rotulo.length > 9 ? 0.09 : 0.108;
+---
+<a
+  class={`selo ${classe}`}
+  href={href}
+  data-evento={evento}
+  target={externo ? "_blank" : undefined}
+  rel={externo ? "noopener" : undefined}
+  style={`--giro:${giro}deg;--rotulo:${escala};${style}`}
+>
+  <span class="selo__disco">
+    <svg class="selo__nuvem selo__nuvem--a" aria-hidden="true"><use href="#k-nuvem" /></svg>
+    <svg class="selo__nuvem selo__nuvem--b" aria-hidden="true"><use href="#k-nuvem" /></svg>
+    <svg class="selo__icone" aria-hidden="true"><use href={`#k-ic-${icone}`} /></svg>
+    <span class="selo__rotulo">{rotulo}</span>
+    {sub && <span class="selo__sub">{sub}</span>}
+    <svg class="selo__torii" aria-hidden="true"><use href="#k-torii" /></svg>
+  </span>
+</a>
